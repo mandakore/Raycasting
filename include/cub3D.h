@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/30 21:32:24 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:01:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include "mlx/mlx.h"
 
 typedef struct s_player
 {
