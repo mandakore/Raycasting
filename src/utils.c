@@ -6,12 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:25:28 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/30 21:25:47 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:05:48 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-# include "minilibx-linux/mlx.h"
 
 int	close_window(t_game *game)
 {

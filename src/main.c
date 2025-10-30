@@ -6,12 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/30 21:49:39 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:00:44 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-# include "minilibx-linux/mlx.h"
 
 int key_press(int keycode, t_player *player)
 {
