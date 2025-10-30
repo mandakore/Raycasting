@@ -2,15 +2,13 @@ NAME = game
 CC = cc
 OBJ = $(SRC:.c=.o)
 
-LFLAGS = aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-INCLUDES = includes/mlx/libmlx.a
-SRC = src/main.c
+LFLAGS = -L./include/mlx -lmlx -lXext -lX11 -lm
+INCLUDES = -I./include
+SRC = src/main.c src/utils.c
 
 mlx:
-	git clone https://github.com/42Paris/minilibx-linux.git ./includes/mlx
-	make -C ./includes/mlx
-##要検討--fatal: destination path './includes/mlx' already exists and is not an empty directory.
-##make: *** [Makefile:10: mlx] Error 128
+	git clone https://github.com/42Paris/minilibx-linux.git ./include/mlx
+	make -C ./include/mlx
 
 all: $(NAME)
 
@@ -19,17 +17,11 @@ $(NAME): $(OBJ)
 
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 
 fclean:
 	rm -rf $(OBJ)
 	rm -rf $(NAME)
-
-
-
-
-
-
 
 re: fclean all
 
