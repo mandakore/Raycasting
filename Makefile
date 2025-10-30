@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 
 LFLAGS = -L./include/mlx -lmlx -lXext -lX11 -lm
 INCLUDES = -I./include
-SRC = src/main.c src/utils.c
+SRC = src/main.c src/utils.c src/key.c
 
 mlx:
 	git clone https://github.com/42Paris/minilibx-linux.git ./include/mlx

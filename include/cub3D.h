@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/31 01:01:02 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:19:12 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ typedef struct s_game
 
 
 int		close_window(t_game *game);
+
+int		key_press(int keycode, t_player *player);
+int		key_release(int keycode, t_player *player);
+int		key_handler(int keycode, t_game *game);
 
 
 
