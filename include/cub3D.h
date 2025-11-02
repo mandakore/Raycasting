@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/02 17:29:22 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:42:14 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define HIGHT 720
 # define WIDTH 1280
+
+# define WALL 42
 
 
 
@@ -57,6 +59,7 @@ typedef struct s_game
 	t_player	player;
 	char		*data;
 	void		*img; //--------------
+	char		**map;
 
 	int			bit;
 	int			line_size;
@@ -71,6 +74,8 @@ int		key_release(int keycode, t_player *player);
 // int		key_handler(int keycode, t_game *game);
 
 void move_player(t_player *player);
+void	init_player(t_player *player);
+
 
 
 #endif
