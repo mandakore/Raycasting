@@ -6,11 +6,25 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/31 01:36:48 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:13:27 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+
+void	init_player(t_player *player)
+{
+	player->x = WIDTH / 2;
+	player->y = HIGHT / 2;
+
+	player->key_w = false;
+	player->key_a = false;
+	player->key_s = false;
+	player->key_d = false;
+}
+
+
 
 int key_press(int keycode, t_player *player)
 {
@@ -44,7 +58,7 @@ int key_press(int keycode, t_player *player)
 		player->right_turn = true;
 		printf("RIGHT key pressed\n");
 	}
-	if (keycode == ESC) 
+	if (keycode == ESC)
 		exit(1); //メモリリーク
 	return 0;
 }
@@ -65,6 +79,30 @@ int key_release(int keycode, t_player *player)
 		player->right_turn = false;
 	return 0;
 }
+
+
+void move_player(t_player *player)
+{
+	int speed = 3;
+
+	if (player->key_w)
+	{
+		player->y -= speed;
+	}
+	if (player->key_s)
+	{
+		player->y += speed;
+	}
+	if (player->key_a)
+	{
+		player->x -= speed;
+	}
+	if (player->key_d)
+	{
+		player->x += speed;
+	}
+}
+
 
 
 // int	key_handler(int keycode, t_game *game)

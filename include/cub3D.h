@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/10/31 01:19:12 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:29:22 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # define RIGHT 65363
 # define ESC 65307
 
+# define HIGHT 720
+# define WIDTH 1280
+
+
+
 
 # include <unistd.h>
 # include <stdio.h>
@@ -31,6 +36,10 @@
 
 typedef struct s_player
 {
+
+	int		x;
+	int		y;
+
 	bool	key_w;
 	bool	key_s;
 	bool	key_a;
@@ -46,6 +55,12 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_player	player;
+	char		*data;
+	void		*img; //--------------
+
+	int			bit;
+	int			line_size;
+	int			type;
 }	t_game;
 
 
@@ -53,9 +68,9 @@ int		close_window(t_game *game);
 
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
-int		key_handler(int keycode, t_game *game);
+// int		key_handler(int keycode, t_game *game);
 
-
+void move_player(t_player *player);
 
 
 #endif
