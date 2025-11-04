@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/02 20:02:39 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/03 02:52:24 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ void	init_player(t_player *player)
 {
 	player->x = WIDTH / 2;
 	player->y = HIGHT / 2;
+	player->dire = PI / 2;
 
 	player->key_w = false;
 	player->key_a = false;
 	player->key_s = false;
 	player->key_d = false;
+	
+	player->left_turn = false;
+	player->right_turn = false;
+	
 }
 
 
@@ -31,32 +36,32 @@ int key_press(int keycode, t_player *player)
 	if(keycode == W)
 	{
 		player->key_w = true;
-		printf("W key pressed\n");
+
 	}
 	if(keycode == S)
 	{
 		player->key_s = true;
-		printf("S key pressed\n");
+
 	}
 	if(keycode == A)
 	{
 		player->key_a = true;
-		printf("W key pressed\n");
+
 	}
 	if(keycode == D)
 	{
 		player->key_d = true;
-		printf("D key pressed\n");
+
 	}
 	if(keycode == LEFT)
 	{
 		player->left_turn = true;
-		printf("LEFT key pressed\n");
+
 	}
 	if(keycode == RIGHT)
 	{
 		player->right_turn = true;
-		printf("RIGHT key pressed\n");
+
 	}
 	if (keycode == ESC)
 		exit(1); //メモリリーク
@@ -83,23 +88,39 @@ int key_release(int keycode, t_player *player)
 
 void move_player(t_player *player)
 {
-	int speed = 3;
+	int speed = 2;
+	float dire_speed = 0.02;
+	float cos_angle = cos(player->dire);
+	float sin_angle = sin(player->dire);
+
+	if (player->left_turn)
+		player->dire -= dire_speed;
+	if (player->right_turn)
+		player->dire += dire_speed;
+	if (player->dire > 2 * PI)
+		player->dire = 0;
+	if (player->dire < 0)
+		player->dire = 2 * PI;
 
 	if (player->key_w)
 	{
-		player->y -= speed;
+		player->x += cos_angle * speed;
+		player->y += sin_angle * speed;
 	}
 	if (player->key_s)
 	{
-		player->y += speed;
+		player->x -= cos_angle * speed;
+		player->y -= sin_angle * speed;
 	}
 	if (player->key_a)
 	{
-		player->x -= speed;
+		player->x += sin_angle * speed;
+		player->y -= cos_angle * speed;
 	}
 	if (player->key_d)
 	{
-		player->x += speed;
+		player->x -= sin_angle * speed;
+		player->y += cos_angle * speed;
 	}
 }
 

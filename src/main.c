@@ -6,11 +6,20 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/02 20:09:36 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:39:36 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+bool touch(float px, float py, t_game *game)
+{
+	int x = px / WALL;
+	int y = py / WALL;
+	if(game->map[y][x] == '1')
+		return true;
+	return false;
+}
 
 char **get_map(void)
 {
@@ -115,10 +124,39 @@ void create_map(t_game *game)
 int raycasting(t_game *game)
 {
 	t_player	*player = &game->player;
+
 	move_player(player);
 	clear_player(game);
 	draw_square(player->x, player->y, 10, 0xFFFFFF, game);
 	create_map(game);
+
+	float fraction = PI / 2 / WIDTH;
+	float current_angle = player->dire - PI / 4;
+	int i = 0;
+
+
+	while(i < WIDTH)
+	{
+		
+		float ray_x = player->x;
+		float ray_y = player->y;
+
+
+		float cos_angle = cos(current_angle);
+		float sin_angle = sin(current_angle);
+
+		while(!touch(ray_x, ray_y, game))
+		{
+			put_pixel(ray_x, ray_y, 0xFF0000, game);
+			ray_x += cos_angle; 
+			ray_y += sin_angle; 
+		}
+		
+
+		current_angle += fraction; //
+		i++;
+	}
+
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return 0;
 }

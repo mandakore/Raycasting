@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/02 19:42:14 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/03 03:03:08 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WALL 42
 
+# define PI 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
 
 
@@ -39,8 +40,9 @@
 typedef struct s_player
 {
 
-	int		x;
-	int		y;
+	float		x;
+	float		y;
+	float		dire;
 
 	bool	key_w;
 	bool	key_s;
@@ -73,7 +75,7 @@ int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
 // int		key_handler(int keycode, t_game *game);
 
-void move_player(t_player *player);
+void	move_player(t_player *player);
 void	init_player(t_player *player);
 
 
