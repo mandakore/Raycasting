@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/03 02:52:24 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:14:48 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	init_player(t_player *player)
 	player->key_a = false;
 	player->key_s = false;
 	player->key_d = false;
-	
+
 	player->left_turn = false;
 	player->right_turn = false;
-	
+
 }
 
 
@@ -86,8 +86,12 @@ int key_release(int keycode, t_player *player)
 }
 
 
-void move_player(t_player *player)
+void move_player(t_game *game)
 {
+	t_player *player;
+
+	player = &game->player;
+
 	int speed = 2;
 	float dire_speed = 0.02;
 	float cos_angle = cos(player->dire);

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/04 14:39:36 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:55:21 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int raycasting(t_game *game)
 {
 	t_player	*player = &game->player;
 
-	move_player(player);
+	move_player(game);
 	clear_player(game);
 	draw_square(player->x, player->y, 10, 0xFFFFFF, game);
 	create_map(game);
@@ -137,7 +137,7 @@ int raycasting(t_game *game)
 
 	while(i < WIDTH)
 	{
-		
+
 		float ray_x = player->x;
 		float ray_y = player->y;
 
@@ -148,10 +148,10 @@ int raycasting(t_game *game)
 		while(!touch(ray_x, ray_y, game))
 		{
 			put_pixel(ray_x, ray_y, 0xFF0000, game);
-			ray_x += cos_angle; 
-			ray_y += sin_angle; 
+			ray_x += cos_angle;
+			ray_y += sin_angle;
 		}
-		
+
 
 		current_angle += fraction; //
 		i++;

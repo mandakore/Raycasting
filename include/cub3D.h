@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/03 03:03:08 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:00:37 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define WALL 42
 
-# define PI 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+# define PI 3.14159265358979323
 
 
 
@@ -75,9 +75,10 @@ int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
 // int		key_handler(int keycode, t_game *game);
 
-void	move_player(t_player *player);
+void	move_player(t_game *game);
 void	init_player(t_player *player);
 
+bool touch(float px, float py, t_game *game);
 
 
 #endif
