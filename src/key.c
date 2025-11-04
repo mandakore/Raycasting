@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/04 20:14:48 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:27:16 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,27 +106,34 @@ void move_player(t_game *game)
 	if (player->dire < 0)
 		player->dire = 2 * PI;
 
-	if (player->key_w)
+
+	if(touch(player->x, player->y, game) == false || touch(player->x, player->y, game) == false)
 	{
-		player->x += cos_angle * speed;
-		player->y += sin_angle * speed;
+		if (player->key_w)
+		{
+			player->x += cos_angle * speed;
+			player->y += sin_angle * speed;
+		}
+		if (player->key_s)
+		{
+			player->x -= cos_angle * speed;
+			player->y -= sin_angle * speed;
+		}
+		if (player->key_a)
+		{
+			player->x += sin_angle * speed;
+			player->y -= cos_angle * speed;
+		}
+		if (player->key_d)
+		{
+			player->x -= sin_angle * speed;
+			player->y += cos_angle * speed;
+		}
 	}
-	if (player->key_s)
-	{
-		player->x -= cos_angle * speed;
-		player->y -= sin_angle * speed;
-	}
-	if (player->key_a)
-	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
-	}
-	if (player->key_d)
-	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
-	}
+
 }
+
+
 
 
 
