@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/04 19:55:21 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:36:24 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,17 @@ int raycasting(t_game *game)
 			ray_x += cos_angle;
 			ray_y += sin_angle;
 		}
-
-
 		current_angle += fraction; //
 		i++;
+		float dist = (distance(ray_x - player->x, ray_y - player->y));
+		float height = (WALL / dist) * (WIDTH / 2);
+		int start_y = (HIGHT - height) / 2;
+		int end = start_y + height;
+		while(start_y < end)
+		{
+			put_pixel(i, start_y, 255, game);
+			start_y++;
+		}
 	}
 
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/04 20:00:37 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:18:37 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void	move_player(t_game *game);
 void	init_player(t_player *player);
 
 bool touch(float px, float py, t_game *game);
+
+float distance(float x, float y);
+
 
 
 #endif
