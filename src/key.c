@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/06 19:12:46 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/07 02:28:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	init_player(t_player *player)
 {
-	player->x = WIDTH / 2;
-	player->y = HIGHT / 2;
-	player->dire = PI / 2;
+	player->x = WIDTH / 8;
+	player->y = HIGHT / 16;
+	player->dire = PI;
 
 	player->key_w = false;
 	player->key_a = false;
@@ -92,8 +92,8 @@ void move_player(t_game *game)
 
 	player = &game->player;
 
-	int speed = 2;
-	float dire_speed = 0.02;
+	int speed = 1;
+	float dire_speed = 0.01;
 
 	if (player->left_turn)
 		player->dire -= dire_speed;

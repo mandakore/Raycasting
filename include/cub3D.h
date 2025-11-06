@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/06 19:18:37 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/07 02:24:34 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define HIGHT 720
 # define WIDTH 1280
 
-# define WALL 42
+# define WALL 16
 
 # define PI 3.14159265358979323
 
