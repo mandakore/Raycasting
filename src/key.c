@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/04 21:27:16 by atashiro         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:59:01 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void move_player(t_game *game)
 
 	int speed = 2;
 	float dire_speed = 0.02;
-	float cos_angle = cos(player->dire);
-	float sin_angle = sin(player->dire);
 
 	if (player->left_turn)
 		player->dire -= dire_speed;
@@ -106,30 +104,62 @@ void move_player(t_game *game)
 	if (player->dire < 0)
 		player->dire = 2 * PI;
 
+	float cos_angle = cos(player->dire);
+	float sin_angle = sin(player->dire);
 
-	if(touch(player->x, player->y, game) == false || touch(player->x, player->y, game) == false)
+	float add_x = 0;
+	float add_y = 0;
+
+	if (player->key_w)
 	{
-		if (player->key_w)
-		{
-			player->x += cos_angle * speed;
-			player->y += sin_angle * speed;
-		}
-		if (player->key_s)
-		{
-			player->x -= cos_angle * speed;
-			player->y -= sin_angle * speed;
-		}
-		if (player->key_a)
-		{
-			player->x += sin_angle * speed;
-			player->y -= cos_angle * speed;
-		}
-		if (player->key_d)
-		{
-			player->x -= sin_angle * speed;
-			player->y += cos_angle * speed;
-		}
+		add_x += cos_angle * speed;
+		add_y += sin_angle * speed;
 	}
+	if (player->key_s)
+	{
+		add_x -= cos_angle * speed;
+		add_y -= sin_angle * speed;
+	}
+	if (player->key_a)
+	{
+		add_x += sin_angle * speed;
+		add_y -= cos_angle * speed;
+	}
+	if (player->key_d)
+	{
+		add_x -= sin_angle * speed;
+		add_y += cos_angle * speed;
+	}
+	if (!touch(player->x + add_x, player->y, game))
+	{
+		player->x += add_x;
+	}
+	if (!touch(player->x, player->y + add_y, game))
+	{
+		player->y += add_y;
+	}
+
+	// if (player->key_w)
+	// {
+	// 	player->x += cos_angle * speed;
+	// 	player->y += sin_angle * speed;
+	// }
+	// if (player->key_s)
+	// {
+	// 	player->x -= cos_angle * speed;
+	// 	player->y -= sin_angle * speed;
+	// }
+	// if (player->key_a)
+	// {
+	// 	player->x += sin_angle * speed;
+	// 	player->y -= cos_angle * speed;
+	// }
+	// if (player->key_d)
+	// {
+	// 	player->x -= sin_angle * speed;
+	// 	player->y += cos_angle * speed;
+	// }
+
 
 }
 
