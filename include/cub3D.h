@@ -54,6 +54,17 @@ typedef struct s_player
 
 }	t_player;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -66,6 +77,8 @@ typedef struct s_game
 	int			bit;
 	int			line_size;
 	int			type;
+
+	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
 }	t_game;
 
 

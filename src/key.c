@@ -93,7 +93,7 @@ void move_player(t_game *game)
 	player = &game->player;
 
 	int speed = 1;
-	float dire_speed = 0.01;
+	float dire_speed = 0.03;
 
 	if (player->left_turn)
 		player->dire -= dire_speed;
