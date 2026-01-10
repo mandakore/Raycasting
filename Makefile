@@ -1,31 +1,83 @@
-NAME = game
-CC = cc
-OBJ = $(SRC:.c=.o)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sohyamaz <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
+#    Updated: 2026/01/10 13:57:54 by sohyamaz         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-LFLAGS = -L./include/mlx -lmlx -lXext -lX11 -lm
-INCLUDES = -I./include
-SRC = src/main.c src/utils.c src/key.c
+# =========================
+# Target
+# =========================
+NAME	= game
 
+# =========================
+# Compiler
+# =========================
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror
+
+# =========================
+# Paths
+# =========================
+INC_DIR	= ./include
+MLX_DIR	= ./include/mlx
+MLX_LIB	= $(MLX_DIR)/libmlx.a
+
+# =========================
+# Sources
+# =========================
+SRCS	= src/main.c \
+		  src/utils.c \
+		  src/key.c
+
+OBJS	= $(SRCS:%.c=%.o)
+
+# =========================
+# Includes / Libs
+# =========================
+INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR)
+LDFLAGS		= -L$(MLX_DIR)
+LDLIBS		= -lmlx -lXext -lX11 -lm
+
+# =========================
+# Rules
+# =========================
 all: $(NAME)
 
-mlx:
-	@if [ ! -d "./include/mlx" ]; then \
-		git clone https://github.com/42Paris/minilibx-linux.git ./include/mlx; \
+# Link
+$(NAME): $(MLX_LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(LDLIBS)
+
+# Compile
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+# Build MLX if needed
+$(MLX_LIB):
+	@if [ ! -f "$(MLX_DIR)/Makefile" ] && [ ! -f "$(MLX_DIR)/makefile" ]; then \
+		rm -rf "$(MLX_DIR)"; \
+		git clone https://github.com/42Paris/minilibx-linux.git "$(MLX_DIR)"; \
 	fi
-	make -C ./include/mlx
+	$(MAKE) -C "$(MLX_DIR)"
 
-$(NAME): $(OBJ)
-	$(CC) $(SRC) -o $(NAME) $(INCLUDES) $(LFLAGS)
-
-
+# =========================
+# Clean rules
+# =========================
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
+	@if [ -d "$(MLX_DIR)" ]; then \
+		$(MAKE) -C $(MLX_DIR) clean; \
+	fi
 
-fclean:
-	rm -rf $(OBJ)
-	rm -rf $(NAME)
+fclean: clean
+	rm -f $(NAME)
+	rm -rf $(MLX_DIR)
 
 re: fclean all
-
 
 .PHONY: all clean fclean re
