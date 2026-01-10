@@ -6,32 +6,43 @@ on:
   pull_request:
     branches: ["**"]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Install MLX deps
         run: |
+          set -e
           sudo apt-get update
           sudo apt-get install -y \
+            git \
             build-essential \
             libx11-dev libxext-dev libbsd-dev \
             xorg
 
-      - name: Build
-        run: make
+      - name: Build (full clean)
+        run: |
+          set -e
+          make re
 
   norminette:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Install norminette
         run: |
+          set -e
           python3 -m pip install --upgrade pip
           python3 -m pip install norminette
 
       - name: Run norminette
-        run: norminette src include/cub3D.h
+        run: |
+          set -e
+          norminette src include/cub3D.h
