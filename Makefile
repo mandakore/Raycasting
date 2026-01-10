@@ -6,7 +6,7 @@
 #    By: sohyamaz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/01/10 13:57:54 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/01/10 14:33:06 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	= game
 # Compiler
 # =========================
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 
 # =========================
 # Paths
