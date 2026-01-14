@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/01/12 14:11:23 by atashiro         ###   ########.fr        #
+#    Updated: 2026/01/14 20:12:05 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 # =========================
 SRCS	= src/main.c \
 		  src/utils.c \
-		  src/key.c
+		  src/key.c \
+		  src/get_map.c \
+		  src/raycasting.c \
 
 OBJS	= $(SRCS:%.c=%.o)
 
