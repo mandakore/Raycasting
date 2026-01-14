@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/09 17:39:08 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/14 20:13:04 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int raycasting(t_game *game)
 		}
 
 		int map_x = (int)(ray_x / WALL);
-		int map_y = (int)(ray_y / WALL);
+		// int map_y = (int)(ray_y / WALL);
 		float prev_x = ray_x - cos_angle * 0.1;
-		float prev_y = ray_y - sin_angle * 0.1;
+		// float prev_y = ray_y - sin_angle * 0.1;
 		
 		if ((int)(prev_x / WALL) != map_x)
 			side = 1; // 垂直壁(東西)
