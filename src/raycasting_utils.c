@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 21:25:28 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 01:07:58 by atashiro         ###   ########.fr       */
+/*   Created: 2026/01/26 01:04:20 by atashiro          #+#    #+#             */
+/*   Updated: 2026/01/26 01:08:39 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	close_window(t_game *game)
+float	distance(float x, float y)
 {
-	mlx_loop_end(game->mlx);
-	return (0);
+	return (sqrt(x * x + y * y));
 }
-

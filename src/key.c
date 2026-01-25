@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 19:25:04 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:15:40 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,17 @@ void	init_player(t_player *player)
 int key_press(int keycode, t_game *game)
 {
 	if(keycode == W)
-	{
 		game->player.key_w = true;
-
-	}
 	if(keycode == S)
-	{
 		game->player.key_s = true;
-
-	}
 	if(keycode == A)
-	{
 		game->player.key_a = true;
-
-	}
 	if(keycode == D)
-	{
 		game->player.key_d = true;
-
-	}
 	if(keycode == LEFT)
-	{
 		game->player.left_turn = true;
-
-	}
 	if(keycode == RIGHT)
-	{
 		game->player.right_turn = true;
-
-	}
 	if (keycode == ESC)
 	{
 		free_all(game); //メモリリーク

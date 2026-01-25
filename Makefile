@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/01/14 20:12:05 by atashiro         ###   ########.fr        #
+#    Updated: 2026/01/26 01:12:12 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRCS	= src/main.c \
 		  src/key.c \
 		  src/get_map.c \
 		  src/raycasting.c \
+		  src/raycasting_utils.c \
+		  src/free.c  \
 
 OBJS	= $(SRCS:%.c=%.o)
 

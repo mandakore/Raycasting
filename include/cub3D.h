@@ -88,6 +88,20 @@ typedef struct s_game
 	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
 }	t_game;
 
+/* === FUNCTIONS === */
+/* --- main.c --- */
+
+/* --- get_map.c --- */
+
+
+/* --- key.c --- */
+
+
+/* --- raycasting.c --- */
+
+
+/* --- utils.c --- */
+
 int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_player *player);
