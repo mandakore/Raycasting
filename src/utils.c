@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:25:28 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/06 19:34:34 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:07:47 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,29 @@ int	close_window(t_game *game)
 float distance(float x, float y)
 {
 	return sqrt(x * x + y * y);
+}
+
+
+void	free_all(t_game *game)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->textures[i].img)
+			mlx_destroy_image(game->mlx, game->textures[i].img);
+		i++;
+	}
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	mlx_clear_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+
+
+	// free_map(game->map);
+
+	exit(0);
 }
