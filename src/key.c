@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 01:15:40 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 01:21:06 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int key_press(int keycode, t_game *game)
 		game->player.right_turn = true;
 	if (keycode == ESC)
 	{
-		free_all(game); //メモリリーク
+		free_all(game);
 		exit(0);
 	}
 	return 0;
