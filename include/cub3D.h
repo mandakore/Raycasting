@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 18:03:42 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:00:25 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
+
+# define E_KEY_PRESS 2
+# define E_WIN_RESIZE 9
+# define E_WIN_CLOSE 17
 
 # define HIGHT 720
 # define WIDTH 1280

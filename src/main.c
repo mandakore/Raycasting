@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 18:00:25 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:02:20 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,14 @@ int	main()
 
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
+	mlx_hook(game.win, E_WIN_CLOSE, 0, close_window, &game);
+
 	// mlx_hook(game.win, 2, 1L<<0, key_handler, &game);-----eventがかぶってる
 	/*int mlx_hook(void *win_ptr, int event, int mask, int (*funct_ptr)(), void *param);*/
 	printf("Starting mlx_loop...\n");
 	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_loop(game.mlx);
+	free_all(&game);
 }
 
 
