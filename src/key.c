@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 18:04:40 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:25:04 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,16 +144,3 @@ void move_player(t_game *game)
 
 }
 
-
-
-
-
-// int	key_handler(int keycode, t_game *game)
-// {
-// 	if (keycode == ESC)
-// 	{
-// 		close_window(game);
-// 		return (0);
-// 	}
-// 	return 0;
-// }
