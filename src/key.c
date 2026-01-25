@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2025/11/07 02:28:02 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:04:40 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,43 @@ void	init_player(t_player *player)
 
 
 
-int key_press(int keycode, t_player *player)
+int key_press(int keycode, t_game *game)
 {
 	if(keycode == W)
 	{
-		player->key_w = true;
+		game->player.key_w = true;
 
 	}
 	if(keycode == S)
 	{
-		player->key_s = true;
+		game->player.key_s = true;
 
 	}
 	if(keycode == A)
 	{
-		player->key_a = true;
+		game->player.key_a = true;
 
 	}
 	if(keycode == D)
 	{
-		player->key_d = true;
+		game->player.key_d = true;
 
 	}
 	if(keycode == LEFT)
 	{
-		player->left_turn = true;
+		game->player.left_turn = true;
 
 	}
 	if(keycode == RIGHT)
 	{
-		player->right_turn = true;
+		game->player.right_turn = true;
 
 	}
 	if (keycode == ESC)
-		exit(1); //メモリリーク
+	{
+		free_all(game); //メモリリーク
+		exit(0);
+	}
 	return 0;
 }
 
