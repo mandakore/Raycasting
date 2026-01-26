@@ -6,12 +6,23 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 19:00:25 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:50:46 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/* === INCLUDES === */
+
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <math.h>
+# include "mlx/mlx.h"
+
+/* === KEY CODES === */
 
 # define W 119
 # define A 97
@@ -21,52 +32,55 @@
 # define RIGHT 65363
 # define ESC 65307
 
+/* === EVENT CODES === */
+
 # define E_KEY_PRESS 2
 # define E_WIN_RESIZE 9
 # define E_WIN_CLOSE 17
 
+/* === WINDOW SETTING === */
+
 # define HIGHT 720
 # define WIDTH 1280
 
-# define WALL 16
+/* === GAME CONSTANTS === */
 
+# define WALL 16
 # define PI 3.14159265358979323
 
+/* === STRUCTURES === */
 
+typedef struct s_square
+{
+	int	x;
+	int	y;
+	int	size;
+	int	color;
+}	t_square;
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <math.h>
-# include "mlx/mlx.h"
 
 typedef struct s_player
 {
-
 	float		x;
 	float		y;
 	float		dire;
-
-	bool	key_w;
-	bool	key_s;
-	bool	key_a;
-	bool	key_d;
-
-	bool left_turn;
-	bool right_turn;
-
+	bool		key_w;
+	bool		key_s;
+	bool		key_a;
+	bool		key_d;
+	bool		left_turn;
+	bool		right_turn;
 }	t_player;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
 }	t_img;
 
 typedef struct s_game
@@ -75,44 +89,53 @@ typedef struct s_game
 	void		*win;
 	t_player	player;
 	char		*data;
-	void		*img; //--------------
+	void		*img;
 	char		**map;
-
 	int			bit;
 	int			line_size;
 	int			type;
-
 	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
 }	t_game;
 
-
-int		close_window(t_game *game);
-
-int		key_press(int keycode, t_game *game);
-int		key_release(int keycode, t_player *player);
-// int		key_handler(int keycode, t_game *game);
-
-void	move_player(t_game *game);
-void	init_player(t_player *player);
-
-bool	touch(float px, float py, t_game *game);
-
-float	distance(float x, float y);
-
-char	**get_map(void);
-int		raycasting(t_game *game);
-
-
-void			load_texture(t_game *game, int index, char *path);
+/* === FUNCTIONS === */
+/* --- main.c --- */
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
 bool			touch(float px, float py, t_game *game);
 void			put_pixel(int x, int y, int color, t_game *game);
-void			draw_square(int x, int y, int size, int color, t_game *game);
+void			draw_square(t_game *game, t_square square);
 void			clear_player(t_game *game);
 void			create_map(t_game *game);
 
+/* --- get_map.c --- */
+char			**get_map(void);
 
-void	free_all(t_game *game);
+/* --- key.c --- */
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_player *player);
+void			move_player(t_game *game);
+void			init_player(t_player *player);
+
+/* --- raycasting.c --- */
+
+int				raycasting(t_game *game);
+
+/* --- raycasting_utils.c --- */
+float			distance(float x, float y);
+
+/* --- load_texture.c --- */
+void			load_texture(t_game *game, int index, char *path);
+void			set_wall_texture(t_game *game);
+
+/* --- utils.c --- */
+int				close_window(t_game *game);
+
+/* --- free.c --- */
+void			free_map(char **map);
+void			free_all(t_game *game);
+
+
+
+
 
 
 #endif
