@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/14 20:13:04 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:53:26 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int raycasting(t_game *game)
 		float ray_y = player->y;
 		float cos_angle = cos(current_angle);
 		float sin_angle = sin(current_angle);
-		
+
 		int side = 0; // 0: NS, 1: EW (簡易判定)
 
 		// DDAではないため、簡易的なステップで衝突判定
@@ -45,7 +45,7 @@ int raycasting(t_game *game)
 		// int map_y = (int)(ray_y / WALL);
 		float prev_x = ray_x - cos_angle * 0.1;
 		// float prev_y = ray_y - sin_angle * 0.1;
-		
+
 		if ((int)(prev_x / WALL) != map_x)
 			side = 1; // 垂直壁(東西)
 		else
@@ -65,11 +65,11 @@ int raycasting(t_game *game)
 		}
 
 		current_angle += fraction;
-		
+
 		float dist = distance(ray_x - player->x, ray_y - player->y);
 		// 魚眼補正
 		// float angle_diff = current_angle - fraction - player->dire; // current_angleは既にインクリメントされているため戻す
-		// dist = dist * cos(angle_diff); 
+		// dist = dist * cos(angle_diff);
 
 		float height = (WALL / dist) * (WIDTH / 2); // 高さ計算の係数は調整が必要かも
 		int start_y = (HIGHT - height) / 2;
@@ -82,7 +82,7 @@ int raycasting(t_game *game)
 		if (side == 0) wall_x = ray_x;
 		else           wall_x = ray_y;
 		wall_x -= floor(wall_x / WALL) * WALL; // 壁内のオフセット(0~WALL)
-		
+
 		int tex_x = (int)(wall_x / WALL * game->textures[tex_idx].width);
 		if ((side == 0 && sin_angle > 0) || (side == 1 && cos_angle < 0))
 			tex_x = game->textures[tex_idx].width - tex_x - 1;
@@ -92,7 +92,7 @@ int raycasting(t_game *game)
 		{
 			int d = y * 256 - HIGHT * 128 + height * 128;
 			int tex_y = ((d * game->textures[tex_idx].height) / height) / 256;
-			
+
 			// 安全策
 			if (tex_y < 0) tex_y = 0;
 			if (tex_y >= game->textures[tex_idx].height) tex_y = game->textures[tex_idx].height - 1;
@@ -103,8 +103,14 @@ int raycasting(t_game *game)
 		}
 		i++;
 	}
-	draw_square(player->x, player->y, 10, 0xFFFFFF, game); // ミニマップは一旦コメントアウト?
-	create_map(game); // 
+	t_square player_square;
+
+	player_square.x = (int)player->x;
+	player_square.y = (int)player->y;
+	player_square.size = 10;
+	player_square.color = 0xFFFFFF;
+	draw_square(game, player_square);
+	create_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return 0;
 }
