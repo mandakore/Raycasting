@@ -6,11 +6,18 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 01:07:01 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:42:34 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void free_map(char **map)
+{
+	if (!map)
+		return;
+	free(map);
+}
 
 void	free_all(t_game *game)
 {
@@ -29,6 +36,6 @@ void	free_all(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	// free_map(game->map);
+	free_map(game->map);
 	exit(0);
 }

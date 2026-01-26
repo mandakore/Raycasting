@@ -55,5 +55,5 @@ dkms.conf
 *.dwo
 
 
-minilibx-linux/
+include/mlx/
 game

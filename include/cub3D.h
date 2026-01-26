@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 05:46:13 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:48:43 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,36 +90,43 @@ typedef struct s_game
 
 /* === FUNCTIONS === */
 /* --- main.c --- */
-
-/* --- get_map.c --- */
-
-
-/* --- key.c --- */
-
-
-/* --- raycasting.c --- */
-
-
-/* --- utils.c --- */
-
-int				close_window(t_game *game);
-int				key_press(int keycode, t_game *game);
-int				key_release(int keycode, t_player *player);
-void			move_player(t_game *game);
-void			init_player(t_player *player);
-bool			touch(float px, float py, t_game *game);
-float			distance(float x, float y);
-char			**get_map(void);
-int				raycasting(t_game *game);
-void			load_texture(t_game *game, int index, char *path);
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
 bool			touch(float px, float py, t_game *game);
 void			put_pixel(int x, int y, int color, t_game *game);
 void			draw_square(int x, int y, int size, int color, t_game *game);
 void			clear_player(t_game *game);
 void			create_map(t_game *game);
+
+/* --- get_map.c --- */
+char			**get_map(void);
+
+/* --- key.c --- */
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_player *player);
+void			move_player(t_game *game);
+void			init_player(t_player *player);
+
+/* --- raycasting.c --- */
+
+int				raycasting(t_game *game);
+
+/* --- raycasting_utils.c --- */
+float			distance(float x, float y);
+
+/* --- load_texture.c --- */
+void			load_texture(t_game *game, int index, char *path);
+void			set_wall_texture(t_game *game);
+
+/* --- utils.c --- */
+int				close_window(t_game *game);
+
+/* --- free.c --- */
+void			free_map(char **map);
 void			free_all(t_game *game);
-void	load_texture(t_game *game, int index, char *path);
-void	set_wall_texture(t_game *game);
+
+
+
+
+
 
 #endif
