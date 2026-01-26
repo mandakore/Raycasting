@@ -6,25 +6,12 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 19:02:20 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 05:45:48 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	load_texture(t_game *game, int index, char *path)
-{
-	t_img	*tex;
-
-	tex = &game->textures[index];
-	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-	{
-		printf("Error: Failed to load texture %s\n", path);
-		exit(1);
-	}
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length, &tex->endian);
-}
 
 unsigned int	get_pixel_color(t_img *tex, int x, int y)
 {
@@ -139,10 +126,11 @@ int	main()
 	game.data = mlx_get_data_addr(game.img, &game.bit, &game.line_size, &game.type);
 
 	// テクスチャ読み込み
-	load_texture(&game, 0, "textures/north.xpm");
-	load_texture(&game, 1, "textures/south.xpm");
-	load_texture(&game, 2, "textures/west.xpm");
-	load_texture(&game, 3, "textures/east.xpm");
+	// load_texture(&game, 0, "textures/north.xpm");
+	// load_texture(&game, 1, "textures/south.xpm");
+	// load_texture(&game, 2, "textures/west.xpm");
+	// load_texture(&game, 3, "textures/east.xpm");
+	set_wall_texture(&game);
 
 	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
 

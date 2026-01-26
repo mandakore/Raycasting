@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/25 19:28:19 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 05:46:13 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,7 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 void			clear_player(t_game *game);
 void			create_map(t_game *game);
 void			free_all(t_game *game);
+void	load_texture(t_game *game, int index, char *path);
+void	set_wall_texture(t_game *game);
 
 #endif
