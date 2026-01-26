@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 05:45:48 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:57:26 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,17 +124,8 @@ int	main()
 	game.win = mlx_new_window(game.mlx, 1280, 720, "Ray");
 	game.img = mlx_new_image(game.mlx, WIDTH, HIGHT);
 	game.data = mlx_get_data_addr(game.img, &game.bit, &game.line_size, &game.type);
-
-	// テクスチャ読み込み
-	// load_texture(&game, 0, "textures/north.xpm");
-	// load_texture(&game, 1, "textures/south.xpm");
-	// load_texture(&game, 2, "textures/west.xpm");
-	// load_texture(&game, 3, "textures/east.xpm");
 	set_wall_texture(&game);
-
 	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
-
-
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
 	mlx_hook(game.win, E_WIN_CLOSE, 0, close_window, &game);
