@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 16:58:23 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:51:40 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,20 @@ void put_pixel(int x, int y, int color, t_game *game)
 
 
 
-void draw_square(int x, int y, int size, int color, t_game *game)
+void	draw_square(t_game *game, t_square square)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < square.size)
 	{
-		put_pixel(x + i, y, color, game);
-		i++;
-	}
-	i = 0;
-	while (i < size)
-	{
-		put_pixel(x, y + i, color, game);
-		i++;
-	}
-	i = 0;
-	while (i < size)
-	{
-		put_pixel(x + size, y + i, color, game);
-		i++;
-	}
-	i = 0;
-	while (i < size)
-	{
-		put_pixel(x + i, y + size, color, game);
+		j = 0;
+		while (j < square.size)
+		{
+			put_pixel(square.x + j, square.y + i, square.color, game);
+			j++;
+		}
 		i++;
 	}
 }
@@ -93,10 +81,11 @@ void clear_player(t_game *game)
 }
 
 
-void create_map(t_game *game)
+void	create_map(t_game *game)
 {
-	char **map = game->map;
-	int color = 0xADFF2F;
+	char	**map = game->map;
+	int		color = 0xADFF2F;
+	t_square	square;
 
 	int x;
 	int y = 0;
@@ -106,7 +95,13 @@ void create_map(t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				draw_square(x * WALL, y * WALL, WALL, color, game);
+			{
+				square.x = x * WALL;
+				square.y = y * WALL;
+				square.size = WALL;
+				square.color = color;
+				draw_square(game, square);
+			}
 			x++;
 		}
 		y++;
@@ -135,5 +130,3 @@ int	main()
 	free_all(&game);
 }
 
-
-// cc main.c -Lminilibx-linux -lmlx -lXext -lX11
