@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 01:21:06 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 05:19:28 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ int key_press(int keycode, t_game *game)
 
 int key_release(int keycode, t_player *player)
 {
-	if(keycode == W)
+	if (keycode == W)
 		player->key_w = false;
-	if(keycode == S)
+	if (keycode == S)
 		player->key_s = false;
-	if(keycode == A)
+	if (keycode == A)
 		player->key_a = false;
-	if(keycode == D)
+	if (keycode == D)
 		player->key_d = false;
-	if(keycode == LEFT)
+	if (keycode == LEFT)
 		player->left_turn = false;
-	if(keycode == RIGHT)
+	if (keycode == RIGHT)
 		player->right_turn = false;
 	return 0;
 }
@@ -73,13 +73,19 @@ int key_release(int keycode, t_player *player)
 
 void move_player(t_game *game)
 {
-	t_player *player;
+	t_player	*player;
+	int			speed;
+	float		dire_speed;
+	float		cos_angle;
+	float		sin_angle;
+	float		add_x;
+	float		add_y;
 
 	player = &game->player;
-
-	int speed = 1;
-	float dire_speed = 0.03;
-
+	speed = 1;
+	dire_speed = 0.03;
+	cos_angle = cos(player->dire);
+	sin_angle = sin(player->dire);
 	if (player->left_turn)
 		player->dire -= dire_speed;
 	if (player->right_turn)
@@ -88,13 +94,8 @@ void move_player(t_game *game)
 		player->dire = 0;
 	if (player->dire < 0)
 		player->dire = 2 * PI;
-
-	float cos_angle = cos(player->dire);
-	float sin_angle = sin(player->dire);
-
-	float add_x = 0;
-	float add_y = 0;
-
+	add_x = 0;
+	add_y = 0;
 	if (player->key_w)
 	{
 		add_x += cos_angle * speed;
@@ -116,13 +117,7 @@ void move_player(t_game *game)
 		add_y += cos_angle * speed;
 	}
 	if (!touch(player->x + add_x, player->y, game))
-	{
 		player->x += add_x;
-	}
 	if (!touch(player->x, player->y + add_y, game))
-	{
 		player->y += add_y;
-	}
-
 }
-
