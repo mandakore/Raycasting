@@ -6,16 +6,16 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 16:42:34 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 05:12:30 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void free_map(char **map)
+void	free_map(char **map)
 {
 	if (!map)
-		return;
+		return ;
 	free(map);
 }
 
