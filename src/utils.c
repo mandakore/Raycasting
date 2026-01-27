@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:25:28 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 01:07:58 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/27 23:28:17 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,3 @@ int	close_window(t_game *game)
 	mlx_loop_end(game->mlx);
 	return (0);
 }
-

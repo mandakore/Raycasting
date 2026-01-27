@@ -6,111 +6,130 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 17:53:26 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 04:29:35 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int raycasting(t_game *game)
+static void	init_ray(t_ray *ray, t_vector *vec, int x)
 {
-	t_player	*player = &game->player;
+	ray->camera_x = 2 * x / (double)WIDTH - 1;
+	ray->ray_dir_x = vec->dir_x + vec->plane_x * ray->camera_x;
+	ray->ray_dir_y = vec->dir_y + vec->plane_y * ray->camera_x;
+	ray->map_x = (int)vec->pos_x;
+	ray->map_y = (int)vec->pos_y;
+	ray->delta_dist_x = 1e30;
+	ray->delta_dist_y = 1e30;
+	if (ray->ray_dir_x != 0)
+		ray->delta_dist_x = fabs(1.0 / ray->ray_dir_x);
+	if (ray->ray_dir_y != 0)
+		ray->delta_dist_y = fabs(1.0 / ray->ray_dir_y);
+	if (ray->ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (vec->pos_x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - vec->pos_x) * ray->delta_dist_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (vec->pos_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - vec->pos_y) * ray->delta_dist_y;
+	}
+}
+
+static void	perform_dda(t_game *game, t_ray *ray)
+{
+	bool	hit;
+
+	hit = false;
+	while (!hit)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (game->map[ray->map_y][ray->map_x] == '1')
+			hit = true;
+	}
+}
+
+static void	calc_wall_height(t_ray *ray)
+{
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+	else
+		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+	if (ray->perp_wall_dist == 0)
+		ray->perp_wall_dist = 0.01;
+	ray->line_height = (int)(HIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + HIGHT / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + HIGHT / 2;
+	if (ray->draw_end >= HIGHT)
+		ray->draw_end = HIGHT - 1;
+}
+
+static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
+{
+	int	color_value;
+	int	color;
+	int	y;
+
+	color_value = 255 - (int)(ray->perp_wall_dist * 25);
+	if (color_value < 0)
+		color_value = 0;
+	color = 0xFF0000;
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		put_pixel(x, y, color, game);
+		y++;
+	}
+}
+
+int	raycasting(t_game *game)
+{
+	t_ray		ray;
+	t_vector	vec;
+	int			x;
 
 	move_player(game);
 	clear_player(game);
-
-
-	float fraction = PI / 2 / WIDTH;
-	float current_angle = player->dire - PI / 4;
-	int i = 0;
-
-	while(i < WIDTH)
+	vec.pos_x = game->player.x / WALL;
+	vec.pos_y = game->player.y / WALL;
+	vec.dir_x = cos(game->player.dire);
+	vec.dir_y = sin(game->player.dire);
+	vec.plane_x = -vec.dir_y * 0.66;
+	vec.plane_y = vec.dir_x * 0.66;
+	x = 0;
+	while (x < WIDTH)
 	{
-		float ray_x = player->x;
-		float ray_y = player->y;
-		float cos_angle = cos(current_angle);
-		float sin_angle = sin(current_angle);
-
-		int side = 0; // 0: NS, 1: EW (簡易判定)
-
-		// DDAではないため、簡易的なステップで衝突判定
-		// 精度向上のためステップを細かくする
-		while(!touch(ray_x, ray_y, game))
-		{
-			ray_x += cos_angle * 0.1; // 精度向上のためステップを小さく
-			ray_y += sin_angle * 0.1;
-		}
-
-		int map_x = (int)(ray_x / WALL);
-		// int map_y = (int)(ray_y / WALL);
-		float prev_x = ray_x - cos_angle * 0.1;
-		// float prev_y = ray_y - sin_angle * 0.1;
-
-		if ((int)(prev_x / WALL) != map_x)
-			side = 1; // 垂直壁(東西)
-		else
-			side = 0; // 水平壁(南北)
-
-		// 方角判定
-		int tex_idx;
-		if (side == 1)
-		{
-			if (cos_angle > 0) tex_idx = 3; // East
-			else tex_idx = 2; // West
-		}
-		else
-		{
-			if (sin_angle > 0) tex_idx = 1; // South
-			else tex_idx = 0; // North
-		}
-
-		current_angle += fraction;
-
-		float dist = distance(ray_x - player->x, ray_y - player->y);
-		// 魚眼補正
-		// float angle_diff = current_angle - fraction - player->dire; // current_angleは既にインクリメントされているため戻す
-		// dist = dist * cos(angle_diff);
-
-		float height = (WALL / dist) * (WIDTH / 2); // 高さ計算の係数は調整が必要かも
-		int start_y = (HIGHT - height) / 2;
-		if (start_y < 0) start_y = 0;
-		int end_y = start_y + height;
-		if (end_y >= HIGHT) end_y = HIGHT - 1;
-
-		// テクスチャX座標の計算
-		float wall_x;
-		if (side == 0) wall_x = ray_x;
-		else           wall_x = ray_y;
-		wall_x -= floor(wall_x / WALL) * WALL; // 壁内のオフセット(0~WALL)
-
-		int tex_x = (int)(wall_x / WALL * game->textures[tex_idx].width);
-		if ((side == 0 && sin_angle > 0) || (side == 1 && cos_angle < 0))
-			tex_x = game->textures[tex_idx].width - tex_x - 1;
-
-		int y = start_y;
-		while(y < end_y)
-		{
-			int d = y * 256 - HIGHT * 128 + height * 128;
-			int tex_y = ((d * game->textures[tex_idx].height) / height) / 256;
-
-			// 安全策
-			if (tex_y < 0) tex_y = 0;
-			if (tex_y >= game->textures[tex_idx].height) tex_y = game->textures[tex_idx].height - 1;
-
-			unsigned int color = get_pixel_color(&game->textures[tex_idx], tex_x, tex_y);
-			put_pixel(i, y, color, game);
-			y++;
-		}
-		i++;
+		init_ray(&ray, &vec, x);
+		perform_dda(game, &ray);
+		calc_wall_height(&ray);
+		draw_debug_distance(game, &ray, x);
+		x++;
 	}
-	t_square player_square;
-
-	player_square.x = (int)player->x;
-	player_square.y = (int)player->y;
-	player_square.size = 10;
-	player_square.color = 0xFFFFFF;
-	draw_square(game, player_square);
 	create_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return 0;
+	return (0);
 }
