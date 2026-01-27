@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 04:23:09 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 04:24:17 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	perform_dda(t_game *game, t_ray *ray)
 	}
 }
 
-static void	calc_wall_height(t_vector *vec, t_ray *ray)
+static void	calc_wall_height(t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
@@ -86,7 +86,6 @@ static void	calc_wall_height(t_vector *vec, t_ray *ray)
 	ray->draw_end = ray->line_height / 2 + HIGHT / 2;
 	if (ray->draw_end >= HIGHT)
 		ray->draw_end = HIGHT - 1;
-	(void)vec;
 }
 
 static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
@@ -129,7 +128,7 @@ int	raycasting(t_game *game)
 	{
 		init_ray(&ray, &vec, x);
 		perform_dda(game, &ray);
-		calc_wall_height(&vec, &ray);
+		calc_wall_height(&ray);
 		draw_debug_distance(game, &ray, x);
 		x++;
 	}
