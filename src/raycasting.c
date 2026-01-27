@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/27 23:31:17 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/27 23:44:49 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,6 @@ int raycasting(t_game *game)
 		}
 		i++;
 	}
-	t_square player_square;
-
-	player_square.x = (int)player->x;
-	player_square.y = (int)player->y;
-	player_square.size = 10;
-	player_square.color = 0xFFFFFF;
-	draw_square(game, player_square);
 	create_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return 0;

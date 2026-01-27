@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 17:51:40 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/27 23:34:57 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,6 @@ void put_pixel(int x, int y, int color, t_game *game)
 }
 
 
-
-void	draw_square(t_game *game, t_square square)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < square.size)
-	{
-		j = 0;
-		while (j < square.size)
-		{
-			put_pixel(square.x + j, square.y + i, square.color, game);
-			j++;
-		}
-		i++;
-	}
-}
-
-
 void clear_player(t_game *game)
 {
 	int y = 0;
@@ -79,35 +59,6 @@ void clear_player(t_game *game)
 		y++;
 	}
 }
-
-
-void	create_map(t_game *game)
-{
-	char	**map = game->map;
-	int		color = 0xADFF2F;
-	t_square	square;
-
-	int x;
-	int y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == '1')
-			{
-				square.x = x * WALL;
-				square.y = y * WALL;
-				square.size = WALL;
-				square.color = color;
-				draw_square(game, square);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 
 int	main()
 {
