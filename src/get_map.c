@@ -6,15 +6,17 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:58:59 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/09 17:01:03 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 05:53:48 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-char **get_map(void)
+char	**get_map(void)
 {
-	char **map = malloc(sizeof(char *) * 12);
+	char	**map;
+
+	map = malloc(sizeof(char *) * 12);
 	map[0] = "111111111111111";
 	map[1] = "100000000000001";
 	map[2] = "10000000000000111111";
