@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/01/27 23:42:44 by atashiro         ###   ########.fr        #
+#    Updated: 2026/01/28 06:11:00 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 NAME	= game
 LFLAGS = -L./include/mlx -lmlx -lXext -lX11 -lm
 INCLUDES = -I./include
-SRC = src/main.c src/utils.c src/key.c src/get_map.c src/raycasting.c
+SRC = src/main.c src/utils.c src/key.c src/get_map.c src/raycasting.c \
+		src/init_raycasting.c src/calcurate_wall_height.c src/dda.c 
 
 # =========================
 # Compiler
