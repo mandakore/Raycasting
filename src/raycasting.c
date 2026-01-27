@@ -6,11 +6,19 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/26 17:53:26 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/27 23:31:17 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+
+typedef struct raycasting {
+	float	ray_x;
+	float	ray_y;
+
+} t_ray;
+
 
 int raycasting(t_game *game)
 {
@@ -33,25 +41,23 @@ int raycasting(t_game *game)
 
 		int side = 0; // 0: NS, 1: EW (簡易判定)
 
-		// DDAではないため、簡易的なステップで衝突判定
-		// 精度向上のためステップを細かくする
 		while(!touch(ray_x, ray_y, game))
 		{
-			ray_x += cos_angle * 0.1; // 精度向上のためステップを小さく
+			ray_x += cos_angle * 0.1;
 			ray_y += sin_angle * 0.1;
 		}
 
 		int map_x = (int)(ray_x / WALL);
-		// int map_y = (int)(ray_y / WALL);
+
 		float prev_x = ray_x - cos_angle * 0.1;
-		// float prev_y = ray_y - sin_angle * 0.1;
+
 
 		if ((int)(prev_x / WALL) != map_x)
 			side = 1; // 垂直壁(東西)
 		else
 			side = 0; // 水平壁(南北)
 
-		// 方角判定
+
 		int tex_idx;
 		if (side == 1)
 		{
@@ -67,9 +73,7 @@ int raycasting(t_game *game)
 		current_angle += fraction;
 
 		float dist = distance(ray_x - player->x, ray_y - player->y);
-		// 魚眼補正
-		// float angle_diff = current_angle - fraction - player->dire; // current_angleは既にインクリメントされているため戻す
-		// dist = dist * cos(angle_diff);
+
 
 		float height = (WALL / dist) * (WIDTH / 2); // 高さ計算の係数は調整が必要かも
 		int start_y = (HIGHT - height) / 2;
