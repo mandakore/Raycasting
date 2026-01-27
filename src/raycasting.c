@@ -6,41 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 04:08:30 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 04:23:09 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-typedef struct s_ray
-{
-	double		camera_x;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		perp_wall_dist;
-	int			step_x;
-	int			step_y;
-	int			side;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
-}	t_ray;
-
-typedef struct s_vector
-{
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		pos_x;
-	double		pos_y;
-}	t_vector;
 
 static void	init_ray(t_ray *ray, t_vector *vec, int x)
 {
@@ -119,6 +89,27 @@ static void	calc_wall_height(t_vector *vec, t_ray *ray)
 	(void)vec;
 }
 
+static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
+{
+	int	color_value;
+	int	color;
+	int	y;
+
+
+	color_value = 255 - (int)(ray->perp_wall_dist * 25);
+	if (color_value < 0) color_value = 0;
+
+	color = 0xFF0000;
+
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		put_pixel(x, y, color, game);
+		y++;
+	}
+}
+
+
 int	raycasting(t_game *game)
 {
 	t_ray		ray;
@@ -139,6 +130,7 @@ int	raycasting(t_game *game)
 		init_ray(&ray, &vec, x);
 		perform_dda(game, &ray);
 		calc_wall_height(&vec, &ray);
+		draw_debug_distance(game, &ray, x);
 		x++;
 	}
 	create_map(game);
