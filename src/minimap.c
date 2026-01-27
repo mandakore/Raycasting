@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/27 23:44:32 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 05:31:51 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ void	draw_square(t_game *game, t_square square)
 
 void	create_map(t_game *game)
 {
-	char	**map = game->map;
-	int		color = 0xADFF2F;
+	char		**map = game->map;
+	int			color = 0xADFF2F;
 	t_square	square;
+	t_square	player_square;
+	t_player	*player;
+	int			x;
+	int			y;
 
-	int x;
-	int y = 0;
+	y = 0;
 	while (map[y])
 	{
 		x = 0;
@@ -55,9 +58,7 @@ void	create_map(t_game *game)
 		}
 		y++;
 	}
-	t_square player_square;
-	t_player	*player = &game->player;
-
+	player = &game->player;
 	player_square.x = (int)player->x;
 	player_square.y = (int)player->y;
 	player_square.size = 10;
