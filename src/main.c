@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 05:28:04 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 06:39:30 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ unsigned int	get_pixel_color(t_img *tex, int x, int y)
 	dst = tex->addr + (y * tex->line_length + x * (tex->bpp / 8));
 	return (*(unsigned int *)dst);
 }
-
 
 bool	touch(float px, float py, t_game *game)
 {
@@ -74,7 +73,8 @@ int	main(void)
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1280, 720, "Ray");
 	game.img = mlx_new_image(game.mlx, WIDTH, HIGHT);
-	game.data = mlx_get_data_addr(game.img, &game.bit, &game.line_size, &game.type);
+	game.data = mlx_get_data_addr(game.img, &game.bit,
+			&game.line_size, &game.type);
 	set_wall_texture(&game);
 	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
 	mlx_hook(game.win, 2, 1L << 0, key_press, &game);

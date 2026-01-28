@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 06:16:15 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 09:17:22 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void			free_all(t_game *game);
 void	calc_wall_height(t_ray *ray);
 void	perform_dda(t_game *game, t_ray *ray);
 void	init_ray(t_ray *ray, t_vector *vec, int x);
+void	calc_move_delta(t_player *player, float *add_x, float *add_y);
 
 
 #endif
