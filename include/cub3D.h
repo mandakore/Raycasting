@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 09:17:22 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 09:33:47 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_square
 	int	size;
 	int	color;
 }	t_square;
-
 
 typedef struct s_player
 {
@@ -134,7 +133,6 @@ bool			touch(float px, float py, t_game *game);
 void			put_pixel(int x, int y, int color, t_game *game);
 void			draw_square(t_game *game, t_square square);
 void			clear_player(t_game *game);
-void			create_map(t_game *game);
 
 /* --- get_map.c --- */
 char			**get_map(void);
@@ -142,8 +140,6 @@ char			**get_map(void);
 /* --- key.c --- */
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_player *player);
-void			move_player(t_game *game);
-void			init_player(t_player *player);
 
 /* --- raycasting.c --- */
 
@@ -163,11 +159,25 @@ int				close_window(t_game *game);
 void			free_map(char **map);
 void			free_all(t_game *game);
 
+/* --- move.c --- */
+void			move_player(t_game *game);
 
-void	calc_wall_height(t_ray *ray);
-void	perform_dda(t_game *game, t_ray *ray);
-void	init_ray(t_ray *ray, t_vector *vec, int x);
-void	calc_move_delta(t_player *player, float *add_x, float *add_y);
+/* --- move_calc.c --- */
+void			calc_move_delta(t_player *player, float *add_x, float *add_y);
 
+/* --- minimap.c --- */
+void			create_map(t_game *game);
+
+/* --- init_player.c --- */
+void			init_player(t_player *player);
+
+/* --- dda.c --- */
+void			perform_dda(t_game *game, t_ray *ray);
+
+/* --- calcurate_wall_height.c --- */
+void			calc_wall_height(t_ray *ray);
+
+/* --- init_raycast.c --- */
+void			init_ray(t_ray *ray, t_vector *vec, int x);
 
 #endif
