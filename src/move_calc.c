@@ -6,73 +6,23 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 09:14:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 09:17:03 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 09:47:56 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-
-static void	move_w(t_player *p, float c, float s, float *x, float *y)
+void	calc_move_delta(t_player *p, float *add_x, float *add_y)
 {
-	int	speed;
+	float	c;
+	float	s;
+	float	forward;
+	float	side;
 
-	speed = 1;
-	if (p->key_w)
-	{
-		*x += c * speed;
-		*y += s * speed;
-	}
-}
-
-static void	move_s(t_player *p, float c, float s, float *x, float *y)
-{
-	int	speed;
-
-	speed = 1;
-	if (p->key_s)
-	{
-		*x -= c * speed;
-		*y -= s * speed;
-	}
-}
-
-
-static void	move_a(t_player *p, float c, float s, float *x, float *y)
-{
-	int	speed;
-
-	speed = 1;
-	if (p->key_a)
-	{
-		*x += s * speed;
-		*y -= c * speed;
-	}
-}
-
-static void	move_d(t_player *p, float c, float s, float *x, float *y)
-{
-	int	speed;
-
-	speed = 1;
-	if (p->key_d)
-	{
-		*x -= s * speed;
-		*y += c * speed;
-	}
-}
-
-void	calc_move_delta(t_player *player, float *add_x, float *add_y)
-{
-	float	cos_angle;
-	float	sin_angle;
-
-	cos_angle = cos(player->dire);
-	sin_angle = sin(player->dire);
-	*add_x = 0;
-	*add_y = 0;
-	move_w(player, cos_angle, sin_angle, add_x, add_y);
-	move_s(player, cos_angle, sin_angle, add_x, add_y);
-	move_a(player, cos_angle, sin_angle, add_x, add_y);
-	move_d(player, cos_angle, sin_angle, add_x, add_y);
+	c = cos(p->dire);
+	s = sin(p->dire);
+	forward = (p->key_w - p->key_s) * SPEED;
+	side = (p->key_a - p->key_d) * SPEED;
+	*add_x = (forward * c) + (side * s);
+	*add_y = (forward * s) - (side * c);
 }
