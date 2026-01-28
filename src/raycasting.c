@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 06:16:00 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:47:40 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
 	color_value = 255 - (int)(ray->perp_wall_dist * 25);
 	if (color_value < 0)
 		color_value = 0;
-	color = 0xFF0000;
+	color = (color_value << 16) | (color_value << 8) | color_value;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
