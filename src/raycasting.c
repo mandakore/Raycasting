@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/29 16:22:47 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:30:00 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ static void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
 	double	tex_pos;
 	int		y;
 
-	if (ray->side == 0) wall_x = vec->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
-	else                wall_x = vec->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
+	if (ray->side == 0) 
+		wall_x = vec->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
+	else                
+		wall_x = vec->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 
 	tex_x = (int)(wall_x * (double)tex->width);
