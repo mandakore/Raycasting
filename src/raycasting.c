@@ -6,29 +6,33 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/29 14:24:17 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:31:28 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
-// {
-// 	int	color_value;
-// 	int	color;
-// 	int	y;
+static unsigned int	apply_shading(unsigned int color, double distance)
+{
+	double	shade_factor;
+	int		r;
+	int		g;
+	int		b;
 
-// 	color_value = 255 - (int)(ray->perp_wall_dist * 25);
-// 	if (color_value < 0)
-// 		color_value = 0;
-// 	color = (color_value << 16) | (color_value << 8) | color_value;
-// 	y = ray->draw_start;
-// 	while (y < ray->draw_end)
-// 	{
-// 		put_pixel(x, y, color, game);
-// 		y++;
-// 	}
-// }
+	shade_factor = 1.0 - (distance / 15.0);
+
+	if (shade_factor < 0.0)
+		shade_factor = 0.0;
+
+	r = (color >> 16) & 0xFF;
+	g = (color >> 8) & 0xFF;
+	b = color & 0xFF;
+
+	r = (int)(r * shade_factor);
+	g = (int)(g * shade_factor);
+	b = (int)(b * shade_factor);
+	return ((r << 16) | (g << 8) | b);
+}
 
 static void	draw_debug_compass(t_game *game, t_ray *ray, int x)
 {
@@ -38,16 +42,29 @@ static void	draw_debug_compass(t_game *game, t_ray *ray, int x)
 	if (ray->side == 1) // Y軸面 (南北)
 	{
 		if (ray->ray_dir_y < 0)
+		{
 			color = 0xFF0000; // 北 (Red)
+			color = apply_shading(color, ray->perp_wall_dist);
+		}	
 		else
+		{
 			color = 0x00FF00; // 南 (Green)
+			color = apply_shading(color, ray->perp_wall_dist);
+		}
 	}
 	else // X軸面 (東西)
 	{
 		if (ray->ray_dir_x < 0)
+		{
 			color = 0x0000FF; // 西 (Blue)
+			color = apply_shading(color, ray->perp_wall_dist);
+		}
 		else
+		{
 			color = 0xFFFF00; // 東 (Yellow)
+			color = apply_shading(color, ray->perp_wall_dist);
+		}
+	
 	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
