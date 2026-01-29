@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 06:09:11 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 06:13:11 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:25:55 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,19 @@ void	calc_wall_height(t_ray *ray)
 	ray->draw_end = ray->line_height / 2 + HIGHT / 2;
 	if (ray->draw_end >= HIGHT)
 		ray->draw_end = HIGHT - 1;
+
+	if (ray->side == 1)
+	{
+		if (ray->ray_dir_y < 0)
+			ray->tex_num = 0;
+		else
+			ray->tex_num = 1;
+	}
+	else
+	{
+		if (ray->ray_dir_x < 0)
+			ray->tex_num = 2;
+		else
+			ray->tex_num = 3;
+	}
 }
