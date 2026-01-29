@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/29 12:04:42 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:21:09 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	int			tex_num;
 }	t_ray;
 
 typedef struct s_vector
