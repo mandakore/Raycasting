@@ -6,33 +6,33 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/29 16:30:00 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 18:14:39 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// static unsigned int	apply_shading(unsigned int color, double distance)
-// {
-// 	double	shade_factor;
-// 	int		r;
-// 	int		g;
-// 	int		b;
+static unsigned int	apply_shading(unsigned int color, double distance)
+{
+	double	shade_factor;
+	int		r;
+	int		g;
+	int		b;
 
-// 	shade_factor = 1.0 - (distance / 15.0);
+	shade_factor = 1.0 - (distance / 15.0);
 
-// 	if (shade_factor < 0.0)
-// 		shade_factor = 0.0;
+	if (shade_factor < 0.0)
+		shade_factor = 0.0;
 
-// 	r = (color >> 16) & 0xFF;
-// 	g = (color >> 8) & 0xFF;
-// 	b = color & 0xFF;
+	r = (color >> 16) & 0xFF;
+	g = (color >> 8) & 0xFF;
+	b = color & 0xFF;
 
-// 	r = (int)(r * shade_factor);
-// 	g = (int)(g * shade_factor);
-// 	b = (int)(b * shade_factor);
-// 	return ((r << 16) | (g << 8) | b);
-// }
+	r = (int)(r * shade_factor);
+	g = (int)(g * shade_factor);
+	b = (int)(b * shade_factor);
+	return ((r << 16) | (g << 8) | b);
+}
 
 // static void	draw_debug_compass(t_game *game, t_ray *ray, int x)
 // {
@@ -77,11 +77,12 @@
 static void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
 {
 	t_img	*tex = &game->textures[ray->tex_num];
-	double	wall_x;
-	int		tex_x;
-	double	step;
-	double	tex_pos;
-	int		y;
+	double			wall_x;
+	int				tex_x;
+	double			step;
+	double			tex_pos;
+	int				y;
+	unsigned int	color;
 
 	if (ray->side == 0) 
 		wall_x = vec->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
@@ -90,7 +91,7 @@ static void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
 	wall_x -= floor(wall_x);
 
 	tex_x = (int)(wall_x * (double)tex->width);
-	if ((ray->side == 0 && ray->ray_dir_x > 0) || (ray->side == 1 && ray->ray_dir_y < 0))
+	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1 && ray->ray_dir_y > 0))
 		tex_x = tex->width - tex_x - 1;
 		
 	step = 1.0 * tex->height / ray->line_height;
@@ -101,7 +102,9 @@ static void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
 	{
 		int tex_y = (int)tex_pos & (tex->height - 1); 
 		tex_pos += step;
-		put_pixel(x, y, get_pixel_color(tex, tex_x, tex_y), game);
+		color = get_pixel_color(tex, tex_x, tex_y);
+		color = apply_shading(color, ray->perp_wall_dist);
+		put_pixel(x, y, color, game);
 		y++;
 	}
 }
