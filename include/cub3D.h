@@ -22,7 +22,7 @@
 # include <math.h>
 # include "mlx/mlx.h"
 
-# define SPEED 0.3
+# define SPEED 5
 
 /* === KEY CODES === */
 

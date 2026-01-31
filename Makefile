@@ -46,6 +46,8 @@ SRCS	= src/main.c \
 
 OBJS	= $(SRCS:%.c=%.o)
 
+$(OBJS): $(INC_DIR)/cub3D.h
+
 # =========================
 # Includes / Libs
 # =========================
