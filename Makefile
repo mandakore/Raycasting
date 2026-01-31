@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/01/28 09:17:37 by atashiro         ###   ########.fr        #
+#    Updated: 2026/01/31 18:32:50 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,13 @@ SRCS	= src/main.c \
 		  src/free.c  \
 		  src/load_texture.c \
 		  src/minimap.c \
-		  src/init_raycast.c src/calcurate_wall_height.c src/dda.c src/init_player.c src/move.c src/move_calc.c
+		  src/init_raycast.c \
+		  src/calcurate_wall_height.c \
+		  src/dda.c \
+		  src/init_player.c \
+		  src/move.c \
+		  src/move_calc.c \
+		  src/parse.c
 
 OBJS	= $(SRCS:%.c=%.o)
 
