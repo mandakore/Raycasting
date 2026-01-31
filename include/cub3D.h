@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/29 16:21:09 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:47:52 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include "mlx/mlx.h"
 
-# define SPEED 5
+# define SPEED 1
 
 /* === KEY CODES === */
 
