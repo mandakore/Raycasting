@@ -102,5 +102,11 @@ static bool	parse_cabfile(t_map *map, char *cabfile)
 		return (false);
 	if (is_valid_cabfile(cabfile) == false)
 		return (false);
-	if (is_texture_file_exist)
+	map->cabfd = open(cabfile, O_RONLY);
+	if (map->cabfd < 0)
+		return (perror("open"), false);
+	if (is_texture_file_exist(cabfile) == false)
+		return (false);
+	if (is_valid_background_color(cabfile) == false)
+		return (false);
 }
