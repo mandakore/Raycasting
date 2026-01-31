@@ -6,29 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 06:16:00 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/31 19:43:10 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-static void	draw_debug_distance(t_game *game, t_ray *ray, int x)
-{
-	int	color_value;
-	int	color;
-	int	y;
-
-	color_value = 255 - (int)(ray->perp_wall_dist * 25);
-	if (color_value < 0)
-		color_value = 0;
-	color = 0xFF0000;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		put_pixel(x, y, color, game);
-		y++;
-	}
-}
 
 int	raycasting(t_game *game)
 {
@@ -50,7 +32,7 @@ int	raycasting(t_game *game)
 		init_ray(&ray, &vec, x);
 		perform_dda(game, &ray);
 		calc_wall_height(&ray);
-		draw_debug_distance(game, &ray, x);
+		draw_texture(game, &vec, &ray, x);
 		x++;
 	}
 	create_map(game);

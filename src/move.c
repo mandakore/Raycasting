@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 07:24:29 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 09:18:06 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:00:01 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	update_direction(t_player *player)
 {
 	float	dire_speed;
 
-	dire_speed = 0.03;
+	dire_speed = 0.02;
 	if (player->left_turn)
 		player->dire -= dire_speed;
 	if (player->right_turn)
