@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 20:16:01 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 /* === WINDOW SETTING === */
 
-# define HIGHT 720
+# define HEIGHT 720
 # define WIDTH 1280
 
 /* === GAME CONSTANTS === */
@@ -185,5 +185,7 @@ void			calc_wall_height(t_ray *ray);
 void			init_ray(t_ray *ray, t_vector *vec, int x);
 
 void			draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x);
+int				get_line_len(char *line);
+int				get_map_height(char **map);
 
 #endif
