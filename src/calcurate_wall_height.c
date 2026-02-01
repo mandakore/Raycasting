@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 06:09:11 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 19:35:24 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	calc_perp_wall_dist(t_ray *ray)
 
 static void	calc_draw_range(t_ray *ray)
 {
-	ray->line_height = (int)(HIGHT / ray->perp_wall_dist);
-	ray->draw_start = -ray->line_height / 2 + HIGHT / 2;
+	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + HIGHT / 2;
-	if (ray->draw_end >= HIGHT)
-		ray->draw_end = HIGHT - 1;
+	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
+	if (ray->draw_end >= HEIGHT)
+		ray->draw_end = HEIGHT - 1;
 }
 
 static void	set_tex_num(t_ray *ray)
