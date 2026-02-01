@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 09:48:17 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/01 17:18:19 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include <fcntl.h>
 # include "mlx/mlx.h"
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
+#endif
 
 # define SPEED 1
 
