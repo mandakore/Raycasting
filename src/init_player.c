@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 07:24:31 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:21:47 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player(t_player *player)
 {
-	player->x = WIDTH / 8;
-	player->y = HEIGHT / 16;
+	player->x = 20;
+	player->y = 20;
 	player->dire = PI;
 	player->key_w = false;
 	player->key_a = false;
