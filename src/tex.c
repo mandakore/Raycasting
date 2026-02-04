@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:43:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 19:47:46 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	draw_texture_column(
 	unsigned int	color;
 
 	step = (double)tex->height / ray->line_height;
-	tex_pos = (ray->draw_start - HIGHT / 2
+	tex_pos = (ray->draw_start - HEIGHT / 2
 			+ ray->line_height / 2) * step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
