@@ -6,17 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 21:02:09 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:57:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-#define MINIMAP_RADIUS 5 // 半径
-#define MINIMAP_OFFSET_X 20 // 表示位置 X
-#define MINIMAP_OFFSET_Y 20 // 表示位置 Y
-#define MM_COLOR_PLAYER 0xFF0000 // 赤
-#define MM_COLOR_BG 0xFFFFFF // 背景
 
 void	draw_square(t_game *game, t_square square)
 {
@@ -36,65 +30,48 @@ void	draw_square(t_game *game, t_square square)
 	}
 }
 
-// static void	draw_wall_square(t_game *game, int x, int y)
-// {
-// 	t_square	square;
-
-// 	square.x = x * WALL;
-// 	square.y = y * WALL;
-// 	square.size = WALL;
-// 	square.color = 0xADFF2F;
-// 	draw_square(game, square);
-// }
-
-// static void	draw_map(t_game *game)
-// {
-// 	char	**map;
-// 	int		x;
-// 	int		y;
-
-// 	map = game->map;
-// 	y = 0;
-// 	while (map[y])
-// 	{
-// 		x = 0;
-// 		while (map[y][x])
-// 		{
-// 			if (map[y][x] == '1')
-// 				draw_wall_square(game, x, y);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
 static void	draw_player(t_game *game)
 {
 	t_square	player_square;
-	player_square.x = MINIMAP_OFFSET_X + MINIMAP_RADIUS * WALL;
-	player_square.y = MINIMAP_OFFSET_Y + MINIMAP_RADIUS * WALL;
 
+	player_square.x = MM_PLAYER_X + MM_RAD * WALL;
+	player_square.y = MM_PLAYER_Y + MM_RAD * WALL;
 	player_square.size = 6;
 	player_square.x += (WALL - player_square.size) / 2;
 	player_square.y += (WALL - player_square.size) / 2;
-	player_square.color = MM_COLOR_PLAYER;
+	player_square.color = MM_PLAYER_COLOR;
 	draw_square(game, player_square);
 	draw_square(game, player_square);
 }
 
-static void draw_minimap_bg()
+static void	draw_walls(t_game *game)
 {
-	t_square bg;
-	int size_px = (MINIMAP_RADIUS * 2 + 1) * WALL;
+	int	x;
+	int	y;
+	int	player_x;
+	int	player_y;
 
-	bg.x = MINIMAP_OFFSET_X;
-	bg.y = MINIMAP_OFFSET_Y;
-	bg.size = size_px;
+	player_x = (int)(game->player.x) / WALL;
+	player_y = (int)(game->player.y) / WALL;
+	y = -MM_RAD;
+	while (y <= MM_RAD)
+	{
+		x = -MM_RAD;
+		while (x <= MM_RAD)
+		{
+			if (is_in_map(game, player_x + x, player_y + y)
+				&& is_wall(game, player_x + x, player_y + y))
+			{
+				draw_minimap_wall(game, x + MM_RAD, y + MM_RAD);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 void	create_map(t_game *game)
 {
-	// draw_map(game);
-	draw_minimap_bg();
+	draw_walls(game);
 	draw_player(game);
 }
