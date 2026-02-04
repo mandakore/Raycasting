@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/01 17:18:19 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:01:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@
 # define BUFFER_SIZE 42
 #endif
 
-# define SPEED 1
+# define SPEED 0.5
+# define DIRE_SPEED 0.01
+
+# define MM_RAD 5
+# define MM_PLAYER_X 20
+# define MM_PLAYER_Y 20
+# define MM_PLAYER_COLOR 0xFF0000
 
 /* === KEY CODES === */
 
@@ -47,7 +53,7 @@
 
 /* === WINDOW SETTING === */
 
-# define HIGHT 720
+# define HEIGHT 720
 # define WIDTH 1280
 
 /* === GAME CONSTANTS === */
@@ -96,6 +102,8 @@ typedef struct s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	int			tex_num;
+	int			tex_x;
 }	t_ray;
 
 typedef struct s_vector
@@ -186,5 +194,12 @@ void			calc_wall_height(t_ray *ray);
 
 /* --- init_raycast.c --- */
 void			init_ray(t_ray *ray, t_vector *vec, int x);
+
+void			draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x);
+int				get_line_len(char *line);
+int				get_map_height(char **map);
+int				is_in_map(t_game *game, int x, int y);
+int				is_wall(t_game *game, int x, int y);
+void			draw_minimap_wall(t_game *game, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 06:39:30 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	put_pixel(int x, int y, int color, t_game *game)
 {
 	int	index;
 
-	if (x >= WIDTH || y >= HIGHT || x < 0 || y < 0)
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
 	index = y * game->line_size + x * game->bit / 8;
 	game->data[index] = color & 0xFF;
@@ -52,7 +52,7 @@ void	clear_player(t_game *game)
 	int	x;
 
 	y = 0;
-	while (y < HIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -72,7 +72,7 @@ int	main(void)
 	game.map = get_map();
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1280, 720, "Ray");
-	game.img = mlx_new_image(game.mlx, WIDTH, HIGHT);
+	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	game.data = mlx_get_data_addr(game.img, &game.bit,
 			&game.line_size, &game.type);
 	set_wall_texture(&game);

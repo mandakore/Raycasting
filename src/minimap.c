@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 05:51:15 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:57:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,48 @@ void	draw_square(t_game *game, t_square square)
 	}
 }
 
-static void	draw_wall_square(t_game *game, int x, int y)
+static void	draw_player(t_game *game)
 {
-	t_square	square;
+	t_square	player_square;
 
-	square.x = x * WALL;
-	square.y = y * WALL;
-	square.size = WALL;
-	square.color = 0xADFF2F;
-	draw_square(game, square);
+	player_square.x = MM_PLAYER_X + MM_RAD * WALL;
+	player_square.y = MM_PLAYER_Y + MM_RAD * WALL;
+	player_square.size = 6;
+	player_square.x += (WALL - player_square.size) / 2;
+	player_square.y += (WALL - player_square.size) / 2;
+	player_square.color = MM_PLAYER_COLOR;
+	draw_square(game, player_square);
+	draw_square(game, player_square);
 }
 
-static void	draw_map(t_game *game)
+static void	draw_walls(t_game *game)
 {
-	char	**map;
-	int		x;
-	int		y;
+	int	x;
+	int	y;
+	int	player_x;
+	int	player_y;
 
-	map = game->map;
-	y = 0;
-	while (map[y])
+	player_x = (int)(game->player.x) / WALL;
+	player_y = (int)(game->player.y) / WALL;
+	y = -MM_RAD;
+	while (y <= MM_RAD)
 	{
-		x = 0;
-		while (map[y][x])
+		x = -MM_RAD;
+		while (x <= MM_RAD)
 		{
-			if (map[y][x] == '1')
-				draw_wall_square(game, x, y);
+			if (is_in_map(game, player_x + x, player_y + y)
+				&& is_wall(game, player_x + x, player_y + y))
+			{
+				draw_minimap_wall(game, x + MM_RAD, y + MM_RAD);
+			}
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	draw_player(t_game *game)
-{
-	t_square	player_square;
-	t_player	*player;
-
-	player = &game->player;
-	player_square.x = (int)player->x;
-	player_square.y = (int)player->y;
-	player_square.size = 10;
-	player_square.color = 0xFFFFFF;
-	draw_square(game, player_square);
-}
-
 void	create_map(t_game *game)
 {
-	draw_map(game);
+	draw_walls(game);
 	draw_player(game);
 }
