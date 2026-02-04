@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:26:21 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 21:28:35 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:43:00 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_line_len(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!line)
@@ -26,7 +26,7 @@ int	get_line_len(char *line)
 
 int	get_map_height(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!map)
