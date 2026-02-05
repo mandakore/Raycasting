@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:43:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:35:55 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,7 @@ static void	set_tex_x(t_img *tex, t_ray *ray, double wall_x)
 	ray->tex_x = tex_x;
 }
 
-static void	draw_texture_column(
-	t_game *game,
-	t_img *tex,
-	t_ray *ray,
-	int x
-)
+static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x)
 {
 	double			step;
 	double			tex_pos;
