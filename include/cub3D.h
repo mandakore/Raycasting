@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/04 19:01:54 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:47:54 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void			calc_wall_height(t_ray *ray);
 /* --- init_raycast.c --- */
 void			init_ray(t_ray *ray, t_vector *vec, int x);
 
-void			draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x);
+void			draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x, unsigned int floor_color, unsigned int ceil_color);
 int				get_line_len(char *line);
 int				get_map_height(char **map);
 int				is_in_map(t_game *game, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 19:43:10 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:53:14 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	raycasting(t_game *game)
 	int			x;
 
 	move_player(game);
-	clear_player(game);
+	// clear_player(game);
 	vec.pos_x = game->player.x / WALL;
 	vec.pos_y = game->player.y / WALL;
 	vec.dir_x = cos(game->player.dire);
@@ -32,7 +32,7 @@ int	raycasting(t_game *game)
 		init_ray(&ray, &vec, x);
 		perform_dda(game, &ray);
 		calc_wall_height(&ray);
-		draw_texture(game, &vec, &ray, x);
+		draw_texture(game, &vec, &ray, x,0x666666,0xFFD580);
 		x++;
 	}
 	create_map(game);

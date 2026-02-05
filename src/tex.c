@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:43:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/05 16:35:55 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:48:57 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	set_tex_x(t_img *tex, t_ray *ray, double wall_x)
 	ray->tex_x = tex_x;
 }
 
-static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x)
+static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x, unsigned int floor_color, unsigned int ceil_color)
 {
 	double			step;
 	double			tex_pos;
@@ -66,6 +66,14 @@ static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x)
 	step = (double)tex->height / ray->line_height;
 	tex_pos = (ray->draw_start - HEIGHT / 2
 			+ ray->line_height / 2) * step;
+
+
+	y = 0;
+	while (y < ray->draw_start)
+	{
+		put_pixel(x, y, ceil_color, game);
+		y++;
+	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
@@ -76,9 +84,16 @@ static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x)
 		put_pixel(x, y, color, game);
 		y++;
 	}
+
+	y = ray->draw_end;
+	while (y < HEIGHT)
+	{
+		put_pixel(x, y, floor_color, game);
+		y++;
+	}
 }
 
-void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
+void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x, unsigned int floor_color, unsigned int ceil_color)
 {
 	t_img	*tex;
 	double	wall_x;
@@ -86,5 +101,5 @@ void	draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x)
 	tex = &game->textures[ray->tex_num];
 	wall_x = calc_wall_x(vec, ray);
 	set_tex_x(tex, ray, wall_x);
-	draw_texture_column(game, tex, ray, x);
+	draw_texture_column(game, tex, ray, x, floor_color, ceil_color);
 }
