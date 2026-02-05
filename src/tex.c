@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:43:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/05 16:48:57 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:05:07 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x, uns
 	unsigned int	color;
 
 	step = (double)tex->height / ray->line_height;
-	tex_pos = (ray->draw_start - HEIGHT / 2
-			+ ray->line_height / 2) * step;
-
-
+	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * step;
 	y = 0;
 	while (y < ray->draw_start)
 	{
@@ -84,7 +81,6 @@ static void	draw_texture_column(t_game *game, t_img *tex, t_ray *ray, int x, uns
 		put_pixel(x, y, color, game);
 		y++;
 	}
-
 	y = ray->draw_end;
 	while (y < HEIGHT)
 	{
