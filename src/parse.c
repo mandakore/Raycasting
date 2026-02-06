@@ -177,10 +177,18 @@ static bool	parse_mapdata(t_map *map)
 			return (free(line), false);
 		free(line);
 	}
-	while (1)
+	row = 0;
+	while (row < map->y)
 	{
 		line = get_next_line(map->cabfd);
 		if (line = NULL)
 			break ;
+		if (is_valid_map_row(line) != true)
+			return (/*freeall*/, free(line), false);
 		map->mapdata[row] = line;
+		row++;
+	}
+	if (is_map_closed(map->mapdata) != true)
+		return (/*freeall*/, free(line), false);
+
 
