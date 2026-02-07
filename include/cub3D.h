@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/05 16:47:54 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/07 14:45:12 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ typedef struct s_square
 	int	color;
 }	t_square;
 
+typedef struct s_color
+{
+	int	ceil;
+	int	floor;
+}	t_color;
+
 typedef struct s_player
 {
 	float		x;
@@ -78,6 +84,16 @@ typedef struct s_player
 	bool		left_turn;
 	bool		right_turn;
 }	t_player;
+
+typedef struct s_vector
+{
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		pos_x;
+	double		pos_y;
+}	t_vector;
 
 typedef struct s_ray
 {
@@ -100,16 +116,6 @@ typedef struct s_ray
 	int			tex_num;
 	int			tex_x;
 }	t_ray;
-
-typedef struct s_vector
-{
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		pos_x;
-	double		pos_y;
-}	t_vector;
 
 typedef struct s_img
 {
@@ -190,11 +196,14 @@ void			calc_wall_height(t_ray *ray);
 /* --- init_raycast.c --- */
 void			init_ray(t_ray *ray, t_vector *vec, int x);
 
-void			draw_texture(t_game *game, t_vector *vec, t_ray *ray, int x, unsigned int floor_color, unsigned int ceil_color);
+void			draw_texture(t_game *game, t_ray *ray, int x, t_color colorcf);
 int				get_line_len(char *line);
 int				get_map_height(char **map);
 int				is_in_map(t_game *game, int x, int y);
 int				is_wall(t_game *game, int x, int y);
 void			draw_minimap_wall(t_game *game, int x, int y);
+
+unsigned int	apply_shading(unsigned int color, double distance);
+void			draw_texture_column( t_game *game, t_ray *ray, int x, t_color c);
 
 #endif
