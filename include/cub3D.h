@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/07 14:45:12 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/07 14:55:52 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int				is_wall(t_game *game, int x, int y);
 void			draw_minimap_wall(t_game *game, int x, int y);
 
 unsigned int	apply_shading(unsigned int color, double distance);
-void			draw_texture_column( t_game *game, t_ray *ray, int x, t_color c);
+void			draw_texture_column( t_game *game, t_ray *ray, \
+									int x, t_color c);
 
 #endif
