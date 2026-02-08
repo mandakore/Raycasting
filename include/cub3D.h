@@ -23,9 +23,9 @@
 # include <fcntl.h>
 # include "mlx/mlx.h"
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # define SPEED 0.5
 # define DIRE_SPEED 0.01
@@ -61,7 +61,33 @@
 # define WALL 16
 # define PI 3.14159265358979323
 
-/* === STRUCTURES === */
+/* === MAP CONSTANTS === */
+
+# ifndef NORTH
+#  define NORTH "NO "
+# endif
+
+# ifndef EAST
+#  define EAST "EA "
+# endif
+
+# ifndef SOUTH
+#  define SOUTH "SO "
+# endif
+
+# ifndef WEST
+#  define WEST "WE "
+# endif
+
+# ifndef FLOOR
+#  define FLOOR "F "
+# endif
+
+# ifndef CEILING
+#  define CEILING "C "
+# endif
+
+/* === STRUCTURES FOR RAYCAST=== */
 
 typedef struct s_square
 {
@@ -141,6 +167,47 @@ typedef struct s_game
 	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
 }	t_game;
 
+/* === STRUCTURES FOR PARSE=== */
+typedef struct s_color	t_color;
+typedef struct s_config	t_config;
+typedef struct s_map	t_map;
+typedef struct s_board	t_board;
+
+struct s_color
+{
+	unsigned int	red;
+	unsigned int	green;
+	unsigned int	blue;
+} ;
+
+struct s_config
+{
+	char	*no_path;
+	char	*ea_path;
+	char	*so_path;
+	char	*we_path;
+	t_color	*f_color;
+	t_color	*c_color;
+} ;
+
+struct s_board
+{
+	char	**sheet;
+	int		sheet_x;
+	int		sheet_y;
+} ;
+
+struct s_map
+{
+	int			cubfd;
+	size_t		x;
+	size_t		y;
+	int			user_x;
+	int			user_y;
+	t_config	config;
+	char		**mapdata;
+} ;
+
 /* === FUNCTIONS === */
 /* --- main.c --- */
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
@@ -201,5 +268,25 @@ int				get_map_height(char **map);
 int				is_in_map(t_game *game, int x, int y);
 int				is_wall(t_game *game, int x, int y);
 void			draw_minimap_wall(t_game *game, int x, int y);
+
+/* --- parse.c --- */
+bool			parse(int argc, char **argv, t_map *map);
+/* --- parse_closed_map.c --- */
+bool			is_map_closed(t_map *map);
+/* --- parse_color_code.c --- */
+bool			set_valid_color_code(t_config *config, char *line);
+/* --- parse_map_contents.c --- */
+bool			parse_map_contents(t_map *map);
+/* --- parse_map_data.c --- */
+bool			parse_map_data(t_map *map);
+/* --- parse_map_util.c --- */
+void			free_sheet(char **sheet);
+bool			is_user(char c);
+char			**get_big_sheet(t_map *map);
+/* --- parse_texture_file.c --- */
+bool			set_valid_texture_path(t_config *config, char *line);
+/* --- parse_util.c --- */
+bool			is_valid_extention(char *fullpath, char *target);
+char			*get_next_line(int fd);
 
 #endif

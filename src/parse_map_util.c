@@ -5,51 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 17:34:34 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/07 19:13:50 by sohyamaz         ###   ########.fr       */
+/*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
+/*   Updated: 2026/02/09 05:39:52 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUB3D_H"
+#include "cub3d.h"
 
-char	**get_big_sheet(t_map *map)
+static void	put_single_line(char *sheet, char *line, size_t limit)
 {
-	char	**sheet;
-	size_t	y;
+	size_t	i;
 
-	sheet = (char **)ft_calloc((map->y + 2), sizeof(char *));
-	if (sheet == NULL)
-		return (false);
-	y = 0;
-	while (y < map->y + 2)
+	if (sheet == NULL || line == NULL)
+		return ;
+	i = 0;
+	while (i < limit && sheet[i + 1] != '\0' && line[i] != '\0')
 	{
-		x = 0;
-		sheet[y] = (char *)malloc((map->x + 2) * sizeof(char));
-		if (sheet[y] == NULL)
-			return (free_sheet(sheet), false);
-		if (y == 0 || y == map->y + 1)
-			sheet[y] = (char *)ft_memset(sheet[y], ' ', map->x + 2);
-		else
-		{
-			while (x < map->x)
-			{
-				sheet[y][x + 1] = map->mapdata[y - 1][x];
-				x++;
-			}
-		}
-		y++;
+		sheet[i + 1] = line[i];
+		i++;
 	}
-	return (sheet);
+	return ;
 }
 
-static void	free_sheet(char **sheet, size_t len)
+void	free_sheet(char **sheet)
 {
 	size_t	i;
 
 	if (sheet == NULL)
 		return ;
 	i = 0;
-	while (i < len)
+	while (sheet[i] != NULL)
 	{
 		free(sheet[i]);
 		i++;
@@ -58,31 +43,31 @@ static void	free_sheet(char **sheet, size_t len)
 	return ;
 }
 
-static bool	is_closed_outside(t_board *board, int org_x, int org_y)
+bool	is_user(char c)
 {
-	int	dest_x[] = {-1, 0, 0, 1};
-	int	dest_y[] = {0, -1, 1, 0};
-	int	i;
-
-	if (board == NULL || board->sheet == NULL)
+	if (c != 'N' || c != 'E' || c != 'S' || c != 'W')
 		return (false);
-	if (org_x < 0 || org_x >= board->sheet_x)
-		return (true);
-	else if (org_y < 0 || org_y >= board->sheet_y)
-		return (true);
-	if (board->sheet[org_y][org_x] == '.' || board->sheet[org_y][org_x] == '1')
-		return (true);
-	else if (board->sheet[org_y][org_x] == '0' \
-		|| is_user(board->sheet[org_y][org_x]) == true)
-		return (false);
-	board->sheet[org_y][org_x] = '.';
-	i = 0;
-	while (i < 4)
-	{
-		if (is_closed_outside(board, \
-			org_x + dest_x[i], org_y + dest_y[i]) == false)
-			return (false);
-		i++;
-	}
 	return (true);
+}
+
+char	**get_big_sheet(t_map *map)
+{
+	char	**sheet;
+	size_t	y;
+
+	sheet = (char **)ft_calloc((map->y + 3), sizeof(char *));
+	if (sheet == NULL)
+		return (NULL);
+	y = 0;
+	while (y < map->y + 2)
+	{
+		sheet[y] = (char *)ft_calloc((map->x + 3), sizeof(char));
+		if (sheet[y] == NULL)
+			return (free_sheet(sheet), NULL);
+		sheet[y] = (char *)ft_memset(sheet[y], ' ', map->x + 2);
+		if (y > 0 && y < map->y + 1)
+			put_single_line(sheet[y], map->mapdata[y - 1], map->x);
+		y++;
+	}
+	return (sheet);
 }

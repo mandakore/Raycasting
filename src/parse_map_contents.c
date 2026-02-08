@@ -5,36 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 13:56:21 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/07 17:44:27 by sohyamaz         ###   ########.fr       */
+/*   Created: 2026/02/09 05:39:28 by sohyamaz          #+#    #+#             */
+/*   Updated: 2026/02/09 05:39:29 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUB3D_H"
+#include "cub3d.h"
 
-static bool	is_configured_contents(t_config *config, char *line)
+static bool	is_already_configured(t_config *config, char *line)
 {
-	//chk logic
 	if (config == NULL || line == NULL)
-		return (false);
-	if (ft_strncnp(line, NORTH, 3) == true && config->no_path != NULL)
 		return (true);
-	else if (ft_strncnp(line, EAST, 3) == true && config->ea_path != NULL)
+	if (ft_strncmp(line, NORTH, 3) == 0 && config->no_path != NULL)
 		return (true);
-	else if (ft_strncnp(line, SOUTH, 3) == true && config->so_path != NULL)
+	if (ft_strncmp(line, EAST, 3) == 0 && config->ea_path != NULL)
 		return (true);
-	else if (ft_strncnp(line, WEST, 3) == true && config->we_path != NULL)
+	if (ft_strncmp(line, SOUTH, 3) == 0 && config->so_path != NULL)
 		return (true);
-	else if (ft_strncnp(line, FLOOR, 2) == true && config->f_color != NULL)
+	if (ft_strncmp(line, WEST, 3) == 0 && config->we_path != NULL)
 		return (true);
-	else if (ft_strncnp(line, CEILING, 2) == true && config->c_color != NULL)
+	if (ft_strncmp(line, FLOOR, 2) == 0 && config->f_color != NULL)
+		return (true);
+	if (ft_strncmp(line, CEILING, 2) == 0 && config->c_color != NULL)
 		return (true);
 	return (false);
 }
 
 static bool	is_empty_line(char c)
 {
-	if (c = '\n')
+	if (c == '\n')
 		return (true);
 	return (false);
 }
@@ -50,13 +49,13 @@ bool	parse_map_contents(t_map *map)
 	while (configured < 6)
 	{
 		line = get_next_line(map->cubfd);
-		if (line != NULL && is_empty_line(line[i]) != true)//done
+		if (line != NULL && is_empty_line(line[i]) != true)
 		{
-			if (is_configured_contents(map->config, line) == true)//done
+			if (is_already_configured(map->config, line) == true)
 				return (free(line), false);
 			if (set_valid_texture_path(map->config, line) == true)
 				configured++;
-			else if(set_valid_color_code(map->config, line) == true)
+			else if (set_valid_color_code(map->config, line) == true)
 				configured++;
 			else
 				return (free(line), false);

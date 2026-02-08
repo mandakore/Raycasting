@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 17:24:00 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/07 17:47:15 by sohyamaz         ###   ########.fr       */
+/*   Created: 2026/02/09 05:40:18 by sohyamaz          #+#    #+#             */
+/*   Updated: 2026/02/09 05:40:20 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUB3D_H"
+#include "cub3d.h"
 
 bool	set_valid_texture_path(t_config *config, char *line)
 {
@@ -27,13 +27,13 @@ bool	set_valid_texture_path(t_config *config, char *line)
 	path = ft_substr(line, prefix, path_len);
 	if (path == NULL)
 		return (false);
-	if (ft_strncnp(line, NORTH, prefix) == true)
+	if (ft_strncmp(line, NORTH, prefix) == true)
 		config->no_path = path;
-	else if (ft_strncnp(line, EAST, prefix) == true)
+	else if (ft_strncmp(line, EAST, prefix) == true)
 		config->no_path = path;
-	else if (ft_strncnp(line, SOUTH, prefix) == true)
+	else if (ft_strncmp(line, SOUTH, prefix) == true)
 		config->no_path = path;
-	else if (ft_strncnp(line, WEST, prefix) == true)
+	else if (ft_strncmp(line, WEST, prefix) == true)
 		config->no_path = path;
 	else
 		return (free(path), false);

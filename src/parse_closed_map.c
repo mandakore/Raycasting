@@ -1,0 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_closed_map.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/09 05:38:04 by sohyamaz          #+#    #+#             */
+/*   Updated: 2026/02/09 05:38:20 by sohyamaz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static bool	is_closed_inside(t_board *board, int org_x, int org_y)
+{
+	int		dest_x[] = {-1, 0, 0, 1};
+	int		dest_y[] = {0, -1, 1, 0};
+	int		i;
+	char	current;
+
+	if (board == NULL || board->sheet == NULL)
+		return (false);
+	if (org_x < 0 || org_x >= board->sheet_x)
+		return (true);
+	else if (org_y < 0 || org_y >= board->sheet_y)
+		return (true);
+	current = board->sheet[org_y][org_x];
+	if (current == 'i' || current == '1')
+		return (true);
+	else if (current == ' ' || current == 'o')
+		return (false);
+	board->sheet[org_y][org_x] = 'i';
+	i = 0;
+	while (i < 4)
+	{
+		if (is_closed_inside(board, \
+			org_x + dest_x[i], org_y + dest_y[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	is_closed_outside(t_board *board, int org_x, int org_y)
+{
+	int		dest_x[] = {-1, 0, 0, 1};
+	int		dest_y[] = {0, -1, 1, 0};
+	int		i;
+	char	current;
+
+	if (board == NULL || board->sheet == NULL)
+		return (false);
+	if (org_x < 0 || org_x >= board->sheet_x)
+		return (true);
+	else if (org_y < 0 || org_y >= board->sheet_y)
+		return (true);
+	current = board->sheet[org_y][org_x];
+	if (current == '1' || current == 'o')
+		return (true);
+	else if (current == '0' || is_user(current) == true)
+		return (false);
+	board->sheet[org_y][org_x] = 'o';
+	i = 0;
+	while (i < 4)
+	{
+		if (is_closed_outside(board, \
+			org_x + dest_x[i], org_y + dest_y[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	is_map_closed(t_map *map)
+{
+	t_board	*board;
+
+	if (map == NULL)
+		return (false);
+	board = ft_calloc(1, sizeof(t_board));
+	if (board == NULL)
+		return (false);
+	board->sheet = get_big_sheet(map);
+	if (board->sheet == NULL)
+		return (free(board), false);
+	board->sheet_x = (int)map->x + 2;
+	board->sheet_y = (int)map->y + 2;
+	if (is_closed_outside(board, 0, 0) != true)
+		return (free_sheet(board->sheet), free(board), false);
+	if (is_closed_inside(board, map->user_x + 1, map->user_y + 1) != true)
+		return (free_sheet(board->sheet), free(board), false);
+	free_sheet(board->sheet);
+	free(board);
+	return (true);
+}

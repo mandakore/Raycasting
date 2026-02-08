@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 16:22:17 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/01 18:54:48 by sohyamaz         ###   ########.fr       */
+/*   Created: 2026/02/09 05:40:29 by sohyamaz          #+#    #+#             */
+/*   Updated: 2026/02/09 05:40:31 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUB3D_H"
+#include "cub3d.h"
 
 bool	is_valid_extention(char *fullpath, char *target)
 {
