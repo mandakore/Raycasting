@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:58:59 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 19:10:45 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/05 15:45:34 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,15 @@ char	**get_map(void)
 	map[11] = NULL;
 	return (map);
 }
+
+// char	**get_map(void)
+// {
+// 	char	**map;
+
+// 	map = malloc(sizeof(char *) * 12);
+// 	map[0] = "111";
+// 	map[1] = "101";
+// 	map[2] = "111";
+
+// 	return (map);
+// }

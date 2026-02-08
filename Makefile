@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/04 18:26:52 by atashiro         ###   ########.fr        #
+#    Updated: 2026/02/07 14:46:27 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS	= src/main.c \
 		  src/minimap.c \
 		  src/minimap_utils.c \
 		  src/init_raycast.c src/calcurate_wall_height.c \
-		  src/dda.c src/init_player.c src/move.c src/move_calc.c src/tex.c
+		  src/dda.c src/init_player.c src/move.c src/move_calc.c src/tex.c \
+		  src/tex2.c src/apply_shading.c
 OBJS	= $(SRCS:%.c=%.o)
 
 $(OBJS): $(INC_DIR)/cub3D.h

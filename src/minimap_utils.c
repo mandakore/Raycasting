@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:26:21 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/04 18:53:23 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:40:01 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	draw_minimap_wall(t_game *game, int x, int y)
 	square.x = MM_PLAYER_X + x * WALL;
 	square.y = MM_PLAYER_Y + y * WALL;
 	square.size = WALL;
-	square.color = 0xADFF2F;
+	square.color = 0xFFFFFF;
 	draw_square(game, square);
 }
