@@ -6,13 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:41:27 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/01 22:02:01 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/10 01:28:12 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cab3d.h"
-
-
 
 bool	get_map_size(t_map *map, char *fullpath)
 {
@@ -21,22 +19,22 @@ bool	get_map_size(t_map *map, char *fullpath)
 
 	if (map == NULL || fullpath == NULL)
 		return (false);
-	map->cabfd = open(fullpath, O_RONLY);
+	map->cubfd = open(fullpath, O_RONLY);
 	if (map->cabfd < 0)
 		return (perror("open"), false);
 	width = 0;
 	while (1)
 	{
-		line = get_next_line(map->cabfd);
+		line = get_next_line(map->cubfd);
 		if (line == NULL)
 			break ;
-		width = ft_strlen(line) + 2;
+		width = ft_strlen(line) + 1;
 		if (width > map->x)
 			map->x = width;
 		map->y++;
-		free(line)
+		free(line);
 	}
-	map->y = height + 2;
-	close(cabfd);
+	map->y = height + 1;
+	close(cubfd);
 	return (true);
 }
