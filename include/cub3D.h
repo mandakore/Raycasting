@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/09 05:46:11 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/10 00:53:35 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,8 @@ struct s_board
 	char	**sheet;
 	int		sheet_x;
 	int		sheet_y;
+	int		dest_x[4];
+	int		dest_y[4];
 } ;
 
 struct s_map
