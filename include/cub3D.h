@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/10 00:53:35 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:28:26 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # include <stdbool.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stddef.h>
+# include <limits.h>
+# include <stdint.h>
 # include "mlx/mlx.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 512
 # endif
 
 # define SPEED 0.5

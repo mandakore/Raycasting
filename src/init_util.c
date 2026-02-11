@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:41:27 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/10 01:28:12 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:33:07 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,108 @@ bool	get_map_size(t_map *map, char *fullpath)
 		map->y++;
 		free(line);
 	}
-	map->y = height + 1;
+	map->y++;
 	close(cubfd);
 	return (true);
+}
+
+static char	*gnl_strjoin(char *s1, char c)
+{
+	size_t	dsize;
+	char	*dest;
+	int		i;
+
+	if (!s1)
+		return (NULL);
+	i = 0;
+	dsize = ft_strlen(s1) + 2;
+	dest = (char *)malloc(sizeof(char) * dsize);
+	if (dest == NULL)
+	{
+		free(s1);
+		return (NULL);
+	}
+	while (s1[i] != '\0')
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = c;
+	i++;
+	dest[i] = '\0';
+	free (s1);
+	return (dest);
+}
+
+static int	get_next_char(int fd)
+{
+	static char		buf[BUFFER_SIZE];
+	static char		*bufptr;
+	static int		remain;
+	unsigned char	asc;
+
+	if (remain == 0)
+	{
+		remain = read(fd, buf, BUFFER_SIZE);
+		if (remain == 0)
+			return (EOF);
+		if (remain < 0)
+			return (INT_MIN);
+		bufptr = buf;
+	}
+	asc = 0;
+	if (remain > 0)
+	{
+		asc = (unsigned char) *bufptr;
+		bufptr ++;
+		remain --;
+		return (asc);
+	}
+	else
+		return (EOF);
+}
+
+static char	*set_next_line(int asc, char *val)
+{
+	if (asc == EOF)
+	{
+		if (*val == '\0')
+		{
+			free (val);
+			return (NULL);
+		}
+		return (val);
+	}
+	if (asc == INT_MIN)
+	{
+		if (val != NULL)
+			free (val);
+		return (NULL);
+	}
+	val = gnl_strjoin(val, asc);
+	if (val == NULL)
+		return (NULL);
+	return (val);
+}
+
+char	*get_next_line(int fd)
+{
+	char	*val;
+	int		asc;
+
+	if (BUFFER_SIZE <= 0)
+		return (NULL);
+	val = ft_calloc(sizeof(char), 1);
+	if (val == NULL)
+		return (NULL);
+	while (1)
+	{
+		asc = get_next_char(fd);
+		val = set_next_line(asc, val);
+		if (val == NULL)
+			return (NULL);
+		if (asc == '\n' || asc == EOF)
+			break ;
+	}
+	return (val);
 }
