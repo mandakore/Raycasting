@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/01 19:37:54 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/11 21:57:09 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,28 @@ void	clear_player(t_game *game)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	game;
+	t_map	*map
 
-	init_player(&game.player);
-	game.map = get_map();
+	map = (t_map *)ft_calloc(1, sizeof(t_map));
+	if (map == NULL)
+		return (1);
+	if (parse(argc, argv, map) != true)
+		return (free_args(map), 1);
+	init_player*(&game.player, map);
+	set_wall_texture(&game);
+	set_rgb_code(&game, map->config);
+	game.map = get_parsed_map(map);
+	if (game.map == NULL)
+		return (free_args(map), 1);
+	free_args(map);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1280, 720, "Ray");
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	game.data = mlx_get_data_addr(game.img, &game.bit,
 			&game.line_size, &game.type);
-	set_wall_texture(&game);
 	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
 	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, key_release, &game.player);

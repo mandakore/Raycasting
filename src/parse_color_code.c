@@ -6,13 +6,13 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/09 05:39:18 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:30:03 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
-static bool	is_valid_code(t_color *color)
+static bool	is_valid_code(t_rgb *color)
 {
 	if (color == NULL)
 		return (false);
@@ -25,7 +25,7 @@ static bool	is_valid_code(t_color *color)
 	return (true);
 }
 
-static void	get_color_code(t_color *color, char *code)
+static void	get_color_code(t_rgb *color, char *code)
 {
 	int	i;
 

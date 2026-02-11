@@ -6,11 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:04 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/10 01:07:43 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:29:35 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
 static bool	is_inside_of_range(t_board *board, int x, int y)
 {

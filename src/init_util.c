@@ -6,11 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:41:27 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/10 17:33:07 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:28:54 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cab3d.h"
+#include "../include/cub3D.h"
 
 bool	get_map_size(t_map *map, char *fullpath)
 {

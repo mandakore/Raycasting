@@ -6,11 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:48 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/09 05:39:00 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:29:29 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
 bool	parse(int argc, char **argv, t_map *map)
 {

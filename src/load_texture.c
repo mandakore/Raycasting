@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 05:38:13 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/27 23:33:04 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/11 20:54:12 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ void	load_texture(t_game *game, int index, char *path)
 			&tex->line_length, &tex->endian);
 }
 
-void	set_wall_texture(t_game *game)
+void	set_wall_texture(t_game *game, t_config *config)
 {
-	load_texture(game, 0, "textures/north.xpm");
-	load_texture(game, 1, "textures/south.xpm");
-	load_texture(game, 2, "textures/west.xpm");
-	load_texture(game, 3, "textures/east.xpm");
+//	load_texture(game, 0, "textures/north.xpm");
+//	load_texture(game, 1, "textures/south.xpm");
+//	load_texture(game, 2, "textures/west.xpm");
+//	load_texture(game, 3, "textures/east.xpm");
+	load_texture(game, 0, config->no_path);
+	load_texture(game, 1, config->ea_path);
+	load_texture(game, 2, config->so_path);
+	load_texture(game, 3, config->we_path);
 }

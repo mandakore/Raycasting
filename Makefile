@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/10 01:29:20 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/11 22:15:05 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,31 +33,41 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 # =========================
 # Sources
 # =========================
-SRCS	= src/main.c \
-		  src/utils.c \
-		  src/key.c \
+SRCS	= src/apply_shading.c \
+		  src/calcurate_wall_height.c \
+		  src/cub_std_util.c \
+		  src/dda.c \
+		  src/free.c \
 		  src/get_map.c \
-		  src/raycasting.c \
-		  src/raycasting_utils.c \
-		  src/free.c  \
+		  src/init_player.c \
+		  src/init_raycast.c \
+		  src/init_util.c \
+		  src/key.c \
 		  src/load_texture.c \
+		  src/main.c \
 		  src/minimap.c \
 		  src/minimap_utils.c \
-		  src/init_raycast.c src/calcurate_wall_height.c \
-		  src/dda.c src/init_player.c src/move.c src/move_calc.c src/tex.c \
-		  src/tex2.c src/apply_shading.c
-		  src/init_util.c
+		  src/move.c \
+		  src/move_calc.c \
 		  src/parse.c \
 		  src/parse_closed_map.c \
 		  src/parse_color_code.c \
+		  src/parse_map_contents.c \
 		  src/parse_map_data.c \
 		  src/parse_map_util.c \
 		  src/parse_texture_file.c \
-		  src/parse_util.c
+		  src/parse_util.c \
+		  src/raycasting.c \
+		  src/raycasting_utils.c \
+		  src/set_color.c \
+		  src/tex2.c \
+		  src/tex.c \
+		  src/utils.c
 
 OBJS	= $(SRCS:%.c=%.o)
 
 $(OBJS): $(INC_DIR)/cub3D.h
+$(OBJS): $(MLX_LIB)
 
 # =========================
 # Includes / Libs

@@ -6,11 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:28 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/09 05:39:29 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:30:13 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
 static bool	is_already_configured(t_config *config, char *line)
 {

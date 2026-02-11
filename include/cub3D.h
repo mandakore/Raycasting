@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/10 17:28:26 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:34:15 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdint.h>
-# include "mlx/mlx.h"
+# include "mlx.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
@@ -90,99 +90,21 @@
 #  define CEILING "C "
 # endif
 
-/* === STRUCTURES FOR RAYCAST=== */
-
-typedef struct s_square
-{
-	int	x;
-	int	y;
-	int	size;
-	int	color;
-}	t_square;
-
-typedef struct s_color
-{
-	int	ceil;
-	int	floor;
-}	t_color;
-
-typedef struct s_player
-{
-	float		x;
-	float		y;
-	float		dire;
-	bool		key_w;
-	bool		key_s;
-	bool		key_a;
-	bool		key_d;
-	bool		left_turn;
-	bool		right_turn;
-}	t_player;
-
-typedef struct s_vector
-{
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		pos_x;
-	double		pos_y;
-}	t_vector;
-
-typedef struct s_ray
-{
-	double		camera_x;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		perp_wall_dist;
-	int			step_x;
-	int			step_y;
-	int			side;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
-	int			tex_num;
-	int			tex_x;
-}	t_ray;
-
-typedef struct s_img
-{
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}	t_img;
-
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-	t_player	player;
-	char		*data;
-	void		*img;
-	char		**map;
-	int			bit;
-	int			line_size;
-	int			type;
-	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
-}	t_game;
-
-/* === STRUCTURES FOR PARSE=== */
-typedef struct s_color	t_color;
+/* === STRUCTURES definition=== */
+typedef struct s_rgb	t_rgb;
 typedef struct s_config	t_config;
 typedef struct s_map	t_map;
 typedef struct s_board	t_board;
+typedef struct s_square	t_square;
+typedef struct s_color	t_color;
+typedef struct s_player	t_player;
+typedef struct s_vector	t_vector;
+typedef struct s_ray	t_ray;
+typedef struct s_img	t_img;
+typedef struct s_game	t_game;
 
-struct s_color
+/* === STRUCTURES FOR PARSE=== */
+struct s_rgb
 {
 	unsigned int	red;
 	unsigned int	green;
@@ -195,8 +117,8 @@ struct s_config
 	char	*ea_path;
 	char	*so_path;
 	char	*we_path;
-	t_color	*f_color;
-	t_color	*c_color;
+	t_rgb	f_color;
+	t_rgb	c_color;
 } ;
 
 struct s_board
@@ -219,6 +141,94 @@ struct s_map
 	char		**mapdata;
 } ;
 
+/* === STRUCTURES FOR RAYCAST=== */
+
+struct s_square
+{
+	int	x;
+	int	y;
+	int	size;
+	int	color;
+} ;
+
+struct s_color
+{
+	int	ceil;
+	int	floor;
+} ;
+
+struct s_player
+{
+	float		x;
+	float		y;
+	float		dire;
+	bool		key_w;
+	bool		key_s;
+	bool		key_a;
+	bool		key_d;
+	bool		left_turn;
+	bool		right_turn;
+} ;
+
+struct s_vector
+{
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		pos_x;
+	double		pos_y;
+} ;
+
+struct s_ray
+{
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_num;
+	int			tex_x;
+} ;
+
+struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+} ;
+
+struct s_game
+{
+	void		*mlx;
+	void		*win;
+	t_player	player;
+	t_rgb		ceil;
+	t_rgb		floor;
+	char		*data;
+	void		*img;
+	char		**map;
+	int			bit;
+	int			line_size;
+	int			type;
+	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
+} ;
+
 /* === FUNCTIONS === */
 /* --- main.c --- */
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
@@ -229,6 +239,7 @@ void			clear_player(t_game *game);
 
 /* --- get_map.c --- */
 char			**get_map(void);
+char			**get_parsed_map(t_map *map);
 
 /* --- key.c --- */
 int				key_press(int keycode, t_game *game);
@@ -243,13 +254,17 @@ float			distance(float x, float y);
 
 /* --- load_texture.c --- */
 void			load_texture(t_game *game, int index, char *path);
-void			set_wall_texture(t_game *game);
+void			set_wall_texture(t_game *game, t_config *config);
 
 /* --- utils.c --- */
 int				close_window(t_game *game);
+void			*ft_calloc(size_t nmemb, size_t size);
+size_t			ft_strlen(const char *s);
+void			ft_bzero(void *s, size_t n);
 
 /* --- free.c --- */
 void			free_map(char **map);
+void			free_args(t_map *map);
 void			free_all(t_game *game);
 
 /* --- move.c --- */
@@ -262,7 +277,7 @@ void			calc_move_delta(t_player *player, float *add_x, float *add_y);
 void			create_map(t_game *game);
 
 /* --- init_player.c --- */
-void			init_player(t_player *player);
+void			init_player(t_player *player, t_map *map);
 
 /* --- dda.c --- */
 void			perform_dda(t_game *game, t_ray *ray);
@@ -301,6 +316,21 @@ char			**get_big_sheet(t_map *map);
 bool			set_valid_texture_path(t_config *config, char *line);
 /* --- parse_util.c --- */
 bool			is_valid_extention(char *fullpath, char *target);
+char			*ft_strrchr(const char *str, int c);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/* --- set_color.c --- */
+void			set_rgb_code(t_game *game, t_config *config);
+
+/* --- init_util.c --- */
+bool			get_map_size(t_map *map, char *fullpath);
 char			*get_next_line(int fd);
+
+/* --- cub_std_util.c --- */
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+size_t			ft_strlcpy(char *dest, const char *src, size_t len);
+char			*ft_strdup(const char *s);
+void			*ft_memmove(void *dest, const void *src, size_t n);
+void			*ft_memset(void *s, int c, size_t n);
 
 #endif

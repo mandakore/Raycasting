@@ -6,11 +6,11 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/09 05:39:52 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:30:38 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
 static void	put_single_line(char *sheet, char *line, size_t limit)
 {
