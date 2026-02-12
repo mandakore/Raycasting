@@ -6,13 +6,13 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:36 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:30:31 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:26:14 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-static bool	is_wall(char c)
+static bool	is_wall_symbol(char c)
 {
 	if (c != ' ' || c != '1' || c != '0')
 		return (false);
@@ -30,7 +30,7 @@ static bool	is_valid_map_line(t_map *map, char *line, int y)
 	user = 0;
 	while (line[i] != '\0')
 	{
-		if (is_wall(line[i]) != true)
+		if (is_wall_symbol(line[i]) != true)
 		{
 			if (is_user(line[i]) != true)
 				return (false);
@@ -50,7 +50,8 @@ static bool	is_valid_map_line(t_map *map, char *line, int y)
 
 bool	parse_map_data(t_map *map)
 {
-	int	y;
+	size_t	y;
+	char	*line;
 
 	y = 0;
 	while (y < map->y)
@@ -58,7 +59,7 @@ bool	parse_map_data(t_map *map)
 		line = get_next_line(map->cubfd);
 		if (line == NULL)
 			break ;
-		if (is_valid_map_line(line) != true)
+		if (is_valid_map_line(map, line, y) != true)
 			return (free(line), false);
 		map->mapdata[y] = line;
 		y++;

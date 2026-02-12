@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:40:29 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:30:55 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:27:07 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	is_valid_extention(char *fullpath, char *target)
 	else
 		filename = fullpath;
 	fname_len = ft_strlen(filename);
-	taget_len = ft_strlen(target);
+	target_len = ft_strlen(target);
 	if (fname_len <= target_len)
 		return (false);
 	extention = filename + fname_len - target_len;
@@ -52,8 +52,8 @@ char	*ft_strrchr(const char *str, int c)
 	{
 		if (*temp == check)
 			return ((char *)str);
-		str --;
-		temp --;
+		str--;
+		temp--;
 	}
 	if (*str == check)
 		return ((char *)str);
@@ -77,9 +77,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		if (*str1 != *str2)
 			return (*str1 - *str2);
-		str1 ++;
-		str2 ++;
-		n --;
+		str1++;
+		str2++;
+		n--;
 	}
 	return (0);
 }

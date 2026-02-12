@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/11 21:57:09 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 01:55:19 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ void	clear_player(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	t_map	*map
+	t_map	*map;
 
 	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (map == NULL)
 		return (1);
 	if (parse(argc, argv, map) != true)
 		return (free_args(map), 1);
-	init_player*(&game.player, map);
-	set_wall_texture(&game);
-	set_rgb_code(&game, map->config);
+	init_player(&game.player, map);
+	set_wall_texture(&game, &map->config);
+	set_rgb_code(&game, &map->config);
 	game.map = get_parsed_map(map);
 	if (game.map == NULL)
 		return (free_args(map), 1);

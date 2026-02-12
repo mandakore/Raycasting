@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/11 22:34:15 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:16:53 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ struct s_rgb
 	unsigned int	red;
 	unsigned int	green;
 	unsigned int	blue;
+	unsigned int	is_configured;
 } ;
 
 struct s_config

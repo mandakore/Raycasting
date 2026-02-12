@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:41:27 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:28:54 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 01:46:14 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	get_map_size(t_map *map, char *fullpath)
 {
-	int		width;
+	size_t		width;
 	char	*line;
 
 	if (map == NULL || fullpath == NULL)
 		return (false);
-	map->cubfd = open(fullpath, O_RONLY);
-	if (map->cabfd < 0)
+	map->cubfd = open(fullpath, O_RDONLY);
+	if (map->cubfd < 0)
 		return (perror("open"), false);
 	width = 0;
 	while (1)
@@ -35,7 +35,7 @@ bool	get_map_size(t_map *map, char *fullpath)
 		free(line);
 	}
 	map->y++;
-	close(cubfd);
+	close(map->cubfd);
 	return (true);
 }
 

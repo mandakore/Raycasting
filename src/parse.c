@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:48 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:29:29 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 01:56:28 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	parse(int argc, char **argv, t_map *map)
 	fullpath = argv[1];
 	if (is_valid_extention(fullpath, ".cub") == false)
 		return (false);
-	map->cubfd = open(cabfile, O_RONLY);
+	map->cubfd = open(fullpath, O_RDONLY);
 	if (map->cubfd < 0)
 		return (perror("open"), false);
 	if (parse_map_contents(map) == false)

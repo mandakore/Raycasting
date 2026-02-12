@@ -6,21 +6,19 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:30:03 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:19:44 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-static bool	is_valid_code(t_rgb *color)
+static bool	is_valid_code(t_rgb color)
 {
-	if (color == NULL)
+	if (color.red > 255)
 		return (false);
-	if (color->red > 255)
+	else if (color.green > 255)
 		return (false);
-	else if (color->green > 255)
-		return (false);
-	else if (color->blue > 255)
+	else if (color.blue > 255)
 		return (false);
 	return (true);
 }
@@ -65,15 +63,17 @@ bool	set_valid_color_code(t_config *config, char *line)
 		return (false);
 	if (ft_strncmp(line, FLOOR, 2) == 0)
 	{
-		get_color_code(config->f_color, line + 2);
+		get_color_code(&config->f_color, line + 2);
 		if (is_valid_code(config->f_color) != true)
 			return (false);
+		config->f_color.is_configured = 1;
 	}
 	else if (ft_strncmp(line, CEILING, 2) == 0)
 	{
-		get_color_code(config->c_color, line + 2);
+		get_color_code(&config->c_color, line + 2);
 		if (is_valid_code(config->c_color) != true)
 			return (false);
+		config->c_color.is_configured = 1;
 	}
 	else
 		return (false);
