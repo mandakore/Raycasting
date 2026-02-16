@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/13 02:16:53 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:37:45 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ struct s_board
 struct s_map
 {
 	int			cubfd;
+	size_t		config_line;
 	size_t		x;
 	size_t		y;
 	int			user_x;
@@ -239,7 +240,7 @@ void			draw_square(t_game *game, t_square square);
 void			clear_player(t_game *game);
 
 /* --- get_map.c --- */
-char			**get_map(void);
+//char			**get_map(void);
 char			**get_parsed_map(t_map *map);
 
 /* --- key.c --- */
@@ -299,8 +300,10 @@ unsigned int	apply_shading(unsigned int color, double distance);
 void			draw_texture_column( t_game *game, t_ray *ray, \
 									int x, t_color c);
 
+/* --- init_map.c --- */
+t_map			*init_map(int argc, char **argv);
 /* --- parse.c --- */
-bool			parse(int argc, char **argv, t_map *map);
+bool			parse(t_map *map, char *path);
 /* --- parse_closed_map.c --- */
 bool			is_map_closed(t_map *map);
 /* --- parse_color_code.c --- */
@@ -324,7 +327,8 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 void			set_rgb_code(t_game *game, t_config *config);
 
 /* --- init_util.c --- */
-bool			get_map_size(t_map *map, char *fullpath);
+//bool			get_map_size(t_map *map, char *fullpath);
+bool			is_config_line(char c);
 char			*get_next_line(int fd);
 
 /* --- cub_std_util.c --- */

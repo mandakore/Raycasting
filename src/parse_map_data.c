@@ -6,11 +6,29 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:36 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/13 02:26:14 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:50:11 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+static bool	copy_map_data(t_map *map, char *src, size_t n)
+{
+	size_t	i;
+
+	if (map == NULL || src == NULL)
+		return (false);
+	i = 0;
+	while (src[i] != '\0' && i < map->x)
+	{
+		if (src[i] == '\n')
+			src[i] = ' ';
+		map->mapdata[n][i] = src[i];
+		i++;
+	}
+	map->mapdata[n][map->x] = '\0';
+	return (true);
+}
 
 static bool	is_wall_symbol(char c)
 {
@@ -50,19 +68,23 @@ static bool	is_valid_map_line(t_map *map, char *line, int y)
 
 bool	parse_map_data(t_map *map)
 {
-	size_t	y;
 	char	*line;
+	size_t	i;
 
-	y = 0;
-	while (y < map->y)
+	if (map == NULL)
+		return (false);
+	i = 0;
+	while (i < map->y)
 	{
 		line = get_next_line(map->cubfd);
 		if (line == NULL)
 			break ;
-		if (is_valid_map_line(map, line, y) != true)
+		if (line[0] != '\n' && is_valid_map_line(map, line, map->y) != true)
 			return (free(line), false);
-		map->mapdata[y] = line;
-		y++;
+		if (copy_map_data(map, line, i) != true)
+			return (free(line), false);
+		free(line);
+		i++;
 	}
 	if (is_map_closed(map) != true)
 		return (false);

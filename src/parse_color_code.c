@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/13 02:19:44 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:47:39 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	get_color_code(t_rgb *color, char *code)
 		i++;
 	}
 	i++;
-	while (code[i] != '\0')
+	while (code[i] != '\0' && code[i] != '\n')
 	{
 		color->blue = (color->blue * 10) + (code[i] - '0');
 		i++;
@@ -65,17 +65,17 @@ bool	set_valid_color_code(t_config *config, char *line)
 	{
 		get_color_code(&config->f_color, line + 2);
 		if (is_valid_code(config->f_color) != true)
-			return (false);
+			return (free(code), false);
 		config->f_color.is_configured = 1;
 	}
 	else if (ft_strncmp(line, CEILING, 2) == 0)
 	{
 		get_color_code(&config->c_color, line + 2);
 		if (is_valid_code(config->c_color) != true)
-			return (false);
+			return (free(code), false);
 		config->c_color.is_configured = 1;
 	}
 	else
-		return (false);
-	return (true);
+		return (free(code), false);
+	return (free(code), true);
 }

@@ -6,37 +6,46 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:41:27 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/13 01:46:14 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:35:39 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+//
+//bool	get_map_size(t_map *map, char *fullpath)
+//{
+//	size_t	x;
+//	char	*line;
+//
+//	if (map == NULL || fullpath == NULL)
+//		return (false);
+//	map->cubfd = open(fullpath, O_RDONLY);
+//	if (map->cubfd < 0)
+//		return (perror("open"), false);
+//	x = 0;
+//	while (1)
+//	{
+//		line = get_next_line(map->cubfd);
+//		if (line == NULL)
+//			break ;
+//		x = ft_strlen(line) + 1;
+//		if (x > map->x)
+//			map->x = x;
+//		map->y++;
+//		free(line);
+//	}
+//	map->y++;
+//	close(map->cubfd);
+//	return (true);
+//}
 
-bool	get_map_size(t_map *map, char *fullpath)
+bool	is_config_line(char c)
 {
-	size_t		width;
-	char	*line;
-
-	if (map == NULL || fullpath == NULL)
-		return (false);
-	map->cubfd = open(fullpath, O_RDONLY);
-	if (map->cubfd < 0)
-		return (perror("open"), false);
-	width = 0;
-	while (1)
-	{
-		line = get_next_line(map->cubfd);
-		if (line == NULL)
-			break ;
-		width = ft_strlen(line) + 1;
-		if (width > map->x)
-			map->x = width;
-		map->y++;
-		free(line);
-	}
-	map->y++;
-	close(map->cubfd);
-	return (true);
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+		return (true);
+	if (c == 'F' || c == 'C')
+		return (true);
+	return (false);
 }
 
 static char	*gnl_strjoin(char *s1, char c)

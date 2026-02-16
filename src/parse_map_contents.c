@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:28 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/13 02:42:19 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:40:17 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,38 @@ static bool	is_empty_line(char c)
 	return (false);
 }
 
+static bool	set_config(t_config *config, char *line)
+{
+	char	c;
+
+	if (config == NULL || line == NULL)
+		return (false);
+	c = line[0];
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+	{
+		if (set_valid_texture_path(config, line) == false)
+			return (false);
+		return (true);
+	}
+	else if (c == 'F' || c == 'C')
+	{
+		if (set_valid_color_code(config, line) == false)
+			return (false);
+		return (true);
+	}
+	else
+		return (false);
+}
+
 bool	parse_map_contents(t_map *map)
 {
 	char	*line;
-	int		configured;
+	size_t	i;
 
 	if (map == NULL)
 		return (false);
-	configured = 0;
-	while (configured < 6)
+	i = 0;
+	while (i < map->config_line)
 	{
 		line = get_next_line(map->cubfd);
 		if (line == NULL)
@@ -55,15 +78,11 @@ bool	parse_map_contents(t_map *map)
 		{
 			if (is_already_configured(&map->config, line) == true)
 				return (free(line), false);
-			if (set_valid_texture_path(&map->config, line) == true || \
-				set_valid_color_code(&map->config, line) == true)
-				configured++;
-			else
+			if (set_config(&map->config, line) == false)
 				return (free(line), false);
 		}
 		free(line);
+		i++;
 	}
-	if (configured != 6)
-		return (false);
 	return (true);
 }

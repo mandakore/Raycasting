@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:04 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:29:35 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:26:44 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static bool	is_closed_outside(t_board *board, int org_x, int org_y)
 	current = board->sheet[org_y][org_x];
 	if (current == '0' || is_user(current) == true)
 		return (false);
-	if (current == '1' || current == 'o')
+	if (current == '1' || current == 'o' || current == '\0')
 		return (true);
 	board->sheet[org_y][org_x] = 'o';
 	i = 0;

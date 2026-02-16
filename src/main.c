@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/13 01:55:19 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:39:08 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	main(int argc, char **argv)
 	t_game	game;
 	t_map	*map;
 
-	map = (t_map *)ft_calloc(1, sizeof(t_map));
+	map = init_map(argc, argv);
 	if (map == NULL)
-		return (1);
-	if (parse(argc, argv, map) != true)
+		return (0);
+	if (parse(map, argv[1]) != true)
 		return (free_args(map), 1);
 	init_player(&game.player, map);
 	set_wall_texture(&game, &map->config);

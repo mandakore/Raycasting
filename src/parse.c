@@ -6,24 +6,19 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:48 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/13 01:56:28 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:39:44 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-bool	parse(int argc, char **argv, t_map *map)
+bool	parse(t_map *map, char *path)
 {
-	char	*fullpath;
-
-	if (argv == NULL || map == NULL)
+	if (map == NULL || path == NULL)
 		return (false);
-	if (argc != 2)
+	if (is_valid_extention(path, ".cub") == false)
 		return (false);
-	fullpath = argv[1];
-	if (is_valid_extention(fullpath, ".cub") == false)
-		return (false);
-	map->cubfd = open(fullpath, O_RDONLY);
+	map->cubfd = open(path, O_RDONLY);
 	if (map->cubfd < 0)
 		return (perror("open"), false);
 	if (parse_map_contents(map) == false)

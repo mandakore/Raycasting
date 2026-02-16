@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/11 22:30:38 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 04:22:58 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	put_single_line(char *sheet, char *line, size_t limit)
 	if (sheet == NULL || line == NULL)
 		return ;
 	i = 0;
-	while (i < limit && sheet[i + 1] != '\0' && line[i] != '\0')
+	while (i < limit && line[i] != '\0')
 	{
 		sheet[i + 1] = line[i];
 		i++;
@@ -55,16 +55,16 @@ char	**get_big_sheet(t_map *map)
 	char	**sheet;
 	size_t	y;
 
-	sheet = (char **)ft_calloc((map->y + 3), sizeof(char *));
+	sheet = (char **)ft_calloc((map->y + 2), sizeof(char *));
 	if (sheet == NULL)
 		return (NULL);
 	y = 0;
 	while (y < map->y + 2)
 	{
-		sheet[y] = (char *)ft_calloc((map->x + 3), sizeof(char));
+		sheet[y] = (char *)ft_calloc((map->x + 2), sizeof(char));
 		if (sheet[y] == NULL)
 			return (free_sheet(sheet), NULL);
-		sheet[y] = (char *)ft_memset(sheet[y], ' ', map->x + 2);
+		sheet[y] = (char *)ft_memset(sheet[y], ' ', map->x + 1);
 		if (y > 0 && y < map->y + 1)
 			put_single_line(sheet[y], map->mapdata[y - 1], map->x);
 		y++;
