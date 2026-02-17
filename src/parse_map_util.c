@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 04:22:58 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 20:33:23 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,25 @@ void	free_sheet(char **sheet)
 	if (sheet == NULL)
 		return ;
 	i = 0;
-	while (sheet[i] != NULL)
+	while (1)
 	{
+		if (sheet[i] == NULL)
+			break ;
 		free(sheet[i]);
 		i++;
 	}
+//	while (sheet[i] != NULL)
+//	{
+//		free(sheet[i]);
+//		i++;
+//	}
 	free(sheet);
 	return ;
 }
 
 bool	is_user(char c)
 {
-	if (c != 'N' || c != 'E' || c != 'S' || c != 'W')
+	if (c != 'N' && c != 'E' && c != 'S' && c != 'W')
 		return (false);
 	return (true);
 }
@@ -55,7 +62,7 @@ char	**get_big_sheet(t_map *map)
 	char	**sheet;
 	size_t	y;
 
-	sheet = (char **)ft_calloc((map->y + 2), sizeof(char *));
+	sheet = (char **)ft_calloc((map->y + 3), sizeof(char *));
 	if (sheet == NULL)
 		return (NULL);
 	y = 0;

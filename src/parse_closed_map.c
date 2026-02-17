@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:04 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 04:26:44 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/17 20:53:29 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static bool	is_inside_of_range(t_board *board, int x, int y)
 {
 	if (board == NULL)
 		return (false);
-	if (x < 0 || x > board->sheet_x)
+	if (x < 0 || x >= board->sheet_x)
 		return (false);
-	if (y < 0 || y > board->sheet_y)
+	if (y < 0 || y >= board->sheet_y)
 		return (false);
 	return (true);
 }
@@ -33,7 +33,10 @@ static bool	is_closed_inside(t_board *board, int org_x, int org_y)
 	if (board == NULL || board->sheet == NULL)
 		return (false);
 	if (is_inside_of_range(board, org_x, org_y) == false)
+	{
+		printf("[inside]out of range (%d,%d)\n", org_x, org_y);
 		return (true);
+	}
 	current = board->sheet[org_y][org_x];
 	if (current == ' ' || current == 'o')
 		return (false);
@@ -111,11 +114,14 @@ bool	is_map_closed(t_map *map)
 	board->sheet_x = (int)map->x + 2;
 	board->sheet_y = (int)map->y + 2;
 	apply_dest(board);
+	printf("user at map (%d,%d) sheet (%d,%d)\n", map->user_x, map->user_y, map->user_x + 1, map->user_y + 1);
+	printf("char at sheet user = '%c'\n", board->sheet[map->user_y + 1][map->user_x + 1]);
 	if (is_closed_outside(board, 0, 0) != true)
 		return (free_sheet(board->sheet), free(board), false);
 	if (is_closed_inside(board, map->user_x + 1, map->user_y + 1) != true)
 		return (free_sheet(board->sheet), free(board), false);
 	free_sheet(board->sheet);
 	free(board);
+	printf("This is a valid map\n");
 	return (true);
 }
