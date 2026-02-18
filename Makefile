@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/17 04:37:33 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/18 14:47:27 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ SRCS	= src/apply_shading.c \
 		  src/calcurate_wall_height.c \
 		  src/cub_std_util.c \
 		  src/dda.c \
+		  src/error_print.c \
+		  src/error_config_print.c \
+		  src/error_map_print.c \
 		  src/free.c \
 		  src/get_map.c \
 		  src/init_map.c \

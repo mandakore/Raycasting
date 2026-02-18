@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 01:31:45 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 04:51:18 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:46:28 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static bool	count_config_line(t_map *map, int fd)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			return (false);
+			return (print_lack_of_config(), false);
 		if (is_config_line(line[0]) == true)
 			conf++;
 		map->config_line++;
@@ -67,17 +67,11 @@ static bool	count_config_line(t_map *map, int fd)
 	return (true);
 }
 
-static bool	get_map_size(t_map *map, char *path)
+static bool	get_map_size(t_map *map, int fd)
 {
 	char	*line;
-	int		fd;
 
-	if (map == NULL || path == NULL)
-		return (false);
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (perror("open"), false);
-	if (count_config_line(map, fd) == false)
+	if (map == NULL)
 		return (false);
 	while (1)
 	{
@@ -88,21 +82,29 @@ static bool	get_map_size(t_map *map, char *path)
 		map->y++;
 		free(line);
 	}
-	close(fd);
+	if (map->x == 0 && map->y == 0)
+		return (print_nomap_error(), false);
 	return (true);
 }
 
 t_map	*init_map(int argc, char **argv)
 {
 	t_map	*map;
+	int		fd;
 
 	if (argc != 2 || argv == NULL)
-		return (NULL);
+		return (print_arg_error(), NULL);
 	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (map == NULL)
-		return (NULL);
-	if (get_map_size(map, argv[1]) == false)
-		return (free(map), NULL);
+		return (perror("Error\n"), NULL);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (perror("Error\n"), free(map), NULL);
+	if (count_config_line(map, fd) == false)
+		return (free(map), close(fd), NULL);
+	if (get_map_size(map, fd) == false)
+		return (free(map), close(fd), NULL);
+	close(fd);
 	if (allocate_square_map(map) == false)
 		return (free(map), NULL);
 	return (map);

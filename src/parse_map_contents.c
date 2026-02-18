@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:28 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 04:40:17 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/18 02:13:51 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ static bool	set_config(t_config *config, char *line)
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 	{
 		if (set_valid_texture_path(config, line) == false)
-			return (false);
+			return (print_invalid_wall(), false);
 		return (true);
 	}
 	else if (c == 'F' || c == 'C')
 	{
 		if (set_valid_color_code(config, line) == false)
-			return (false);
+			return (print_invalid_color(), false);
 		return (true);
 	}
 	else
@@ -77,7 +77,7 @@ bool	parse_map_contents(t_map *map)
 		if (is_empty_line(line[0]) != true)
 		{
 			if (is_already_configured(&map->config, line) == true)
-				return (free(line), false);
+				return (print_dup_config_err(), free(line), false);
 			if (set_config(&map->config, line) == false)
 				return (free(line), false);
 		}

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:43:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/07 14:44:50 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/19 01:13:57 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static double	calc_wall_x(t_player *player, t_ray *ray)
 
 	if (ray->side == 0)
 		wall_x = player->y / (double)WALL + \
-		ray->perp_wall_dist * ray->ray_dir_y;
+ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wall_x = player->x / (double)WALL + \
-		ray->perp_wall_dist * ray->ray_dir_x;
+ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x = wall_x - floor(wall_x);
 	return (wall_x);
 }

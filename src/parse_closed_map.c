@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:04 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 20:53:29 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/19 00:11:10 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,12 @@ static bool	is_closed_inside(t_board *board, int org_x, int org_y)
 	if (board == NULL || board->sheet == NULL)
 		return (false);
 	if (is_inside_of_range(board, org_x, org_y) == false)
-	{
-		printf("[inside]out of range (%d,%d)\n", org_x, org_y);
 		return (true);
-	}
 	current = board->sheet[org_y][org_x];
-	if (current == ' ' || current == 'o')
-		return (false);
 	if (current == 'i' || current == '1')
 		return (true);
+	else if (current != '0' && is_user(current) == false)
+		return (print_torned_floor(), false);
 	board->sheet[org_y][org_x] = 'i';
 	i = 0;
 	while (i < 4)
@@ -67,10 +64,10 @@ static bool	is_closed_outside(t_board *board, int org_x, int org_y)
 	if (is_inside_of_range(board, org_x, org_y) == false)
 		return (true);
 	current = board->sheet[org_y][org_x];
-	if (current == '0' || is_user(current) == true)
-		return (false);
 	if (current == '1' || current == 'o' || current == '\0')
 		return (true);
+	else if (current != ' ')
+		return (print_wall_error(current), false);
 	board->sheet[org_y][org_x] = 'o';
 	i = 0;
 	while (i < 4)
@@ -114,14 +111,11 @@ bool	is_map_closed(t_map *map)
 	board->sheet_x = (int)map->x + 2;
 	board->sheet_y = (int)map->y + 2;
 	apply_dest(board);
-	printf("user at map (%d,%d) sheet (%d,%d)\n", map->user_x, map->user_y, map->user_x + 1, map->user_y + 1);
-	printf("char at sheet user = '%c'\n", board->sheet[map->user_y + 1][map->user_x + 1]);
 	if (is_closed_outside(board, 0, 0) != true)
 		return (free_sheet(board->sheet), free(board), false);
 	if (is_closed_inside(board, map->user_x + 1, map->user_y + 1) != true)
 		return (free_sheet(board->sheet), free(board), false);
 	free_sheet(board->sheet);
 	free(board);
-	printf("This is a valid map\n");
 	return (true);
 }

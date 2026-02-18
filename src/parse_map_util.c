@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/17 20:33:23 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/18 20:05:16 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,15 @@ void	free_sheet(char **sheet)
 		free(sheet[i]);
 		i++;
 	}
-//	while (sheet[i] != NULL)
-//	{
-//		free(sheet[i]);
-//		i++;
-//	}
 	free(sheet);
 	return ;
 }
 
 bool	is_user(char c)
 {
-	if (c != 'N' && c != 'E' && c != 'S' && c != 'W')
-		return (false);
-	return (true);
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+		return (true);
+	return (false);
 }
 
 char	**get_big_sheet(t_map *map)

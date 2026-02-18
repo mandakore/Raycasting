@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/14 11:47:39 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/18 20:07:36 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static void	get_color_code(t_rgb *color, char *code)
 
 bool	set_valid_color_code(t_config *config, char *line)
 {
-	size_t	code_len;
 	char	*code;
 
 	if (config == NULL || line == NULL)
 		return (false);
-	code_len = ft_strlen(line) - 2;
-	code = ft_substr(line, 2, code_len);
+	code = ft_substr(line, 2, (ft_strlen(line) - 2));
 	if (code == NULL)
 		return (false);
 	if (ft_strncmp(line, FLOOR, 2) == 0)

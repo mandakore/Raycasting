@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/17 04:37:45 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/19 00:45:47 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ struct s_map
 	size_t		y;
 	int			user_x;
 	int			user_y;
+	int			user;
 	t_config	config;
 	char		**mapdata;
 } ;
@@ -297,8 +298,7 @@ int				is_in_map(t_game *game, int x, int y);
 int				is_wall(t_game *game, int x, int y);
 void			draw_minimap_wall(t_game *game, int x, int y);
 unsigned int	apply_shading(unsigned int color, double distance);
-void			draw_texture_column( t_game *game, t_ray *ray, \
-									int x, t_color c);
+void			draw_texture_column(t_game *game, t_ray *ray, int x, t_color c);
 
 /* --- init_map.c --- */
 t_map			*init_map(int argc, char **argv);
@@ -337,5 +337,23 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t len);
 char			*ft_strdup(const char *s);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *s, int c, size_t n);
+
+/* --- error_print.c --- */
+void			print_prefix(void);
+void			print_arg_error(void);
+void			print_lack_of_config(void);
+void			print_invalid_extention(void);
+void			print_nomap_error(void);
+
+/* --- error_config_print.c --- */
+void			print_invalid_wall(void);
+void			print_invalid_color(void);
+void			print_dup_config_err(void);
+
+/* --- error_map_print.c --- */
+void			print_invalid_symbol(void);
+void			print_player_error(int player);
+void			print_torned_floor(void);
+void			print_wall_error(char c);
 
 #endif

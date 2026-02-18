@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/11 22:32:41 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:43:56 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	free_args(t_map *map)
 {
 	free_pathes(&map->config);
 	free_mapdata(map->mapdata);
-	free(map);
 	return ;
 }
 
