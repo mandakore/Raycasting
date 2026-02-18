@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:40:18 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/14 11:25:41 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/19 01:41:33 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool	set_valid_texture_path(t_config *config, char *line)
 	path = ft_substr(line, prefix, path_len);
 	if (path == NULL)
 		return (false);
+	path[path_len - 1] = '\0';
 	if (ft_strncmp(line, NORTH, prefix) == 0)
 		config->no_path = path;
 	else if (ft_strncmp(line, EAST, prefix) == 0)
