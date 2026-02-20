@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/20 12:01:58 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/21 03:49:01 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ void	free_all(t_game *game)
 	free_mapdata(game->map);
 	free_pathes(game->config);
 	free(game->config);
-	exit(0);
+	return ;
 }

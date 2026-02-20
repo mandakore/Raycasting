@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 03:57:10 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/21 03:57:56 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,6 @@ int	main(int argc, char **argv)
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	game.data = mlx_get_data_addr(game.img, &game.bit,
 			&game.line_size, &game.type);
-	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
-	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.win, 3, 1L << 1, key_release, &game.player);
-	mlx_hook(game.win, E_WIN_CLOSE, 0, close_window, &game);
-	printf("Starting mlx_loop...\n");
-	mlx_loop_hook(game.mlx, raycasting, &game);
-	mlx_loop(game.mlx);
 	free_all(&game);
 	return (0);
 }

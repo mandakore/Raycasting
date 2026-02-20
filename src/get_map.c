@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:58:59 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/20 12:07:46 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/21 02:48:11 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**get_parsed_map(t_map *map)
 	i = 0;
 	while (map->mapdata[i] != NULL)
 	{
-		parsed[i] = map->mapdata[i];
+		parsed[i] = ft_strdup(map->mapdata[i]);
 		i++;
 	}
 	return (parsed);
