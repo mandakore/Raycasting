@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/07 14:46:27 by atashiro         ###   ########.fr        #
+#    Updated: 2026/02/21 04:25:28 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,22 +33,44 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 # =========================
 # Sources
 # =========================
-SRCS	= src/main.c \
-		  src/utils.c \
-		  src/key.c \
+SRCS	= src/apply_shading.c \
+		  src/calcurate_wall_height.c \
+		  src/cub_std_util.c \
+		  src/dda.c \
+		  src/error_print.c \
+		  src/error_config_print.c \
+		  src/error_map_print.c \
+		  src/free.c \
 		  src/get_map.c \
-		  src/raycasting.c \
-		  src/raycasting_utils.c \
-		  src/free.c  \
+		  src/init_map.c \
+		  src/init_player.c \
+		  src/init_raycast.c \
+		  src/init_util.c \
+		  src/key.c \
 		  src/load_texture.c \
+		  src/main.c \
 		  src/minimap.c \
 		  src/minimap_utils.c \
-		  src/init_raycast.c src/calcurate_wall_height.c \
-		  src/dda.c src/init_player.c src/move.c src/move_calc.c src/tex.c \
-		  src/tex2.c src/apply_shading.c
+		  src/move.c \
+		  src/move_calc.c \
+		  src/parse.c \
+		  src/parse_closed_map.c \
+		  src/parse_color_code.c \
+		  src/parse_map_contents.c \
+		  src/parse_map_data.c \
+		  src/parse_map_util.c \
+		  src/parse_texture_file.c \
+		  src/parse_util.c \
+		  src/raycasting.c \
+		  src/raycasting_utils.c \
+		  src/tex2.c \
+		  src/tex.c \
+		  src/utils.c
+
 OBJS	= $(SRCS:%.c=%.o)
 
 $(OBJS): $(INC_DIR)/cub3D.h
+$(OBJS): $(MLX_LIB)
 
 # =========================
 # Includes / Libs
@@ -94,3 +116,27 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# =========================
+# Test (optional isolated)
+# =========================
+TEST_NAME = autotest
+TEST_SRCS = $(SRCS:src/main.c=src/test.c)
+TEST_OBJS = $(TEST_SRCS:%.c=%.o)
+
+$(TEST_NAME): $(MLX_LIB) $(TEST_OBJS)
+	$(CC) $(CFLAGS) $(TEST_OBJS) -o $@ $(LDFLAGS) $(LDLIBS)
+
+test: $(TEST_NAME)
+	./bin/test.sh
+	$(MAKE) testfclean
+
+# Test clean (object only)
+testclean:
+	rm -f $(TEST_OBJS)
+
+# Test full clean (binary + objs)
+testfclean: testclean
+	rm -f $(TEST_NAME)
+
+.PHONY: test testclean testfclean

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/28 05:12:30 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 03:49:01 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,43 @@ void	free_map(char **map)
 	if (!map)
 		return ;
 	free(map);
+}
+
+void	free_pathes(t_config *config)
+{
+	if (config == NULL)
+		return ;
+	if (config->no_path != NULL)
+		free(config->no_path);
+	if (config->ea_path != NULL)
+		free(config->ea_path);
+	if (config->so_path != NULL)
+		free(config->so_path);
+	if (config->we_path != NULL)
+		free(config->we_path);
+	return ;
+}
+
+void	free_mapdata(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (map == NULL)
+		return ;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	free_args(t_map *map)
+{
+	free_pathes(&map->config);
+	free_mapdata(map->mapdata);
+	return ;
 }
 
 void	free_all(t_game *game)
@@ -36,6 +73,8 @@ void	free_all(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_map(game->map);
-	exit(0);
+	free_mapdata(game->map);
+	free_pathes(game->config);
+	free(game->config);
+	return ;
 }
