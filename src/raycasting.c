@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/07 14:26:56 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:47:29 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static t_color	init_color_cf(void)
 {
 	t_color	color;
 
-	color.floor = 0xFFFFFF;
-	color.ceil = 0xFFFFFF;
+	color.floor = 0x000000;
+	color.ceil = 0x000000;
 	return (color);
 }
 
