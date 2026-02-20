@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/20 11:50:29 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/21 04:25:28 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,3 +116,27 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# =========================
+# Test (optional isolated)
+# =========================
+TEST_NAME = autotest
+TEST_SRCS = $(SRCS:src/main.c=src/test.c)
+TEST_OBJS = $(TEST_SRCS:%.c=%.o)
+
+$(TEST_NAME): $(MLX_LIB) $(TEST_OBJS)
+	$(CC) $(CFLAGS) $(TEST_OBJS) -o $@ $(LDFLAGS) $(LDLIBS)
+
+test: $(TEST_NAME)
+	./bin/test.sh
+	$(MAKE) testfclean
+
+# Test clean (object only)
+testclean:
+	rm -f $(TEST_OBJS)
+
+# Test full clean (binary + objs)
+testfclean: testclean
+	rm -f $(TEST_NAME)
+
+.PHONY: test testclean testfclean
