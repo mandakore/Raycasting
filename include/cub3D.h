@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/19 00:45:47 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/20 12:01:23 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,14 +221,13 @@ struct s_game
 	void		*mlx;
 	void		*win;
 	t_player	player;
-	t_rgb		ceil;
-	t_rgb		floor;
 	char		*data;
 	void		*img;
 	char		**map;
 	int			bit;
 	int			line_size;
 	int			type;
+	t_config	*config;
 	t_img		textures[4]; // 0:North, 1:South, 2:West, 3:East
 } ;
 
@@ -243,6 +242,7 @@ void			clear_player(t_game *game);
 /* --- get_map.c --- */
 //char			**get_map(void);
 char			**get_parsed_map(t_map *map);
+t_config		*get_parsed_config(t_config *config);
 
 /* --- key.c --- */
 int				key_press(int keycode, t_game *game);
@@ -257,7 +257,7 @@ float			distance(float x, float y);
 
 /* --- load_texture.c --- */
 void			load_texture(t_game *game, int index, char *path);
-void			set_wall_texture(t_game *game, t_config *config);
+void			set_wall_texture(t_game *game);
 
 /* --- utils.c --- */
 int				close_window(t_game *game);
@@ -267,6 +267,8 @@ void			ft_bzero(void *s, size_t n);
 
 /* --- free.c --- */
 void			free_map(char **map);
+void			free_pathes(t_config *config);
+void			free_mapdata(char **map);
 void			free_args(t_map *map);
 void			free_all(t_game *game);
 
@@ -322,9 +324,6 @@ bool			set_valid_texture_path(t_config *config, char *line);
 bool			is_valid_extention(char *fullpath, char *target);
 char			*ft_strrchr(const char *str, int c);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-
-/* --- set_color.c --- */
-void			set_rgb_code(t_game *game, t_config *config);
 
 /* --- init_util.c --- */
 //bool			get_map_size(t_map *map, char *fullpath);

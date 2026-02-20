@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/18 14:47:27 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/20 11:50:29 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ SRCS	= src/apply_shading.c \
 		  src/parse_util.c \
 		  src/raycasting.c \
 		  src/raycasting_utils.c \
-		  src/set_color.c \
 		  src/tex2.c \
 		  src/tex.c \
 		  src/utils.c

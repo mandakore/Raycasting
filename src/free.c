@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/18 16:43:56 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/20 12:01:58 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-static void	free_pathes(t_config *config)
+void	free_pathes(t_config *config)
 {
 	if (config == NULL)
 		return ;
@@ -34,7 +34,7 @@ static void	free_pathes(t_config *config)
 	return ;
 }
 
-static void	free_mapdata(char **map)
+void	free_mapdata(char **map)
 {
 	int	i;
 
@@ -73,6 +73,8 @@ void	free_all(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_map(game->map);
+	free_mapdata(game->map);
+	free_pathes(game->config);
+	free(game->config);
 	exit(0);
 }

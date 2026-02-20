@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 05:38:13 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/19 01:12:17 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/20 12:02:25 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	load_texture(t_game *game, int index, char *path)
 			&tex->line_length, &tex->endian);
 }
 
-void	set_wall_texture(t_game *game, t_config *config)
+void	set_wall_texture(t_game *game)
 {
-	load_texture(game, 0, config->no_path);
-	load_texture(game, 1, config->ea_path);
-	load_texture(game, 2, config->so_path);
-	load_texture(game, 3, config->we_path);
+	load_texture(game, 0, game->config->no_path);
+	load_texture(game, 1, game->config->ea_path);
+	load_texture(game, 2, game->config->so_path);
+	load_texture(game, 3, game->config->we_path);
 }

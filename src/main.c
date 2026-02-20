@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/18 20:08:28 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/20 12:03:24 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ void	clear_player(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
-	t_map	*map;
+	t_game		game;
+	t_map		*map;
 
 	map = init_map(argc, argv);
 	if (map == NULL)
-		return (0);
+		return (1);
 	if (parse(map, argv[1]) != true)
 		return (free_args(map), free(map), 1);
 	init_player(&game.player, map);
-	set_wall_texture(&game, &map->config);
-	set_rgb_code(&game, &map->config);
+	game.config = get_parsed_config(&map->config);
 	game.map = get_parsed_map(map);
-	if (game.map == NULL)
-		return (free_args(map), 1);
+	if (game.config == NULL || game.map == NULL)
+		return (free_args(map), free(map), 1);
 	free_args(map);
 	free(map);
 	game.mlx = mlx_init();
+	set_wall_texture(&game);
 	game.win = mlx_new_window(game.mlx, 1280, 720, "Ray");
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	game.data = mlx_get_data_addr(game.img, &game.bit,
