@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/21 04:25:28 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/21 12:00:16 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,6 @@ SRCS	= src/apply_shading.c \
 
 OBJS	= $(SRCS:%.c=%.o)
 
-$(OBJS): $(INC_DIR)/cub3D.h
-$(OBJS): $(MLX_LIB)
-
 # =========================
 # Includes / Libs
 # =========================
@@ -85,6 +82,9 @@ LDLIBS		= -lmlx -lXext -lX11 -lm
 all: $(NAME)
 
 # Link
+
+$(OBJS): $(INC_DIR)/cub3D.h
+
 $(NAME): $(MLX_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(LDLIBS)
 
