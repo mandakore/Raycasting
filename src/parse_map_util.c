@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/21 13:54:14 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 14:26:52 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ bool	is_user(char c)
 
 double	set_dire(char dire)
 {
-	if (dire == 'N') return PI / 2.0;
-	else if (dire == 'E') return 0.0;
-	else if (dire == 'S') return PI / 2.0 * 3.0;
-	else return PI;
+	if (dire == 'N')
+		return (PI / 2.0 * 3.0);
+	else if (dire == 'E')
+		return (0.0);
+	else if (dire == 'S')
+		return (PI / 2.0);
+	else
+		return (PI);
 }
 
 char	**get_big_sheet(t_map *map)
