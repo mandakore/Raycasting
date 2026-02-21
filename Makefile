@@ -6,14 +6,14 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/21 15:40:20 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/21 18:19:22 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =========================
 # Target
 # =========================
-NAME	= game
+NAME	= cub3D
 LFLAGS = -L./include/mlx -lmlx -lXext -lX11 -lm
 INCLUDES = -I./include
 
