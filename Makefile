@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/21 14:44:19 by atashiro         ###   ########.fr        #
+#    Updated: 2026/02/21 15:40:20 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,7 @@ re: fclean all
 # Test (optional isolated)
 # =========================
 TEST_NAME = autotest
-TEST_SRCS = $(SRCS:src/main.c=src/test.c)
+TEST_SRCS = $(SRCS:src/main.c=test/main.c)
 TEST_OBJS = $(TEST_SRCS:%.c=%.o)
 
 $(TEST_NAME): $(MLX_LIB) $(TEST_OBJS)
