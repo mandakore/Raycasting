@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/04 18:57:02 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:07:58 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	draw_player(t_game *game)
 	player_square.x += (WALL - player_square.size) / 2;
 	player_square.y += (WALL - player_square.size) / 2;
 	player_square.color = MM_PLAYER_COLOR;
-	draw_square(game, player_square);
 	draw_square(game, player_square);
 }
 

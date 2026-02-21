@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/01/31 18:57:17 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:10:01 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ int	key_press(int keycode, t_game *game)
 	return (0);
 }
 
-int	key_release(int keycode, t_player *player)
+int	key_release(int keycode, t_game *game)
 {
 	if (keycode == W)
-		player->key_w = false;
+		game->player.key_w = false;
 	if (keycode == S)
-		player->key_s = false;
+		game->player.key_s = false;
 	if (keycode == A)
-		player->key_a = false;
+		game->player.key_a = false;
 	if (keycode == D)
-		player->key_d = false;
+		game->player.key_d = false;
 	if (keycode == LEFT)
-		player->left_turn = false;
+		game->player.left_turn = false;
 	if (keycode == RIGHT)
-		player->right_turn = false;
+		game->player.right_turn = false;
 	return (0);
 }
