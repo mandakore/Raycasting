@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/21 12:00:16 by atashiro         ###   ########.fr        #
+#    Updated: 2026/02/21 14:44:19 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRCS	= src/apply_shading.c \
 		  src/raycasting_utils.c \
 		  src/tex2.c \
 		  src/tex.c \
-		  src/utils.c
+		  src/utils.c \
+		  src/utils2.c
 
 OBJS	= $(SRCS:%.c=%.o)
 
