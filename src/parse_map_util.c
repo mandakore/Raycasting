@@ -45,6 +45,16 @@ void	free_sheet(char **sheet)
 	return ;
 }
 
+void	set_user_entry(t_map *map, size_t x, size_t y)
+{
+	if (map == NULL)
+		return ;
+	map->user_x = x;
+	map->user_y = y;
+	map->face = map->mapdata[x][y];
+	return ;
+}
+
 bool	is_user(char c)
 {
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')

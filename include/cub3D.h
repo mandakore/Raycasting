@@ -139,6 +139,7 @@ struct s_map
 	size_t		y;
 	int			user_x;
 	int			user_y;
+	int			face;
 	int			user;
 	t_config	config;
 	char		**mapdata;
@@ -316,6 +317,7 @@ bool			parse_map_contents(t_map *map);
 bool			parse_map_data(t_map *map);
 /* --- parse_map_util.c --- */
 void			free_sheet(char **sheet);
+void			set_user_entry(t_map *map, size_t x, size_t y);
 bool			is_user(char c);
 char			**get_big_sheet(t_map *map);
 /* --- parse_texture_file.c --- */

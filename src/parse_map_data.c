@@ -47,8 +47,7 @@ static bool	get_user_entry(t_map *map)
 		{
 			if (is_user(map->mapdata[y][x]) == true)
 			{
-				map->user_x = x;
-				map->user_y = y;
+				set_user_entry(map, x, y);
 				return (true);
 			}
 			x++;
