@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:36 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 20:04:25 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:50:47 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static bool	get_user_entry(t_map *map)
 		{
 			if (is_user(map->mapdata[y][x]) == true)
 			{
+				map->dire = set_dire(map->mapdata[y][x]);
 				map->user_x = x;
 				map->user_y = y;
 				return (true);

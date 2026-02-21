@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 13:10:43 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:53:10 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ struct s_map
 	int			user_x;
 	int			user_y;
 	int			user;
+	double		dire;
 	t_config	config;
 	char		**mapdata;
 } ;
@@ -318,6 +319,7 @@ bool			parse_map_data(t_map *map);
 void			free_sheet(char **sheet);
 bool			is_user(char c);
 char			**get_big_sheet(t_map *map);
+double			set_dire(char dire);
 /* --- parse_texture_file.c --- */
 bool			set_valid_texture_path(t_config *config, char *line);
 /* --- parse_util.c --- */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:51 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 20:05:16 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:54:14 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ bool	is_user(char c)
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (true);
 	return (false);
+}
+
+double	set_dire(char dire)
+{
+	if (dire == 'N') return PI / 2.0;
+	else if (dire == 'E') return 0.0;
+	else if (dire == 'S') return PI / 2.0 * 3.0;
+	else return PI;
 }
 
 char	**get_big_sheet(t_map *map)
