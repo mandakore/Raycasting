@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:38:32 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/19 17:47:29 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/21 09:35:45 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ static void	init_camera(t_game *game, t_vector *vec)
 	vec->plane_y = vec->dir_x * 0.66;
 }
 
-static t_color	init_color_cf(void)
+static t_color	init_color_cf(t_game *game)
 {
 	t_color	color;
 
-	color.floor = 0x000000;
-	color.ceil = 0x000000;
+	color.floor = (game->config->f_color.red << 16)
+		| (game->config->f_color.green << 8) | game->config->f_color.blue;
+	color.ceil = (game->config->c_color.red << 16)
+		| (game->config->c_color.green << 8) | game->config->c_color.blue;
 	return (color);
 }
 
@@ -55,7 +57,7 @@ int	raycasting(t_game *game)
 
 	move_player(game);
 	init_camera(game, &vec);
-	colorcf = init_color_cf();
+	colorcf = init_color_cf(game);
 	x = 0;
 	while (x < WIDTH)
 	{
