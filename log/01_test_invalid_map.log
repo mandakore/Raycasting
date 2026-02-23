@@ -1,0 +1,97 @@
+===== INVALID MAPS =====
+==================================
+=== maps/invalid/00_empty.cub ===
+==================================
+Error
+There is not enough configure infomation
+
+==================================
+=== maps/invalid/01_no_path.cub ===
+==================================
+Error
+There is not enough configure infomation
+
+==================================
+=== maps/invalid/02_no_color.cub ===
+==================================
+Error
+There is not enough configure infomation
+
+==================================
+=== maps/invalid/03_no_map.cub ===
+==================================
+Error
+There is no map in .cub file
+
+==================================
+=== maps/invalid/04_no_player.cub ===
+==================================
+Error
+There is no player in your map
+
+==================================
+=== maps/invalid/05_no_wall.cub ===
+==================================
+Error
+This map is not surrounded by wall
+
+==================================
+=== maps/invalid/11_dup_path.cub ===
+==================================
+Error
+This map has duplicated congfig contents
+
+==================================
+=== maps/invalid/12_dup_color.cub ===
+==================================
+Error
+This map has duplicated congfig contents
+
+==================================
+=== maps/invalid/13_dup_player.cub ===
+==================================
+Error
+There are two or more player in your map
+
+==================================
+=== maps/invalid/21_isolation.cub ===
+==================================
+Error
+There is at least one hole on the floor in your map
+
+==================================
+=== maps/invalid/22_isolation2.cub ===
+==================================
+Error
+User will sporn at out of range
+
+==================================
+=== maps/invalid/31_swap.cub ===
+==================================
+Error
+Wall setting is invalid
+
+==================================
+=== maps/invalid/32_colorcode_error.cub ===
+==================================
+Error
+Color of floor/Ceiling is invalid
+
+==================================
+=== maps/invalid/33_delimiter_error.cub ===
+==================================
+Error
+Color of floor/Ceiling is invalid
+
+==================================
+=== maps/invalid/34_unexpected_char.cub ===
+==================================
+Error
+Unexpected charactor detected
+
+==================================
+=== maps/invalid/35_tooBigMap.cub ===
+==================================
+Error
+Given map is too big to run this project
+

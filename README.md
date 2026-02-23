@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by **atashiro**, **sohyamaz***
+*This project has been created as part of the 42 curriculum by atashiro, sohyamaz*
 
 # Description
 cub3D is a graphics project from the 42 curriculum that introduces the basics of
