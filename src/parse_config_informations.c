@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map_contents.c                               :+:      :+:    :+:   */
+/*   parse_config_informations.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:28 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 02:13:51 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 13:47:20 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static bool	set_config(t_config *config, char *line)
 		return (true);
 	}
 	else
-		return (false);
+		return (print_unexpected_char(), false);
 }
 
-bool	parse_map_contents(t_map *map)
+bool	parse_config_informations(t_map *map)
 {
 	char	*line;
 	size_t	i;

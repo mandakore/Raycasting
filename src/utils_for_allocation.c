@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_for_allocation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 21:25:28 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/10 17:37:09 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:16:02 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-int	close_window(t_game *game)
-{
-	mlx_loop_end(game->mlx);
-	return (0);
-}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils_for_game.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 14:43:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 14:43:52 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:16:24 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+int	close_window(t_game *game)
+{
+	mlx_loop_end(game->mlx);
+	return (0);
+}
 
 unsigned int	get_pixel_color(t_img *tex, int x, int y)
 {

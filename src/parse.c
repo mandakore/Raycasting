@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:38:48 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 14:53:24 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 13:47:32 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	parse(t_map *map, char *path)
 	map->cubfd = open(path, O_RDONLY);
 	if (map->cubfd < 0)
 		return (perror("Error\n"), false);
-	if (parse_map_contents(map) == false)
+	if (parse_config_informations(map) == false)
 		return (false);
 	if (parse_map_data(map) == false)
 		return (false);
