@@ -6,29 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 14:56:42 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/23 20:01:36 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-void	draw_square(t_game *game, t_square square)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < square.size)
-	{
-		j = 0;
-		while (j < square.size)
-		{
-			put_pixel(square.x + j, square.y + i, square.color, game);
-			j++;
-		}
-		i++;
-	}
-}
 
 static void	draw_player(t_game *game)
 {
@@ -66,6 +48,24 @@ static void	draw_walls(t_game *game)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	draw_square(t_game *game, t_square square)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < square.size)
+	{
+		j = 0;
+		while (j < square.size)
+		{
+			put_pixel(square.x + j, square.y + i, square.color, game);
+			j++;
+		}
+		i++;
 	}
 }
 

@@ -6,7 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/02/23 14:40:05 by atashiro         ###   ########.fr       */
+=======
+/*   Updated: 2026/02/23 14:47:43 by sohyamaz         ###   ########.fr       */
+>>>>>>> origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,128 +237,109 @@ struct s_game
 } ;
 
 /* === FUNCTIONS === */
-/* --- main.c --- */
-unsigned int	get_pixel_color(t_img *tex, int x, int y);
-bool			touch(float px, float py, t_game *game);
-void			put_pixel(int x, int y, int color, t_game *game);
-void			draw_square(t_game *game, t_square square);
-void			clear_player(t_game *game);
-
-/* --- get_map.c --- */
-//char			**get_map(void);
+/* --- apply_shading.c --- */
+unsigned int	apply_shading(unsigned int color, double distance);
+/* --- calc_move.c --- */
+void			calc_move_delta(t_player *p, float *add_x, float *add_y);
+/* --- calc_texture.c --- */
+void			draw_texture_column(t_game *game, t_ray *ray, int x, t_color c);
+/* --- calc_wall_height.c --- */
+void			calc_wall_height(t_ray *ray);
+/* --- dda.c --- */
+void			perform_dda(t_game *game, t_ray *ray);
+/* --- dup_parsed_arguments.c --- */
 char			**get_parsed_map(t_map *map);
 t_config		*get_parsed_config(t_config *config);
-
+/* --- init_map.c --- */
+t_map			*init_map(int argc, char **argv);
+/* --- init_player.c --- */
+void			init_player(t_player *player, t_map *map);
+/* --- init_raycast.c --- */
+void			init_ray(t_ray *ray, t_vector *vec, int x);
 /* --- key.c --- */
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
-
-/* --- raycasting.c --- */
-
-int				raycasting(t_game *game);
-
-/* --- raycasting_utils.c --- */
-float			distance(float x, float y);
-
 /* --- load_texture.c --- */
 void			load_texture(t_game *game, int index, char *path);
 void			set_wall_texture(t_game *game);
-
-/* --- utils.c --- */
-int				close_window(t_game *game);
-void			*ft_calloc(size_t nmemb, size_t size);
-size_t			ft_strlen(const char *s);
-void			ft_bzero(void *s, size_t n);
-
-/* --- free.c --- */
-void			free_map(char **map);
-void			free_pathes(t_config *config);
-void			free_mapdata(char **map);
-void			free_args(t_map *map);
-void			free_all(t_game *game);
-
+/* --- minimap.c --- */
+void			draw_square(t_game *game, t_square square);
+void			create_map(t_game *game);
 /* --- move.c --- */
 void			move_player(t_game *game);
-
-/* --- move_calc.c --- */
-void			calc_move_delta(t_player *player, float *add_x, float *add_y);
-
-/* --- minimap.c --- */
-void			create_map(t_game *game);
-
-/* --- init_player.c --- */
-void			init_player(t_player *player, t_map *map);
-
-/* --- dda.c --- */
-void			perform_dda(t_game *game, t_ray *ray);
-
-/* --- calcurate_wall_height.c --- */
-void			calc_wall_height(t_ray *ray);
-
-/* --- init_raycast.c --- */
-void			init_ray(t_ray *ray, t_vector *vec, int x);
-
-void			draw_texture(t_game *game, t_ray *ray, int x, t_color colorcf);
-int				get_line_len(char *line);
-int				get_map_height(char **map);
-int				is_in_map(t_game *game, int x, int y);
-int				is_wall(t_game *game, int x, int y);
-void			draw_minimap_wall(t_game *game, int x, int y);
-unsigned int	apply_shading(unsigned int color, double distance);
-void			draw_texture_column(t_game *game, t_ray *ray, int x, t_color c);
-
-/* --- init_map.c --- */
-t_map			*init_map(int argc, char **argv);
 /* --- parse.c --- */
 bool			parse(t_map *map, char *path);
 /* --- parse_closed_map.c --- */
 bool			is_map_closed(t_map *map);
 /* --- parse_color_code.c --- */
 bool			set_valid_color_code(t_config *config, char *line);
-/* --- parse_map_contents.c --- */
-bool			parse_map_contents(t_map *map);
+/* --- parse_config_informations.c --- */
+bool			parse_config_informations(t_map *map);
 /* --- parse_map_data.c --- */
 bool			parse_map_data(t_map *map);
-/* --- parse_map_util.c --- */
-void			free_sheet(char **sheet);
-bool			is_user(char c);
-char			**get_big_sheet(t_map *map);
-double			set_dire(char dire);
 /* --- parse_texture_file.c --- */
 bool			set_valid_texture_path(t_config *config, char *line);
-/* --- parse_util.c --- */
-bool			is_valid_extention(char *fullpath, char *target);
-char			*ft_strrchr(const char *str, int c);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-
-/* --- init_util.c --- */
-//bool			get_map_size(t_map *map, char *fullpath);
-bool			is_config_line(char c);
-char			*get_next_line(int fd);
-
-/* --- cub_std_util.c --- */
+/* --- print_config_error.c --- */
+void			print_invalid_wall(void);
+void			print_invalid_color(void);
+void			print_unexpected_char(void);
+void			print_dup_config_err(void);
+/* --- print_error.c --- */
+void			print_prefix(void);
+void			print_invalid_extention(void);
+/* --- print_init_error.c --- */
+void			print_arg_error(void);
+void			print_lack_of_config(void);
+void			print_nomap_error(void);
+void			print_too_big_map(void);
+/* --- print_mapdata_error.c --- */
+void			print_invalid_symbol(void);
+void			print_player_error(int player);
+void			print_torned_floor(void);
+void			print_wall_error(char c);
+/* --- raycasting.c --- */
+int				raycasting(t_game *game);
+/* --- texture.c --- */
+void			draw_texture(t_game *game, t_ray *ray, int x, t_color colorcf);
+/* --- utils_for_allocation.c --- */
+void			*ft_calloc(size_t nmemb, size_t size);
+size_t			ft_strlen(const char *s);
+void			ft_bzero(void *s, size_t n);
+/* --- utils_for_duplication.c --- */
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 size_t			ft_strlcpy(char *dest, const char *src, size_t len);
 char			*ft_strdup(const char *s);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *s, int c, size_t n);
-
-/* --- error_print.c --- */
-void			print_prefix(void);
-void			print_arg_error(void);
-void			print_lack_of_config(void);
-void			print_invalid_extention(void);
-void			print_nomap_error(void);
-
-/* --- error_config_print.c --- */
-void			print_invalid_wall(void);
-void			print_invalid_color(void);
-void			print_dup_config_err(void);
-
-/* --- error_map_print.c --- */
-void			print_invalid_symbol(void);
-void			print_player_error(int player);
-void			print_torned_floor(void);
-void			print_wall_error(char c);
+/* --- utils_for_free.c --- */
+void			free_map(char **map);
+void			free_pathes(t_config *config);
+void			free_mapdata(char **map);
+void			free_args(t_map *map);
+void			free_all(t_game *game);
+/* --- utils_for_game.c --- */
+int				close_window(t_game *game);
+unsigned int	get_pixel_color(t_img *tex, int x, int y);
+bool			touch(float px, float py, t_game *game);
+void			put_pixel(int x, int y, int color, t_game *game);
+void			clear_player(t_game *game);
+/* --- utils_for_minimap.c --- */
+int				get_line_len(char *line);
+int				get_map_height(char **map);
+int				is_in_map(t_game *game, int x, int y);
+int				is_wall(t_game *game, int x, int y);
+void			draw_minimap_wall(t_game *game, int x, int y);
+/* --- utils_for_parsing.c --- */
+bool			is_valid_extention(char *fullpath, char *target);
+char			*ft_strrchr(const char *str, int c);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+/* --- utils_for_parsing_map.c --- */
+void			free_sheet(char **sheet);
+bool			is_user(char c);
+double			set_dire(char dire);
+char			**get_big_sheet(t_map *map);
+/* --- utils_for_read.c --- */
+bool			is_config_line(char c);
+char			*get_next_line(int fd);
 
 #endif

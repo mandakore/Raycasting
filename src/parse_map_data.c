@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:36 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/21 13:50:47 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/23 13:26:39 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ bool	parse_map_data(t_map *map)
 			return (free(line), false);
 		if (copy_map_data(map, line, i) != true)
 			return (free(line), false);
-		printf("%ld: %s\n", i, map->mapdata[i]);
 		free(line);
 		i++;
 	}

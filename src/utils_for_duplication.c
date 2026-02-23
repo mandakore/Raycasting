@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_std_util.c                                     :+:      :+:    :+:   */
+/*   utils_for_duplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:39:26 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/10 17:49:17 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:16:07 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t			slen;
 
 	if (s == NULL)
-	{
 		return (NULL);
-	}
 	slen = ft_strlen(s);
 	if (start > slen)
 		return (ft_strdup(""));

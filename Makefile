@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/21 18:19:22 by atashiro         ###   ########.fr        #
+#    Updated: 2026/02/23 14:22:44 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,39 +34,40 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 # Sources
 # =========================
 SRCS	= src/apply_shading.c \
-		  src/calcurate_wall_height.c \
-		  src/cub_std_util.c \
+		  src/calc_move.c \
+		  src/calc_texture.c \
+		  src/calc_wall_height.c \
 		  src/dda.c \
-		  src/error_print.c \
-		  src/error_config_print.c \
-		  src/error_map_print.c \
-		  src/free.c \
-		  src/get_map.c \
+		  src/dup_parsed_arguments.c \
 		  src/init_map.c \
 		  src/init_player.c \
 		  src/init_raycast.c \
-		  src/init_util.c \
 		  src/key.c \
 		  src/load_texture.c \
 		  src/main.c \
 		  src/minimap.c \
-		  src/minimap_utils.c \
 		  src/move.c \
-		  src/move_calc.c \
 		  src/parse.c \
 		  src/parse_closed_map.c \
 		  src/parse_color_code.c \
-		  src/parse_map_contents.c \
+		  src/parse_config_informations.c \
 		  src/parse_map_data.c \
-		  src/parse_map_util.c \
 		  src/parse_texture_file.c \
-		  src/parse_util.c \
+		  src/print_config_error.c \
+		  src/print_error.c \
+		  src/print_init_error.c \
+		  src/print_mapdata_error.c \
 		  src/raycasting.c \
-		  src/raycasting_utils.c \
-		  src/tex2.c \
-		  src/tex.c \
-		  src/utils.c \
-		  src/utils2.c
+		  src/texture.c \
+		  src/utils_for_allocation.c \
+		  src/utils_for_duplication.c \
+		  src/utils_for_free.c \
+		  src/utils_for_game.c \
+		  src/utils_for_minimap.c \
+		  src/utils_for_parsing.c \
+		  src/utils_for_parsing_map.c \
+		  src/utils_for_read.c
+
 
 OBJS	= $(SRCS:%.c=%.o)
 
