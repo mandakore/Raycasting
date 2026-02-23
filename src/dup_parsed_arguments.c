@@ -1,48 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   dup_parsed_arguments.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:58:59 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 02:48:11 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:13:16 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-//char	**get_map(void)
-//{
-//	char	**map;
-//
-//	map = malloc(sizeof(char *) * 12);
-//	map[0] = "111111111111111";
-//	map[1] = "100000000000001";
-//	map[2] = "10000000000000111111";
-//	map[3] = "11100010000000000001";
-//	map[4] = "  10010000000000000111";
-//	map[5] = "  10000001110000000001";
-//	map[6] = "  10000000100000011111";
-//	map[7] = "111000000000000001";
-//	map[8] = "100000000000000001";
-//	map[9] = "100000000000000001";
-//	map[10] = "111111111111111111";
-//	map[11] = NULL;
-//	return (map);
-//}
-//
-// char	**get_map(void)
-// {
-// 	char	**map;
-
-// 	map = malloc(sizeof(char *) * 12);
-// 	map[0] = "111";
-// 	map[1] = "101";
-// 	map[2] = "111";
-
-// 	return (map);
-// }
 
 char	**get_parsed_map(t_map *map)
 {
@@ -58,6 +26,9 @@ char	**get_parsed_map(t_map *map)
 	while (map->mapdata[i] != NULL)
 	{
 		parsed[i] = ft_strdup(map->mapdata[i]);
+		if (parsed[i] == NULL)
+			return (perror("Error\n"), free_mapdata(parsed), NULL);
+		printf("%d: %s\n", i, parsed[i]);
 		i++;
 	}
 	return (parsed);

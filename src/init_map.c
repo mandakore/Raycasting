@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 01:31:45 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 16:46:28 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:13:26 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static bool	allocate_square_map(t_map *map)
 		return (false);
 	map->mapdata = (char **)ft_calloc(map->y + 1, sizeof(char *));
 	if (map->mapdata == NULL)
-		return (false);
+		return (perror("Error\n"), false);
 	i = 0;
 	while (i < map->y)
 	{
 		map->mapdata[i] = (char *)ft_calloc(map->x + 1, sizeof(char));
 		if (map->mapdata[i] == NULL)
-			return (free_sheet(map->mapdata), false);
+			return (perror("Error\n"), free_sheet(map->mapdata), false);
 		map->mapdata[i] = (char *)ft_memset(map->mapdata[i], ' ', map->x);
 		i++;
 	}
@@ -82,8 +82,10 @@ static bool	get_map_size(t_map *map, int fd)
 		map->y++;
 		free(line);
 	}
-	if (map->x == 0 && map->y == 0)
+	if (map->x == 0 || map->y == 0)
 		return (print_nomap_error(), false);
+	else if (map->x >= 512 || map->y >= 512)
+		return (print_too_big_map(), false);
 	return (true);
 }
 
