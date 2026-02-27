@@ -23,6 +23,10 @@ and performance considerations in a constrained environment.
 ```bash
 git clone https://github.com/mandakore/Raycasting.git
 ```
+or
+```bash
+git clone git@vogsphere ...intra...hoge...
+```
 <br>
 
 2. Move to the project directory and run `make`.
@@ -36,6 +40,9 @@ make
 ```bash
 ./game maps/valid/00_subject.cub
 ```
+<br>
+
+4. You can move with `W` `A` `S` `D` and rotate the camera (change your view) with the `left` and `right` arrow keys.
 
 
 # Resources

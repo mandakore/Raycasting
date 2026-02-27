@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 20:04:08 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 16:46:35 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <limits.h>
 # include <stdint.h>
 # include "mlx.h"
+# include "X11/X.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
