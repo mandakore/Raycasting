@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 16:46:35 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 16:56:18 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <stdint.h>
 # include "mlx.h"
 # include "X11/X.h"
+# include "X11/keysym.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
@@ -38,16 +39,6 @@
 # define MM_PLAYER_X 20
 # define MM_PLAYER_Y 20
 # define MM_PLAYER_COLOR 0xFF0000
-
-/* === KEY CODES === */
-
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define LEFT 65361
-# define RIGHT 65363
-# define ESC 65307
 
 /* === EVENT CODES === */
 
