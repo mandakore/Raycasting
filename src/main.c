@@ -12,40 +12,41 @@
 
 #include "../include/cub3D.h"
 
-static int	init_game_data(t_game *game, int argc, char **argv)
+static bool	init_game_data(t_game *game, int argc, char **argv)
 {
 	t_map	*map;
 
 	map = init_map(argc, argv);
 	if (map == NULL)
-		return (1);
+		return (false);
 	if (parse(map, argv[1]) != true)
-		return (free_args(map), free(map), 1);
+		return (free_args(map), free(map), false);
 	init_player(&game->player, map);
 	game->config = get_parsed_config(&map->config);
 	game->map = get_parsed_map(map);
 	if (game->config == NULL || game->map == NULL)
-		return (free_args(map), free(map), 1);
+		return (free_args(map), free(map), false);
 	free_args(map);
 	free(map);
-	return (0);
+	return (true);
 }
 
 static int	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		return (1);
+		return (false);
 	game->win = mlx_new_window(game->mlx, 1280, 720, "Ray");
 	if (game->win == NULL)
-		return (1);
+		return (false);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->img == NULL)
-		return (1);
+		return (false);
 	game->data = mlx_get_data_addr(game->img,
 			&game->bit, &game->line_size, &game->type);
-	set_wall_texture(game);
-	return (0);
+	if (set_wall_texture(game) == false)
+		return (false);
+	return (true);
 }
 
 static void	set_hooks(t_game *game)
@@ -60,10 +61,10 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (init_game_data(&game, argc, argv) != 0)
-		return (1);
-	if (init_mlx(&game) != 0)
-		return (1);
+	if (init_game_data(&game, argc, argv) == false)
+		return (free_duplicated_data(&game), 1);
+	if (init_mlx(&game) == false)
+		return (free_all(&game), 1);
 	set_hooks(&game);
 	mlx_loop(game.mlx);
 	free_all(&game);
