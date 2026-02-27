@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/18 20:07:36 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/27 22:49:07 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,12 @@ static bool	is_valid_color_input(char *input)
 			else
 				return (false);
 		}
-		else if (input[i] < '0' && input[i] > '9')
+		else if (input[i] < '0' || input[i] > '9')
 			return (false);
 		i++;
 	}
 	return (true);
 }
-
 
 bool	set_valid_color_code(t_config *config, char *line)
 {
@@ -83,16 +82,12 @@ bool	set_valid_color_code(t_config *config, char *line)
 	if (config == NULL || line == NULL)
 		return (false);
 	code = line + 2;
-//	code = ft_substr(line, 2, (ft_strlen(line) - 2));
-//	if (code == NULL)
-//		return (false);
 	if (is_valid_color_input(code) == false)
-		return (false);//add error msg
+		return (false);
 	if (ft_strncmp(line, FLOOR, 2) == 0)
 	{
 		get_color_code(&config->f_color, code);
 		if (is_valid_code(config->f_color) != true)
-			//return (free(code), false);
 			return (false);
 		config->f_color.is_configured = 1;
 	}
@@ -100,13 +95,10 @@ bool	set_valid_color_code(t_config *config, char *line)
 	{
 		get_color_code(&config->c_color, code);
 		if (is_valid_code(config->c_color) != true)
-			//return (free(code), false);
 			return (false);
 		config->c_color.is_configured = 1;
 	}
 	else
-		//return (free(code), false);
 		return (false);
-	//return (free(code), true);
 	return (true);
 }
