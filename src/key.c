@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 13:10:01 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:00:30 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	key_press(int keycode, t_game *game)
 {
-	if (keycode == W)
+	if (keycode == XK_w)
 		game->player.key_w = true;
-	if (keycode == S)
+	if (keycode == XK_s)
 		game->player.key_s = true;
-	if (keycode == A)
+	if (keycode == XK_a)
 		game->player.key_a = true;
-	if (keycode == D)
+	if (keycode == XK_d)
 		game->player.key_d = true;
-	if (keycode == LEFT)
+	if (keycode == XK_Left)
 		game->player.left_turn = true;
-	if (keycode == RIGHT)
+	if (keycode == XK_Right)
 		game->player.right_turn = true;
-	if (keycode == ESC)
+	if (keycode == XK_Escape)
 	{
 		free_all(game);
 		exit(0);
@@ -36,17 +36,17 @@ int	key_press(int keycode, t_game *game)
 
 int	key_release(int keycode, t_game *game)
 {
-	if (keycode == W)
+	if (keycode == XK_w)
 		game->player.key_w = false;
-	if (keycode == S)
+	if (keycode == XK_s)
 		game->player.key_s = false;
-	if (keycode == A)
+	if (keycode == XK_a)
 		game->player.key_a = false;
-	if (keycode == D)
+	if (keycode == XK_d)
 		game->player.key_d = false;
-	if (keycode == LEFT)
+	if (keycode == XK_Left)
 		game->player.left_turn = false;
-	if (keycode == RIGHT)
+	if (keycode == XK_Right)
 		game->player.right_turn = false;
 	return (0);
 }

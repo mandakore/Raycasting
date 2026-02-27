@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 20:04:08 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:03:11 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <limits.h>
 # include <stdint.h>
 # include "mlx.h"
+# include "X11/X.h"
+# include "X11/keysym.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
@@ -37,16 +39,6 @@
 # define MM_PLAYER_X 20
 # define MM_PLAYER_Y 20
 # define MM_PLAYER_COLOR 0xFF0000
-
-/* === KEY CODES === */
-
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define LEFT 65361
-# define RIGHT 65363
-# define ESC 65307
 
 /* === EVENT CODES === */
 
@@ -314,7 +306,6 @@ void			free_mapdata(char **map);
 void			free_args(t_map *map);
 void			free_all(t_game *game);
 /* --- utils_for_game.c --- */
-int				close_window(t_game *game);
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
 bool			touch(float px, float py, t_game *game);
 void			put_pixel(int x, int y, int color, t_game *game);
