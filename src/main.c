@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/21 14:43:04 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 22:34:49 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static bool	init_game_data(t_game *game, int argc, char **argv)
 	return (true);
 }
 
-static int	init_mlx(t_game *game)
+static bool	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (false);
-	game->win = mlx_new_window(game->mlx, 1280, 720, "Ray");
+	game->win = mlx_new_window(game->mlx, 1280, 720, "cub3D");
 	if (game->win == NULL)
 		return (false);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
@@ -51,9 +51,9 @@ static int	init_mlx(t_game *game)
 
 static void	set_hooks(t_game *game)
 {
-	mlx_hook(game->win, 2, 1L << 0, key_press, game);
-	mlx_hook(game->win, 3, 1L << 1, key_release, game);
-	mlx_hook(game->win, E_WIN_CLOSE, 0, close_window, game);
+	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win, ClientMessage, NoEventMask, mlx_loop_end, game->mlx);
 	mlx_loop_hook(game->mlx, raycasting, game);
 }
 
