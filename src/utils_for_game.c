@@ -6,17 +6,11 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 14:43:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 14:16:24 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:02:57 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-int	close_window(t_game *game)
-{
-	mlx_loop_end(game->mlx);
-	return (0);
-}
 
 unsigned int	get_pixel_color(t_img *tex, int x, int y)
 {

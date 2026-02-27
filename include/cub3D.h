@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 16:56:18 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:03:11 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,7 +306,6 @@ void			free_mapdata(char **map);
 void			free_args(t_map *map);
 void			free_all(t_game *game);
 /* --- utils_for_game.c --- */
-int				close_window(t_game *game);
 unsigned int	get_pixel_color(t_img *tex, int x, int y);
 bool			touch(float px, float py, t_game *game);
 void			put_pixel(int x, int y, int color, t_game *game);

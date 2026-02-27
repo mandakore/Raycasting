@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 17:01:48 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:05:26 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
-	mlx_hook(game->win, ClientMessage, StructureNotifyMask, close_window, game);
+	mlx_hook(game->win, ClientMessage, NoEventMask, mlx_loop_end, game->mlx);
 	mlx_loop_hook(game->mlx, raycasting, game);
 }
 
