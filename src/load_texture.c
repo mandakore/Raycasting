@@ -12,7 +12,7 @@
 
 #include "../include/cub3D.h"
 
-void	load_texture(t_game *game, int index, char *path)
+static bool	load_texture(t_game *game, int index, char *path)
 {
 	t_img	*tex;
 
@@ -22,16 +22,24 @@ void	load_texture(t_game *game, int index, char *path)
 	if (!tex->img)
 	{
 		printf("Error: Failed to load texture %s\n", path);
-		exit(1);
+		return (false);
 	}
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 			&tex->line_length, &tex->endian);
+	return (true);
 }
 
-void	set_wall_texture(t_game *game)
+bool	set_wall_texture(t_game *game)
 {
-	load_texture(game, 0, game->config->no_path);
-	load_texture(game, 1, game->config->so_path);
-	load_texture(game, 2, game->config->we_path);
-	load_texture(game, 3, game->config->ea_path);
+	if (game == NULL)
+		return (false);
+	if (load_texture(game, 0, game->config->no_path) == false)
+		return (false);
+	if (load_texture(game, 1, game->config->so_path) == false)
+		return (false);
+	if (load_texture(game, 2, game->config->we_path) == false)
+		return (false);
+	if (load_texture(game, 3, game->config->ea_path) == false)
+		return (false);
+	return (true);
 }

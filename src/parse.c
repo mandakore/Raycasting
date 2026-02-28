@@ -22,9 +22,9 @@ bool	parse(t_map *map, char *path)
 	if (map->cubfd < 0)
 		return (perror("Error\n"), false);
 	if (parse_config_informations(map) == false)
-		return (false);
+		return (close(map->cubfd), false);
 	if (parse_map_data(map) == false)
-		return (false);
+		return (close(map->cubfd), false);
 	close(map->cubfd);
 	return (true);
 }

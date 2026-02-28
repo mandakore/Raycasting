@@ -12,11 +12,14 @@
 
 #include "../include/cub3D.h"
 
-void	free_map(char **map)
+void	free_duplicated_data(t_game *game)
 {
-	if (!map)
+	if (game == NULL)
 		return ;
-	free(map);
+	free_mapdata(game->map);
+	free_pathes(game->config);
+	free(game->config);
+	return ;
 }
 
 void	free_pathes(t_config *config)
@@ -73,8 +76,6 @@ void	free_all(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_mapdata(game->map);
-	free_pathes(game->config);
-	free(game->config);
+	free_duplicated_data(game);
 	return ;
 }
