@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 20:01:36 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:55:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ static void	draw_player(t_game *game)
 	draw_square(game, player_square);
 }
 
+void	draw_minimap_floor(t_game *game, int x, int y)
+{
+	t_square	square;
+	int			offset_x;
+	int			offset_y;
+
+	offset_x = (int)game->player.x % WALL;
+	offset_y = (int)game->player.y % WALL;
+	square.x = MM_PLAYER_X + x * WALL - offset_x;
+	square.y = MM_PLAYER_Y + y * WALL - offset_y;
+	square.size = WALL;
+	square.color = MM_FLOOR_COLOR;
+	draw_square(game, square);
+}
+
 static void	draw_walls(t_game *game)
 {
 	int	x;
@@ -40,10 +55,12 @@ static void	draw_walls(t_game *game)
 		x = -MM_RAD;
 		while (x <= MM_RAD)
 		{
-			if (is_in_map(game, player_x + x, player_y + y)
-				&& is_wall(game, player_x + x, player_y + y))
+			if (is_in_map(game, player_x + x, player_y + y))
 			{
-				draw_minimap_wall(game, x + MM_RAD, y + MM_RAD);
+				if (is_wall(game, player_x + x, player_y + y))
+					draw_minimap_wall(game, x + MM_RAD, y + MM_RAD);
+				else
+					draw_minimap_floor(game, x + MM_RAD, y + MM_RAD);
 			}
 			x++;
 		}
@@ -62,7 +79,11 @@ void	draw_square(t_game *game, t_square square)
 		j = 0;
 		while (j < square.size)
 		{
-			put_pixel(square.x + j, square.y + i, square.color, game);
+			if (i == 0 || i == square.size - 1
+				|| j == 0 || j == square.size - 1)
+				put_pixel(square.x + j, square.y + i, MM_WALL_COLOR, game);
+			else
+				put_pixel(square.x + j, square.y + i, square.color, game);
 			j++;
 		}
 		i++;
