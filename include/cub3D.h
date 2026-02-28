@@ -248,8 +248,7 @@ void			init_ray(t_ray *ray, t_vector *vec, int x);
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
 /* --- load_texture.c --- */
-void			load_texture(t_game *game, int index, char *path);
-void			set_wall_texture(t_game *game);
+bool			set_wall_texture(t_game *game);
 /* --- minimap.c --- */
 void			draw_square(t_game *game, t_square square);
 void			create_map(t_game *game);
@@ -300,7 +299,7 @@ char			*ft_strdup(const char *s);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *s, int c, size_t n);
 /* --- utils_for_free.c --- */
-void			free_map(char **map);
+void			free_duplicated_data(t_game *game);
 void			free_pathes(t_config *config);
 void			free_mapdata(char **map);
 void			free_args(t_map *map);
