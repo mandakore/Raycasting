@@ -46,6 +46,7 @@ SRCS	= src/apply_shading.c \
 		  src/load_texture.c \
 		  src/main.c \
 		  src/minimap.c \
+		  src/mouse.c \
 		  src/move.c \
 		  src/parse.c \
 		  src/parse_closed_map.c \
