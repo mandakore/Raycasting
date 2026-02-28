@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 01:31:45 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/23 14:13:26 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/02/28 14:05:25 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ static bool	count_config_line(t_map *map, int fd)
 	conf = 0;
 	while (conf < 6)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
+//		line = get_next_line(fd);
+//		if (line == NULL)
+		if (cub_gnl(fd, &line) == false)
 			return (print_lack_of_config(), false);
 		if (is_config_line(line[0]) == true)
 			conf++;

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 17:03:11 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/28 14:03:52 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,5 +327,6 @@ char			**get_big_sheet(t_map *map);
 /* --- utils_for_read.c --- */
 bool			is_config_line(char c);
 char			*get_next_line(int fd);
+int				cub_gnl(int fd, char **line);
 
 #endif

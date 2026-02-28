@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/23 14:22:44 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/02/28 14:05:45 by sohyamaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS	= src/apply_shading.c \
 		  src/init_player.c \
 		  src/init_raycast.c \
 		  src/key.c \
+		  src/gnl.c \
 		  src/load_texture.c \
 		  src/main.c \
 		  src/minimap.c \
