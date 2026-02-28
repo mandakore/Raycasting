@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/28 17:38:23 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:55:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_minimap_floor(t_game *game, int x, int y)
 	square.x = MM_PLAYER_X + x * WALL - offset_x;
 	square.y = MM_PLAYER_Y + y * WALL - offset_y;
 	square.size = WALL;
-	square.color = 0x333333;
+	square.color = MM_FLOOR_COLOR;
 	draw_square(game, square);
 }
 
@@ -81,7 +81,7 @@ void	draw_square(t_game *game, t_square square)
 		{
 			if (i == 0 || i == square.size - 1
 				|| j == 0 || j == square.size - 1)
-				put_pixel(square.x + j, square.y + i, 0x000000, game);
+				put_pixel(square.x + j, square.y + i, MM_WALL_COLOR, game);
 			else
 				put_pixel(square.x + j, square.y + i, square.color, game);
 			j++;

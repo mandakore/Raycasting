@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 17:03:11 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:56:32 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define MM_PLAYER_X 20
 # define MM_PLAYER_Y 20
 # define MM_PLAYER_COLOR 0xFF0000
+# define MM_WALL_COLOR 0x000000
+# define MM_FLOOR_COLOR 0x333333
+# define MM_FRAME_COLOR 0xFFFFFF
 
 /* === EVENT CODES === */
 
