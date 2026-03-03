@@ -170,6 +170,7 @@ struct s_player
 	bool		left_turn;
 	bool		right_turn;
 	float		mouse_dx;
+	bool		mouse_captured;
 } ;
 
 struct s_vector
