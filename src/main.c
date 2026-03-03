@@ -54,8 +54,9 @@ static void	set_hooks(t_game *game)
   mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
   mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
   mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_move, game);
-  mlx_hook(game->win, ClientMessage, NoEventMask, mlx_loop_end, game->mlx);
+  mlx_hook(game->win, E_WIN_CLOSE, 0L, close_window, game);
   mlx_loop_hook(game->mlx, raycasting, game);
+  game->player.mouse_captured = true;
   mlx_mouse_hide(game->mlx, game->win);
   mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
 }
