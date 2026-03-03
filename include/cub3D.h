@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/06 17:39:00 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:39:44 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 #  define BUFFER_SIZE 512
 # endif
 
-# define SPEED 0.5
-# define DIRE_SPEED 0.01
+# define SPEED 3
+# define DIRE_SPEED 0.05
 # define MOUSE_SENSITIVITY 0.003
 
 # define MM_RAD 5
@@ -50,12 +50,12 @@
 
 /* === WINDOW SETTING === */
 
-# define HEIGHT 720
-# define WIDTH 1280
+# define HEIGHT 1080
+# define WIDTH 1920
 
 /* === GAME CONSTANTS === */
 
-# define WALL 16
+# define WALL 32
 # define PI 3.14159265358979323
 
 /* === MAP CONSTANTS === */
