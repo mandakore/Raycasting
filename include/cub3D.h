@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/04 16:54:43 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:39:00 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@
 # define MM_FOV_COLOR_G 0xCC
 # define MM_FOV_COLOR_B 0x44
 # define MM_FOV_D 0.30
-
-/* === EVENT CODES === */
-
-# define E_KEY_PRESS 2
-# define E_MOTION_NOTIFY 6
-# define E_WIN_RESIZE 9
-# define E_WIN_CLOSE 17
 
 /* === WINDOW SETTING === */
 
