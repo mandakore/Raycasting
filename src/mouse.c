@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 02:30:00 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/03 16:43:49 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:23:55 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	mouse_move(int x, int y, t_game *game)
 {
 	int	center_x;
 
-  (void)y;
-  if (!game->player.mouse_captured)
+	(void)y;
+	if (!game->player.mouse_captured)
+		return (0);
+	center_x = WIDTH / 2;
+	game->player.mouse_dx = (float)(x - center_x);
+	mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
 	return (0);
-  center_x = WIDTH / 2;
-  game->player.mouse_dx = (float)(x - center_x);
-  mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
-  return (0);
 }

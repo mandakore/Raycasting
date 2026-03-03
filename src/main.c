@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/03 16:46:08 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:24:12 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static bool	init_mlx(t_game *game)
 
 static void	set_hooks(t_game *game)
 {
-  mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
-  mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
-  mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_move, game);
-  mlx_hook(game->win, E_WIN_CLOSE, 0L, close_window, game);
-  mlx_loop_hook(game->mlx, raycasting, game);
-  game->player.mouse_captured = true;
-  mlx_mouse_hide(game->mlx, game->win);
-  mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_move, game);
+	mlx_hook(game->win, E_WIN_CLOSE, 0L, close_window, game);
+	mlx_loop_hook(game->mlx, raycasting, game);
+	game->player.mouse_captured = true;
+	mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
 }
 
 int	main(int argc, char **argv)
