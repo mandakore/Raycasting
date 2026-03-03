@@ -44,6 +44,8 @@ make
 
 4. You can move with `W` `A` `S` `D` and rotate the camera (change your view) with the `left` and `right` arrow keys.
 
+5. Pressing `Tab` toggles the visibility of the mouse cursor.
+
 
 # Resources
 ## URL
