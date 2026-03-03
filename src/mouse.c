@@ -6,14 +6,15 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 02:30:00 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/01 02:30:00 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:43:49 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int mouse_move(int x, int y, t_game *game) {
-  int center_x;
+int	mouse_move(int x, int y, t_game *game)
+{
+	int	center_x;
 
   (void)y;
   if (!game->player.mouse_captured)
