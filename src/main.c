@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/03 18:53:49 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:08:53 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (false);
-	game->win = mlx_new_window(game->mlx, 1920, 1080, "cub3D");
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
 	if (game->win == NULL)
 		return (false);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
