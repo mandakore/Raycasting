@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 07:24:31 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/03 16:44:09 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:46:39 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	init_player(t_player *player, t_map *map)
 	player->key_d = false;
 	player->left_turn = false;
 	player->right_turn = false;
+	player->mouse_captured = true;
 }

@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/06 17:37:15 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:37:28 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	set_hooks(t_game *game)
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
 	mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_move, game);
 	mlx_hook(game->win, ClientMessage, NoEventMask, mlx_loop_end, game->mlx);
-	game->player.mouse_captured = true;
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(game->mlx, raycasting, game);
