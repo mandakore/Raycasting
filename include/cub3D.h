@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/28 17:56:32 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/04 16:36:57 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 # define MM_WALL_COLOR 0x000000
 # define MM_FLOOR_COLOR 0x333333
 # define MM_FRAME_COLOR 0xFFFFFF
+# define MM_FOV_COLOR_R 0x00
+# define MM_FOV_COLOR_G 0xCC
+# define MM_FOV_COLOR_B 0x44
+# define MM_FOV_ALPHA 0.30
 
 /* === EVENT CODES === */
 
@@ -230,6 +234,8 @@ struct s_game
 /* === FUNCTIONS === */
 /* --- apply_shading.c --- */
 unsigned int	apply_shading(unsigned int color, double distance);
+/* --- blend_pixel.c --- */
+void			blend_pixel(int x, int y, t_game *game);
 /* --- calc_move.c --- */
 void			calc_move_delta(t_player *p, float *add_x, float *add_y);
 /* --- calc_texture.c --- */
@@ -238,6 +244,8 @@ void			draw_texture_column(t_game *game, t_ray *ray, int x, t_color c);
 void			calc_wall_height(t_ray *ray);
 /* --- dda.c --- */
 void			perform_dda(t_game *game, t_ray *ray);
+/* --- fov.c --- */
+void			draw_fov(t_game *game);
 /* --- dup_parsed_arguments.c --- */
 char			**get_parsed_map(t_map *map);
 t_config		*get_parsed_config(t_config *config);
