@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:50:27 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/04 16:36:57 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/04 16:54:43 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define MM_FOV_COLOR_R 0x00
 # define MM_FOV_COLOR_G 0xCC
 # define MM_FOV_COLOR_B 0x44
-# define MM_FOV_ALPHA 0.30
+# define MM_FOV_D 0.30
 
 /* === EVENT CODES === */
 

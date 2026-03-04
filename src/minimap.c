@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:33:14 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/04 16:35:16 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/04 17:06:06 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	draw_square(t_game *game, t_square square)
 		j = 0;
 		while (j < square.size)
 		{
-			if (i == 0 || i == square.size - 1 || j == 0 || j == square.size - 1)
+			if (i == 0
+				|| i == square.size - 1 || j == 0 || j == square.size - 1)
 				put_pixel(square.x + j, square.y + i, MM_WALL_COLOR, game);
 			else
 				put_pixel(square.x + j, square.y + i, square.color, game);
