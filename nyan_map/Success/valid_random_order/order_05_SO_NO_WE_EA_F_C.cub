@@ -1,7 +1,7 @@
-SO ./assets/textures/cub3_south.xpm
-NO ./assets/textures/cub3_north.xpm
-WE ./assets/textures/cub3_west.xpm
-EA ./assets/textures/cub3_east.xpm
+SO ./textures/south.xpm
+NO ./textures/north.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
 F 220,100,0
 C 225,30,0
 

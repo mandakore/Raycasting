@@ -1,7 +1,7 @@
-NO assets/textures/nyan/north.xpm
-SO assets/textures/nyan/south.xpm
-WE assets/textures/nyan/west.xpm
-EA assets/textures/nyan/east.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
 
 F 255 , 255 , 255
 C 0 , 100 , 200

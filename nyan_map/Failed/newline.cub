@@ -1,11 +1,11 @@
-EA assets/wall/east.xpm
+EA ./textures/east.xpm
 
 
 
 
 
 
-SO assets/wall/south.xpm
+SO ./textures/south.xpm
 
 
 
@@ -18,14 +18,14 @@ SO assets/wall/south.xpm
 
 
 
-NO assets/wall/north.xpm
+NO ./textures/north.xpm
 
 
 
 
 
 
-WE assets/wall/west.xpm
+WE ./textures/west.xpm
 
 
 
