@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 07:24:31 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/03 17:46:39 by atashiro         ###   ########.fr       */
+/*   Created: 2026/03/01 02:30:00 by atashiro          #+#    #+#             */
+/*   Updated: 2026/03/03 17:23:55 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	init_player(t_player *player, t_map *map)
+int	mouse_move(int x, int y, t_game *game)
 {
-	player->x = (float)(map->user_x * WALL);
-	player->y = (float)(map->user_y * WALL);
-	player->dire = map->dire;
-	player->mouse_dx = 0;
-	player->key_w = false;
-	player->key_a = false;
-	player->key_s = false;
-	player->key_d = false;
-	player->left_turn = false;
-	player->right_turn = false;
-	player->mouse_captured = true;
+	int	center_x;
+
+	(void)y;
+	if (!game->player.mouse_captured)
+		return (0);
+	center_x = WIDTH / 2;
+	game->player.mouse_dx = (float)(x - center_x);
+	mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
+	return (0);
 }

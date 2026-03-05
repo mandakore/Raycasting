@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 07:24:29 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/04 18:58:18 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:46:29 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	update_direction(t_player *player)
 		player->dire -= dire_speed;
 	if (player->right_turn)
 		player->dire += dire_speed;
+	player->dire += player->mouse_dx * MOUSE_SENSITIVITY;
+	player->mouse_dx = 0;
 	if (player->dire > 2 * PI)
 		player->dire = 0;
 	if (player->dire < 0)

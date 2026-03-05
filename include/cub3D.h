@@ -32,8 +32,9 @@
 #  define BUFFER_SIZE 512
 # endif
 
-# define SPEED 0.5
-# define DIRE_SPEED 0.01
+# define SPEED 3
+# define DIRE_SPEED 0.05
+# define MOUSE_SENSITIVITY 0.003
 
 # define MM_RAD 5
 # define MM_PLAYER_X 20
@@ -47,20 +48,14 @@
 # define MM_FOV_COLOR_B 0x44
 # define MM_FOV_D 0.30
 
-/* === EVENT CODES === */
-
-# define E_KEY_PRESS 2
-# define E_WIN_RESIZE 9
-# define E_WIN_CLOSE 17
-
 /* === WINDOW SETTING === */
 
-# define HEIGHT 720
-# define WIDTH 1280
+# define HEIGHT 1080
+# define WIDTH 1920
 
 /* === GAME CONSTANTS === */
 
-# define WALL 16
+# define WALL 32
 # define PI 3.14159265358979323
 
 /* === MAP CONSTANTS === */
@@ -171,6 +166,8 @@ struct s_player
 	bool		key_d;
 	bool		left_turn;
 	bool		right_turn;
+	float		mouse_dx;
+	bool		mouse_captured;
 } ;
 
 struct s_vector
@@ -258,6 +255,8 @@ void			init_ray(t_ray *ray, t_vector *vec, int x);
 /* --- key.c --- */
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
+/* --- mouse.c --- */
+int				mouse_move(int x, int y, t_game *game);
 /* --- load_texture.c --- */
 bool			set_wall_texture(t_game *game);
 /* --- minimap.c --- */

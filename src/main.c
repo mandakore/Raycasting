@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 23:07:14 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:08:53 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (false);
-	game->win = mlx_new_window(game->mlx, 1280, 720, "cub3D");
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
 	if (game->win == NULL)
 		return (false);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
@@ -53,7 +53,10 @@ static void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win, MotionNotify, PointerMotionMask, mouse_move, game);
 	mlx_hook(game->win, ClientMessage, NoEventMask, mlx_loop_end, game->mlx);
+	mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(game->mlx, raycasting, game);
 }
 

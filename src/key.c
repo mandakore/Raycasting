@@ -6,11 +6,23 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 01:16:43 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/27 17:00:30 by atashiro         ###   ########.fr       */
+/*   Updated: 2026/03/03 17:42:08 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	switch_mouse(t_game *game)
+{
+	game->player.mouse_captured = !game->player.mouse_captured;
+	if (game->player.mouse_captured)
+	{
+		mlx_mouse_hide(game->mlx, game->win);
+		mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+	}
+	else
+		mlx_mouse_show(game->mlx, game->win);
+}
 
 int	key_press(int keycode, t_game *game)
 {
@@ -26,6 +38,8 @@ int	key_press(int keycode, t_game *game)
 		game->player.left_turn = true;
 	if (keycode == XK_Right)
 		game->player.right_turn = true;
+	if (keycode == XK_Tab)
+		switch_mouse(game);
 	if (keycode == XK_Escape)
 	{
 		free_all(game);
