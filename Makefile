@@ -6,7 +6,7 @@
 #    By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 13:57:51 by sohyamaz          #+#    #+#              #
-#    Updated: 2026/02/23 14:22:44 by sohyamaz         ###   ########.fr        #
+#    Updated: 2026/03/04 16:37:41 by atashiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,13 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 # Sources
 # =========================
 SRCS	= src/apply_shading.c \
+		  src/blend_pixel.c \
 		  src/calc_move.c \
 		  src/calc_texture.c \
 		  src/calc_wall_height.c \
 		  src/dda.c \
 		  src/dup_parsed_arguments.c \
+		  src/fov.c \
 		  src/init_map.c \
 		  src/init_player.c \
 		  src/init_raycast.c \
