@@ -20,6 +20,8 @@ int	mouse_move(int x, int y, t_game *game)
 	if (!game->player.mouse_captured)
 		return (0);
 	center_x = WIDTH / 2;
+	if (x == center_x)
+		return (0);
 	game->player.mouse_dx = (float)(x - center_x);
 	mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
 	return (0);
