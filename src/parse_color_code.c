@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:39:16 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/02/27 22:49:07 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/07 11:48:08 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static bool	is_valid_color_input(char *input)
 			return (false);
 		i++;
 	}
+	if (itr != 2)
+		return (false);
 	return (true);
 }
 
