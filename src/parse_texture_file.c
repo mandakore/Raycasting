@@ -6,7 +6,7 @@
 /*   By: sohyamaz <sohyamaz@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 05:40:18 by sohyamaz          #+#    #+#             */
-/*   Updated: 2026/03/07 13:18:31 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/07 13:20:23 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static char	*get_path(char *line)
 	close(fd);
 	return (path);
 }
-
 
 bool	set_valid_texture_path(t_config *config, char *line)
 {
