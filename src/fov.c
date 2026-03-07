@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:29:06 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/07 09:34:15 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/07 12:52:02 by atashiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	draw_fov(t_game *game)
 	double	pl[2];
 	int		c[2];
 
-	c[0] = MM_PLAYER_X + MM_RAD * WALL + (WALL - 6) / 4;
-	c[1] = MM_PLAYER_Y + MM_RAD * WALL + (WALL - 6) / 4;
+	c[0] = MM_PLAYER_X + MM_RAD * WALL - (WALL - 6) / 4;
+	c[1] = MM_PLAYER_Y + MM_RAD * WALL - (WALL - 6) / 4;
 	dir[0] = cos(game->player.dire);
 	dir[1] = sin(game->player.dire);
 	pl[0] = -dir[1] * 0.66;
