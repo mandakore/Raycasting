@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:49:39 by atashiro          #+#    #+#             */
-/*   Updated: 2026/03/07 09:34:31 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/07 12:13:08 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	game.config = NULL;
+	game.map = NULL;
 	if (init_game_data(&game, argc, argv) == false)
 		return (free_duplicated_data(&game), 1);
 	if (init_mlx(&game) == false)

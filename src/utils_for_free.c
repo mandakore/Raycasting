@@ -6,7 +6,7 @@
 /*   By: atashiro <atashiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 01:05:35 by atashiro          #+#    #+#             */
-/*   Updated: 2026/02/23 14:16:18 by sohyamaz         ###   ########.fr       */
+/*   Updated: 2026/03/07 12:28:02 by sohyamaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_all(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		if (game->textures[i].img)
+		if (game->textures[i].img != NULL)
 			mlx_destroy_image(game->mlx, game->textures[i].img);
 		i++;
 	}
