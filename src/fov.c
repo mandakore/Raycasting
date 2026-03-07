@@ -53,8 +53,8 @@ void	draw_fov(t_game *game)
 	double	pl[2];
 	int		c[2];
 
-	c[0] = MM_PLAYER_X + MM_RAD * WALL + (WALL - 6) / 4;
-	c[1] = MM_PLAYER_Y + MM_RAD * WALL + (WALL - 6) / 4;
+	c[0] = MM_PLAYER_X + MM_RAD * WALL - (WALL - 6) / 4;
+	c[1] = MM_PLAYER_Y + MM_RAD * WALL - (WALL - 6) / 4;
 	dir[0] = cos(game->player.dire);
 	dir[1] = sin(game->player.dire);
 	pl[0] = -dir[1] * 0.66;
