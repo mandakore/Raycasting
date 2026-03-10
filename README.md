@@ -1,3 +1,7 @@
+🌐　Language
+- English
+- [日本語](README.ja.md)
+
 *This project has been created as part of the 42 curriculum by atashiro, sohyamaz*
 
 # Description
